@@ -10,10 +10,14 @@ module.exports = {
       colors: {
         // Primary colors
         'emerald': {
+          500: '#10B981',
+          800: '#065F46',
           900: '#1B5E20', // Emerald Green
         },
         'gold': {
+          400: '#E6C547',
           500: '#D4AF37', // Gold/Sand
+          600: '#B8941F',
         },
         // Secondary colors
         'mint': {

@@ -19,7 +19,7 @@ export const config = {
   organization: {
     name: 'The Muslim Cultural Center Lillehammer',
     orgNumber: '988 588 660',
-    address: 'Bankgata 22A, 2609 Lillehammer',
+    address: 'Bankgata 12, 2609 Lillehammer',
     municipality: '3405 LILLEHAMMER, Norge',
     established: '2005-01-01',
     activity: 'Kulturelt senter',

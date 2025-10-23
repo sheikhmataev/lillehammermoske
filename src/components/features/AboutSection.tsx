@@ -114,7 +114,7 @@ export function AboutSection() {
                 <div className="flex items-start space-x-3">
                   <MapPin className="w-6 h-6 text-gold-500 mt-1 flex-shrink-0" />
                   <div>
-                    <p className="text-lg font-medium">Bankgata 22A</p>
+                    <p className="text-lg font-medium">Bankgata 12</p>
                     <p className="text-gray-200">2609 Lillehammer, Norge</p>
                   </div>
                 </div>

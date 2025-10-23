@@ -57,7 +57,7 @@ export function Footer() {
                 <MapPin className="w-5 h-5 text-gold-500 mt-0.5 flex-shrink-0" />
                 <div>
                   <p className="text-gray-300 text-sm">
-                    Bankgata 22A<br />
+                    Bankgata 12<br />
                     2609 Lillehammer
                   </p>
                 </div>

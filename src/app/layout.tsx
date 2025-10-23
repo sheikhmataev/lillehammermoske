@@ -7,6 +7,7 @@ import { Footer } from '@/components/features/Footer';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://lillehammermoske.no'),
   title: 'Lillehammer Moske - The Muslim Cultural Center',
   description: 'Offisiell nettside for The Muslim Cultural Center Lillehammer. Bønnetider, Ramadan kalender, Quranskole og mer.',
   keywords: 'moske, lillehammer, islam, bønnetider, ramadan, quranskole',

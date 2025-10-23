@@ -51,7 +51,7 @@
 | **Informasjon** | **Detaljer** |
 |---|---|
 | **Organisasjonsnummer** | 988 588 660 |
-| **Postadresse** | Bankgata 22A, 2609 LILLEHAMMER |
+| **Postadresse** | Bankgata 12, 2609 LILLEHAMMER |
 | **Kommune** | 3405 LILLEHAMMER, Norge |
 | **Organisasjonsform** | Forening/lag/innretning |
 | **Stiftelsesdato** | 1. januar 2005 |
@@ -295,6 +295,6 @@ Dette prosjektet er lisensiert under MIT-lisensen - se [LICENSE](LICENSE) filen 
 ## 📞 Kontakt
 
 **The Muslim Cultural Center Lillehammer**
-- **Adresse**: Bankgata 22A, 2609 Lillehammer
+- **Adresse**: Bankgata 12, 2609 Lillehammer
 - **Email**: info@lillehammermoske.no
 - **Organisasjonsnummer**: 988 588 660
