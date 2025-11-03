@@ -181,12 +181,13 @@ export function Announcements() {
 
         {/* Call to Action */}
         <div className="mt-16 text-center">
-          <div className="bg-gradient-to-r from-emerald-900 to-emerald-800 rounded-2xl p-8 text-white">
-            <h3 className="text-3xl font-bold mb-4">
+          <div className="bg-emerald-900 rounded-2xl p-10 text-white">
+            <h3 className="text-3xl font-bold mb-4 text-white">
               Hold deg oppdatert
             </h3>
-            <p className="text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
-              Få de siste nyhetene og kunngjøringene direkte på e-post eller WhatsApp.
+            <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed">
+              Få de siste nyhetene og kunngjøringene direkte på e-post eller WhatsApp. 
+              Vi lover ikke å spamme deg – bare viktige oppdateringer! 😊
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button className="bg-gold-500 hover:bg-gold-600 text-white px-8 py-3 rounded-lg font-medium transition-colors">

@@ -45,27 +45,34 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-emerald-900 text-white px-6 py-3 rounded-lg font-medium hover:bg-emerald-800 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2;
+    @apply bg-emerald-900 text-white px-8 py-3.5 rounded-lg font-semibold
+           hover:bg-emerald-800 transition-colors duration-200
+           focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2;
   }
   
   .btn-secondary {
-    @apply bg-gold-500 text-white px-6 py-3 rounded-lg font-medium hover:bg-gold-600 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gold-400 focus:ring-offset-2;
+    @apply bg-gold-500 text-white px-8 py-3.5 rounded-lg font-semibold
+           hover:bg-gold-600 transition-colors duration-200
+           focus:outline-none focus:ring-2 focus:ring-gold-400 focus:ring-offset-2;
   }
   
   .btn-outline {
-    @apply border-2 border-emerald-900 text-emerald-900 px-6 py-3 rounded-lg font-medium hover:bg-emerald-900 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2;
+    @apply border-2 border-emerald-900 text-emerald-900 px-8 py-3.5 rounded-lg font-semibold
+           hover:bg-emerald-900 hover:text-white transition-colors duration-200
+           focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2;
   }
   
   .card {
-    @apply bg-white rounded-xl shadow-lg p-6 border border-gray-100;
+    @apply bg-white rounded-xl shadow-sm border border-gray-100 p-6
+           transition-all duration-200;
   }
   
   .card-hover {
-    @apply card hover:shadow-xl transition-shadow duration-300;
+    @apply card hover:shadow-md hover:border-emerald-200 hover:-translate-y-0.5;
   }
   
   .section-padding {
-    @apply py-16 md:py-20 lg:py-24;
+    @apply py-24 md:py-32 lg:py-40;
   }
   
   .container-custom {
@@ -73,20 +80,24 @@
   }
   
   .text-gradient {
-    @apply bg-gradient-to-r from-emerald-900 to-gold-500 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-emerald-900 to-emerald-800 bg-clip-text text-transparent;
+  }
+  
+  .text-gradient-gold {
+    @apply bg-gradient-to-r from-gold-600 to-gold-500 bg-clip-text text-transparent;
   }
   
   .arabic-text {
     @apply font-arabic text-right;
   }
+  
+  .section-divider {
+    @apply h-px bg-gray-200;
+  }
 }
 
 @layer utilities {
   .text-shadow {
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .text-shadow-lg {
-    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   }
 }

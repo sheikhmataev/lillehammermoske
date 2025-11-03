@@ -1,4 +1,8 @@
-import { Mail, Phone, Calendar } from 'lucide-react';
+'use client';
+
+import { useState } from 'react';
+import { Mail, Phone, ChevronLeft, ChevronRight, Calendar } from 'lucide-react';
+import { Card } from '@/components/ui/Card';
 
 const boardMembers = [
   {
@@ -54,6 +58,22 @@ const boardMembers = [
 ];
 
 export function BoardMembers() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const nextMember = () => {
+    setCurrentIndex((prev) => (prev + 1) % boardMembers.length);
+  };
+
+  const prevMember = () => {
+    setCurrentIndex((prev) => (prev - 1 + boardMembers.length) % boardMembers.length);
+  };
+
+  const goToMember = (index: number) => {
+    setCurrentIndex(index);
+  };
+
+  const currentMember = boardMembers[currentIndex];
+
   return (
     <section className="section-padding bg-white">
       <div className="container-custom">
@@ -62,95 +82,153 @@ export function BoardMembers() {
             <h2 className="text-4xl md:text-5xl font-bold text-emerald-900 mb-6">
               Styret
             </h2>
-            <p className="text-xl text-gray-600">
-              Møt de dedikerte menneskene som leder Lillehammer Moske.
+            <p className="text-xl text-gray-600 mb-2">
+              Møt menneskene bak scenen – de dedikerte styremedlemmene som jobber frivillig 
+              for å holde moskeen i gang.
+            </p>
+            <p className="text-sm text-gray-500">
+              Alle disse menneskene har vanlige jobber og familier, men finner tid til å gi tilbake til fellesskapet. 
+              Takk til alle! 🙏
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {boardMembers.map((member) => (
-              <div key={member.id} className="card-hover">
-                <div className="text-center mb-6">
-                  <div className="w-32 h-32 bg-gradient-to-br from-emerald-900 to-gold-500 rounded-full mx-auto mb-4 flex items-center justify-center">
-                    <span className="text-4xl font-bold text-white">
-                      {member.name.split(' ').map(n => n[0]).join('')}
-                    </span>
-                  </div>
-                  <h3 className="text-xl font-semibold text-emerald-900 mb-2">
-                    {member.name}
-                  </h3>
-                  <p className="text-gold-500 font-medium mb-2">
-                    {member.position}
-                  </p>
-                  <p className="text-sm text-gray-500">
-                    Født {member.birthYear}
-                  </p>
-                </div>
+          {/* Carousel Container */}
+          <div className="relative mb-12">
+            {/* Card with Sliding Content */}
+            <div className="relative overflow-hidden">
+              <Card variant="elevated" className="max-w-2xl mx-auto p-8 md:p-12">
+                <div 
+                  className="transition-transform duration-300 ease-in-out transform"
+                  style={{ transform: `translateX(0)` }}
+                >
+                  {/* Member Content */}
+                  <div className="text-center">
+                    {/* Avatar */}
+                    <div className="w-40 h-40 bg-gradient-to-br from-emerald-900 to-gold-500 rounded-full mx-auto mb-6 flex items-center justify-center shadow-lg">
+                      <span className="text-5xl font-bold text-white">
+                        {currentMember.name.split(' ').map(n => n[0]).join('')}
+                      </span>
+                    </div>
+                    
+                    {/* Name and Position */}
+                    <h3 className="text-2xl md:text-3xl font-bold text-emerald-900 mb-3">
+                      {currentMember.name}
+                    </h3>
+                    <p className="text-gold-600 font-semibold text-lg mb-2">
+                      {currentMember.position}
+                    </p>
+                    <p className="text-sm text-gray-500 mb-8">
+                      Født {currentMember.birthYear}
+                    </p>
 
-                <p className="text-gray-600 text-sm leading-relaxed mb-6">
-                  {member.bio}
-                </p>
+                    {/* Bio */}
+                    <p className="text-gray-700 text-base leading-relaxed mb-8 max-w-xl mx-auto">
+                      {currentMember.bio}
+                    </p>
 
-                <div className="space-y-3">
-                  <div className="flex items-center text-sm text-gray-600">
-                    <Mail className="w-4 h-4 mr-3 text-emerald-900" />
-                    <a 
-                      href={`mailto:${member.email}`}
-                      className="hover:text-emerald-900 transition-colors"
-                    >
-                      {member.email}
-                    </a>
-                  </div>
-                  <div className="flex items-center text-sm text-gray-600">
-                    <Phone className="w-4 h-4 mr-3 text-emerald-900" />
-                    <a 
-                      href={`tel:${member.phone}`}
-                      className="hover:text-emerald-900 transition-colors"
-                    >
-                      {member.phone}
-                    </a>
+                    {/* Contact Info */}
+                    <div className="space-y-4 pt-8 border-t border-gray-200">
+                      <div className="flex items-center justify-center text-sm text-gray-700">
+                        <Mail className="w-5 h-5 mr-3 text-emerald-900 flex-shrink-0" />
+                        <a 
+                          href={`mailto:${currentMember.email}`}
+                          className="hover:text-emerald-900 transition-colors font-medium"
+                        >
+                          {currentMember.email}
+                        </a>
+                      </div>
+                      <div className="flex items-center justify-center text-sm text-gray-700">
+                        <Phone className="w-5 h-5 mr-3 text-emerald-900 flex-shrink-0" />
+                        <a 
+                          href={`tel:${currentMember.phone}`}
+                          className="hover:text-emerald-900 transition-colors font-medium"
+                        >
+                          {currentMember.phone}
+                        </a>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Card>
+            </div>
+
+            {/* Navigation Arrows */}
+            <button
+              onClick={prevMember}
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 w-12 h-12 bg-emerald-900 hover:bg-emerald-800 text-white rounded-full flex items-center justify-center shadow-lg transition-colors z-10 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
+              aria-label="Forrige styremedlem"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+            
+            <button
+              onClick={nextMember}
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 w-12 h-12 bg-emerald-900 hover:bg-emerald-800 text-white rounded-full flex items-center justify-center shadow-lg transition-colors z-10 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
+              aria-label="Neste styremedlem"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+          </div>
+
+          {/* Slide Indicators */}
+          <div className="flex justify-center items-center space-x-2 mb-16">
+            {boardMembers.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToMember(index)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 ${
+                  index === currentIndex
+                    ? 'bg-emerald-900 w-8'
+                    : 'bg-gray-300 hover:bg-gray-400'
+                }`}
+                aria-label={`Gå til styremedlem ${index + 1}`}
+              />
             ))}
           </div>
 
+          {/* Member Counter */}
+          <div className="text-center text-sm text-gray-500 mb-16">
+            {currentIndex + 1} av {boardMembers.length}
+          </div>
+
           {/* Board Meeting Info */}
-          <div className="mt-16 bg-gradient-to-r from-emerald-900 to-emerald-800 rounded-2xl p-8 text-white">
+          <div className="bg-emerald-900 rounded-2xl p-10 text-white">
             <div className="max-w-4xl mx-auto">
-              <h3 className="text-3xl font-bold mb-6 text-center">
+              <h3 className="text-3xl font-bold mb-8 text-center text-white">
                 Styrets Møter
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                 <div>
                   <h4 className="text-xl font-semibold mb-4 flex items-center">
                     <Calendar className="w-6 h-6 mr-3" />
                     Møtefrekvens
                   </h4>
-                  <p className="text-gray-200 mb-4">
-                    Styrets møter holdes månedlig, vanligvis første lørdag i måneden.
+                  <p className="text-white/90 mb-4 leading-relaxed">
+                    Vi møtes månedlig, vanligvis første lørdag i måneden kl. 14:00. 
+                    Det varierer litt avhengig av andre arrangementer, så sjekk kunngjøringene.
                   </p>
-                  <p className="text-gray-200">
-                    Alle medlemmer er velkommen til å delta på styremøtene.
+                  <p className="text-white/90 leading-relaxed">
+                    Alle medlemmer er velkommen til å delta på styremøtene – vi setter stor pris på input fra fellesskapet!
                   </p>
                 </div>
                 <div>
-                  <h4 className="text-xl font-semibold mb-4">
+                  <h4 className="text-xl font-semibold mb-4 text-white">
                     Kontakt Styret
                   </h4>
-                  <p className="text-gray-200 mb-4">
-                    Har du spørsmål eller forslag til styret? Ta kontakt med oss.
+                  <p className="text-white/90 mb-6 leading-relaxed">
+                    Har du spørsmål, forslag eller bekymringer? Vi lytter alltid. 
+                    Send oss en e-post eller kom innom – vi er åpne for dialog.
                   </p>
-                  <div className="flex space-x-4">
+                  <div className="flex flex-col sm:flex-row gap-4">
                     <a 
                       href="mailto:styret@lillehammermoske.no"
-                      className="bg-gold-500 hover:bg-gold-600 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+                      className="bg-gold-500 hover:bg-gold-600 text-white px-6 py-3 rounded-lg font-medium transition-colors text-center"
                     >
                       Send e-post
                     </a>
                     <a 
                       href="/contact"
-                      className="border-2 border-white text-white hover:bg-white hover:text-emerald-900 px-6 py-3 rounded-lg font-medium transition-colors"
+                      className="border-2 border-white text-white hover:bg-white hover:text-emerald-900 px-6 py-3 rounded-lg font-medium transition-colors text-center"
                     >
                       Kontaktskjema
                     </a>

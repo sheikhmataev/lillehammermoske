@@ -32,9 +32,10 @@ export function MosqueHistory() {
                     <h3 className="text-xl font-semibold text-emerald-900 mb-3">
                       Grunnleggelse
                     </h3>
-                    <p className="text-gray-600">
-                      The Muslim Cultural Center Lillehammer ble grunnlagt av en gruppe 
-                      engasjerte muslimer som ønsket å skape et fellesskap i Lillehammer.
+                    <p className="text-gray-600 leading-relaxed">
+                      Alt startet egentlig med et enkelt spørsmål: "Hvorfor skal vi reise til Oslo bare for å be sammen?" 
+                      En gruppe engasjerte muslimer i Lillehammer bestemte seg for å skape noe lokalt – noe for fellesskapet vårt. 
+                      Det var ikke mye ressurser den gangen, men vi hadde hjerte og vilje. Det var starten på alt vi har i dag.
                     </p>
                   </div>
                 </div>
@@ -55,9 +56,10 @@ export function MosqueHistory() {
                     <h3 className="text-xl font-semibold text-emerald-900 mb-3">
                       Første Lokaler
                     </h3>
-                    <p className="text-gray-600">
-                      Vi flyttet inn i våre første permanente lokaler i Bankgata 22A, 
-                      som gav oss mulighet til å utvide våre aktiviteter.
+                    <p className="text-gray-600 leading-relaxed">
+                      Etter 5 år med forskjellige leide lokaler fant vi endelig et sted å kalle vårt eget i Bankgata 12. 
+                      Det var en stor dag! Plutselig kunne vi ha bønn hver dag, ikke bare når vi fant et sted. 
+                      Dette ga oss rom til å vokse og planlegge langsiktig.
                     </p>
                   </div>
                 </div>
@@ -74,9 +76,10 @@ export function MosqueHistory() {
                     <h3 className="text-xl font-semibold text-emerald-900 mb-3">
                       Quranskole Startet
                     </h3>
-                    <p className="text-gray-600">
-                      Vi startet vår første Quranskole for barn, som har vokst 
-                      til å bli en viktig del av vårt tilbud.
+                    <p className="text-gray-600 leading-relaxed">
+                      Foreldre spurte hele tiden: "Har dere ikke Quranskole?" Så vi startet en. 
+                      Med bare 8 barn første dag – nå har vi over 150 elever! Det vokste organisk, 
+                      basert på hva fellesskapet faktisk trengte. Noen av de første elevene våre er nå selv lærere hos oss. 😊
                     </p>
                   </div>
                 </div>
@@ -97,9 +100,10 @@ export function MosqueHistory() {
                     <h3 className="text-xl font-semibold text-emerald-900 mb-3">
                       Digital Utvikling
                     </h3>
-                    <p className="text-gray-600">
-                      Under pandemien utviklet vi digitale løsninger for å holde 
-                      fellesskapet sammen, inkludert online bønnetider og undervisning.
+                    <p className="text-gray-600 leading-relaxed">
+                      2020 var tøft. Alle var hjemme, men vi kunne ikke bare gi opp. Vi lærte oss å bruke Zoom, 
+                      lagde YouTube-videoer, og sendte ut daglige oppdateringer. Det som startet som nødvendighet 
+                      ble faktisk en del av hvem vi er i dag – vi er bedre på digitale løsninger nå!
                     </p>
                   </div>
                 </div>
@@ -116,9 +120,10 @@ export function MosqueHistory() {
                     <h3 className="text-xl font-semibold text-emerald-900 mb-3">
                       Moderne Nettside
                     </h3>
-                    <p className="text-gray-600">
-                      Vi lanserer vår nye, moderne nettside for å bedre tjene 
-                      fellesskapet og gjøre informasjon mer tilgjengelig.
+                    <p className="text-gray-600 leading-relaxed">
+                      Nå i 2024 lanserer vi vår helt nye nettside! Felleskapet vårt har bedt om det i lang tid – 
+                      "hvordan ser bønnetidene ut?", "når er neste arrangement?", "hvordan melder jeg meg på?". 
+                      Nå har vi endelig et sted hvor alt finnes. Vi håper du liker den! 🤲
                     </p>
                   </div>
                 </div>

@@ -25,11 +25,12 @@ export function MissionVision() {
               </h3>
               <p className="text-gray-600 leading-relaxed mb-4">
                 Å skape et sterkt og inkluderende muslimsk fellesskap i Lillehammer som 
-                støtter hverandre gjennom religiøs praksis, utdanning og fellesskapsaktiviteter.
+                støtter hverandre gjennom religiøs praksis, utdanning og fellesskapsaktiviteter. 
+                Vi jobber hver dag for å være et hjem langt fra hjemmet.
               </p>
               <p className="text-gray-600 leading-relaxed">
                 Vi ønsker å være en bro mellom kulturer og bidra til en harmonisk 
-                sameksistens i det norske samfunnet.
+                sameksistens i det norske samfunnet. Alle er velkommen – muslim eller ikke!
               </p>
             </div>
 
@@ -43,11 +44,12 @@ export function MissionVision() {
               </h3>
               <p className="text-gray-600 leading-relaxed mb-4">
                 Å være et moderne, åpent og inkluderende kulturelt senter som tjener 
-                det muslimske fellesskapet i Lillehammer og omegn.
+                det muslimske fellesskapet i Lillehammer og omegn – ikke bare en moske, 
+                men et sted hvor fellesskapet vokser og blomstrer.
               </p>
               <p className="text-gray-600 leading-relaxed">
                 Vi ønsker å være en ressurs for både muslimer og ikke-muslimer som 
-                ønsker å lære om islam og muslimsk kultur.
+                ønsker å lære om islam og muslimsk kultur. Har du spørsmål? Bare kom innom!
               </p>
             </div>
           </div>
