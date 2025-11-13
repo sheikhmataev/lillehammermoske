@@ -35,7 +35,7 @@ export function RamadanCountdown() {
   }, []);
 
   return (
-    <section className="section-padding bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-700 text-white">
+    <section className="section-padding bg-gradient-to-br from-emerald-600 via-emerald-500 to-emerald-400 text-white">
       <div className="container-custom">
         <div className="max-w-4xl mx-auto text-center">
           <div className="flex items-center justify-center mb-8">

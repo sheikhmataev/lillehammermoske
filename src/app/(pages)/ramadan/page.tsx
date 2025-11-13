@@ -6,7 +6,7 @@ import { RamadanEvents } from '@/components/features/RamadanEvents';
 
 export default function RamadanPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-700">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-600 via-emerald-500 to-emerald-400">
       {/* Hero Section */}
       <section className="text-white section-padding">
         <div className="container-custom">
