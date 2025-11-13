@@ -4,5 +4,7 @@ export { Input } from './Input';
 export { Textarea } from './Textarea';
 export { Select } from './Select';
 export { Modal } from './Modal';
+export { EtherealShadow } from './EtherealShadow';
+export { EtherealShadowDemo, MosqueHeroWithShadow, SubtleEtherealBackground } from './EtherealShadowDemo';
 
 
