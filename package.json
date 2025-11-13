@@ -14,7 +14,7 @@
     "db:push": "prisma db push",
     "db:migrate": "prisma migrate dev",
     "db:studio": "prisma studio",
-    "export": "next build && next export",
+    "export": "next build",
     "deploy": "npm run build && gh-pages -d out -t true"
   },
   "dependencies": {
