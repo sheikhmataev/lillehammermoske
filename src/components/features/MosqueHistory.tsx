@@ -33,7 +33,7 @@ export function MosqueHistory() {
                       Grunnleggelse
                     </h3>
                     <p className="text-gray-600 leading-relaxed">
-                      Alt startet egentlig med et enkelt spørsmål: "Hvorfor skal vi reise til Oslo bare for å be sammen?" 
+                      Alt startet egentlig med et enkelt spørsmål: &quot;Hvorfor skal vi reise til Oslo bare for å be sammen?&quot;
                       En gruppe engasjerte muslimer i Lillehammer bestemte seg for å skape noe lokalt – noe for fellesskapet vårt. 
                       Det var ikke mye ressurser den gangen, men vi hadde hjerte og vilje. Det var starten på alt vi har i dag.
                     </p>
@@ -77,7 +77,7 @@ export function MosqueHistory() {
                       Quranskole Startet
                     </h3>
                     <p className="text-gray-600 leading-relaxed">
-                      Foreldre spurte hele tiden: "Har dere ikke Quranskole?" Så vi startet en. 
+                      Foreldre spurte hele tiden: &quot;Har dere ikke Quranskole?&quot; Så vi startet en. 
                       Med bare 8 barn første dag – nå har vi over 150 elever! Det vokste organisk, 
                       basert på hva fellesskapet faktisk trengte. Noen av de første elevene våre er nå selv lærere hos oss. 😊
                     </p>
@@ -122,7 +122,7 @@ export function MosqueHistory() {
                     </h3>
                     <p className="text-gray-600 leading-relaxed">
                       Nå i 2024 lanserer vi vår helt nye nettside! Felleskapet vårt har bedt om det i lang tid – 
-                      "hvordan ser bønnetidene ut?", "når er neste arrangement?", "hvordan melder jeg meg på?". 
+                      &quot;hvordan ser bønnetidene ut?&quot;, &quot;når er neste arrangement?&quot;, &quot;hvordan melder jeg meg p&aring;?&quot;. 
                       Nå har vi endelig et sted hvor alt finnes. Vi håper du liker den! 🤲
                     </p>
                   </div>

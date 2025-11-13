@@ -111,7 +111,7 @@ export function LocationInfo() {
                     <div>
                       <h4 className="font-semibold text-gray-900 mb-2">Kollektivtransport</h4>
                       <p className="text-gray-600 text-sm leading-relaxed">
-                        Bussholdeplass "Bankgata" ligger 2 minutter gange fra moskeen. 
+                        Bussholdeplass &quot;Bankgata&quot; ligger 2 minutter gange fra moskeen. 
                         Busslinje 1 og 3 stopper her.
                       </p>
                     </div>
