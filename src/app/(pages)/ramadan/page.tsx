@@ -8,11 +8,11 @@ export default function RamadanPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-700">
       {/* Hero Section */}
-      <section className="text-emerald-100 section-padding">
+      <section className="text-emerald-200 section-padding">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              Ramadan 2025
+              Ramadan 2026
             </h1>
             <p className="text-xl md:text-2xl text-emerald-200 leading-relaxed">
               Den hellige måneden Ramadan. Fasting, bønn og fellesskap.

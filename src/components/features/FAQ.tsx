@@ -192,10 +192,10 @@ export function FAQ() {
         {/* Contact CTA */}
         <div className="mt-16 text-center">
           <Card className="bg-gradient-to-r from-emerald-900 to-emerald-800 text-white max-w-3xl mx-auto">
-            <h3 className="text-2xl font-bold mb-4">
+            <h3 className="text-2xl font-bold mb-4 text-white">
               Har du flere spørsmål?
             </h3>
-            <p className="text-emerald-100 mb-6">
+            <p className="text-emerald-200 mb-6">
               Vi er her for å hjelpe deg. Kontakt oss hvis du har spørsmål som ikke er besvart her.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -15,9 +15,9 @@ export function RamadanCountdown() {
   const [currentDay, setCurrentDay] = useState(0);
 
   useEffect(() => {
-    // Ramadan 2025 expected dates (approximate - will be confirmed closer to date)
-    const ramadanStart = new Date('2025-03-01T00:00:00');
-    const ramadanEnd = new Date('2025-03-30T23:59:59'); // Approximately 30 days
+    // Ramadan 2026 expected dates (approximate - will be confirmed closer to date)
+    const ramadanStart = new Date('2026-02-18T00:00:00');
+    const ramadanEnd = new Date('2026-03-19T23:59:59'); // Approximately 30 days
     
     const timer = setInterval(() => {
       const now = new Date();
@@ -66,7 +66,7 @@ export function RamadanCountdown() {
   }, []);
 
   return (
-    <section className="section-padding bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-700 text-emerald-100">
+    <section className="section-padding bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-700 text-emerald-200">
       <div className="container-custom">
         <div className="max-w-4xl mx-auto text-center">
           <div className="flex items-center justify-center mb-8">
@@ -123,7 +123,7 @@ export function RamadanCountdown() {
 
           <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8 border border-white/20">
             <h3 className="text-2xl font-bold mb-4">
-              {isRamadanActive ? `Ramadan Dag ${currentDay} - 2025` : 'Ramadan Starter 1. Mars 2025'}
+              {isRamadanActive ? `Ramadan Dag ${currentDay} - 2026` : 'Ramadan Starter 18. Februar 2026'}
             </h3>
             <p className="text-emerald-200 mb-6">
               {isRamadanActive 
@@ -151,7 +151,7 @@ export function RamadanCountdown() {
               <button className="bg-gold-500 hover:bg-gold-600 text-white px-8 py-3 rounded-lg font-medium transition-colors">
                 Se Ramadan Kalender
               </button>
-              <button className="border-2 border-emerald-300 text-emerald-100 hover:bg-emerald-100 hover:text-emerald-900 px-8 py-3 rounded-lg font-medium transition-colors">
+              <button className="border-2 border-emerald-300 text-emerald-200 hover:bg-emerald-100 hover:text-emerald-900 px-8 py-3 rounded-lg font-medium transition-colors">
                 Lær om Ramadan
               </button>
             </div>

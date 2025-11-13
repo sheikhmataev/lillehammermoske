@@ -1,6 +1,6 @@
 export function ContactHero() {
   return (
-    <section className="section-padding bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-700 text-emerald-100">
+    <section className="section-padding bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-700 text-emerald-200">
       <div className="container-custom">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-5xl md:text-6xl font-bold mb-6">

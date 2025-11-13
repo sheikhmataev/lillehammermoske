@@ -7,7 +7,7 @@ export function RamadanCalendar() {
             Ramadan Kalender
           </h2>
           <p className="text-xl text-gray-600 mb-12">
-            Komplett kalender for Ramadan 2024
+            Komplett kalender for Ramadan 2026
           </p>
           
           <div className="bg-white rounded-2xl p-8 shadow-lg">

@@ -154,7 +154,7 @@ export function DonationImpact() {
         <Card className="bg-gradient-to-r from-emerald-900 to-emerald-800 text-white">
           <div className="text-center mb-8">
             <CheckCircle className="w-12 h-12 text-gold-500 mx-auto mb-4" />
-            <h3 className="text-3xl font-bold mb-4">
+            <h3 className="text-3xl font-bold mb-4 text-white">
               Takknemlig for din støtte
             </h3>
             <p className="text-xl text-gray-200 max-w-3xl mx-auto">

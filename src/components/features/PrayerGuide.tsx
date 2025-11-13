@@ -94,7 +94,7 @@ export function PrayerGuide() {
                 <div className="bg-gradient-to-r from-emerald-900 to-emerald-800 text-white p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <h3 className="text-2xl font-bold mb-2">{prayer.name}</h3>
+                      <h3 className="text-2xl font-bold mb-2 text-white">{prayer.name}</h3>
                       <p className="text-emerald-200 text-lg">{prayer.arabic}</p>
                     </div>
                     <div className="text-right">
@@ -102,7 +102,7 @@ export function PrayerGuide() {
                       <p className="text-sm text-emerald-300">{prayer.rakat}</p>
                     </div>
                   </div>
-                  <p className="text-emerald-100 mt-4">{prayer.description}</p>
+                  <p className="text-emerald-200 mt-4">{prayer.description}</p>
                 </div>
 
                 <div className="p-6">
@@ -183,7 +183,7 @@ export function PrayerGuide() {
 
           {/* Contact for Help */}
           <div className="mt-12 bg-gradient-to-r from-emerald-900 to-emerald-800 rounded-2xl p-8 text-white text-center">
-            <h3 className="text-2xl font-bold mb-4">
+            <h3 className="text-2xl font-bold mb-4 text-white">
               Trenger du hjelp med bønn?
             </h3>
             <p className="text-emerald-200 mb-6">

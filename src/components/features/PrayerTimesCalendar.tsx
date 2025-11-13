@@ -164,147 +164,149 @@ export function PrayerTimesCalendar() {
             )}
           </div>
 
-          {hasData ? (
-            <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-              {/* Calendar Header */}
-              <div className="bg-gradient-to-r from-emerald-900 to-emerald-800 text-white p-6">
-                <div className="flex items-center justify-between">
-                  <button
-                    onClick={goToPreviousMonth}
-                    className="p-2 hover:bg-emerald-700 rounded-lg transition-colors"
-                  >
-                    <ChevronLeft className="w-6 h-6" />
-                  </button>
-                  
-                  <div className="text-center">
-                    <h3 className="text-2xl font-bold mb-1">
-                      {monthName} {year}
-                    </h3>
-                    <p className="text-emerald-200 text-sm">
-                      {monthName.toLowerCase() === 'november' || monthName.toLowerCase() === 'desember' 
-                        ? 'Offisielle bønnetider for Lillehammer' 
-                        : 'Data ikke tilgjengelig'}
-                    </p>
-                  </div>
-                  
-                  <button
-                    onClick={goToNextMonth}
-                    className="p-2 hover:bg-emerald-700 rounded-lg transition-colors"
-                  >
-                    <ChevronRight className="w-6 h-6" />
-                  </button>
+          {/* Always show calendar header with navigation */}
+          <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+            {/* Calendar Header */}
+            <div className="bg-gradient-to-r from-emerald-900 to-emerald-800 text-white p-6">
+              <div className="flex items-center justify-between">
+                <button
+                  onClick={goToPreviousMonth}
+                  className="p-2 hover:bg-emerald-700 rounded-lg transition-colors"
+                >
+                  <ChevronLeft className="w-6 h-6" />
+                </button>
+                
+                <div className="text-center">
+                  <h3 className="text-2xl font-bold mb-1 text-white">
+                    {monthName} {year}
+                  </h3>
+                  <p className="text-emerald-200 text-sm">
+                    {monthName.toLowerCase() === 'november' || monthName.toLowerCase() === 'desember' 
+                      ? 'Offisielle bønnetider for Lillehammer' 
+                      : 'Data ikke tilgjengelig'}
+                  </p>
                 </div>
+                
+                <button
+                  onClick={goToNextMonth}
+                  className="p-2 hover:bg-emerald-700 rounded-lg transition-colors"
+                >
+                  <ChevronRight className="w-6 h-6" />
+                </button>
               </div>
+            </div>
 
-              {/* Calendar Grid */}
-              <div className="p-6">
-                {/* Day Headers */}
-                <div className="grid grid-cols-7 gap-2 mb-4">
-                  {['Man', 'Tir', 'Ons', 'Tor', 'Fre', 'Lør', 'Søn'].map((day) => (
-                    <div key={day} className="text-center font-semibold text-gray-600 py-2">
-                      {day}
-                    </div>
-                  ))}
-                </div>
-
-                {/* Calendar Days */}
-                <div className="grid grid-cols-7 gap-2">
-                  {/* Empty cells for days before month starts */}
-                  {Array.from({ length: firstDayOfMonth === 0 ? 6 : firstDayOfMonth - 1 }).map((_, index) => (
-                    <div key={`empty-${index}`} className="h-32"></div>
-                  ))}
-
-                  {/* Days of the month */}
-                  {Array.from({ length: daysInMonth }, (_, i) => i + 1).map((day) => {
-                    const prayerTimes = getPrayerTimesForDay(day);
-                    const isCurrentDay = isToday(day);
-                    
-                    return (
-                      <div
-                        key={day}
-                        className={`h-32 p-2 border rounded-lg transition-all duration-200 hover:shadow-md ${
-                          isCurrentDay 
-                            ? 'bg-emerald-100 border-emerald-400 shadow-md' 
-                            : prayerTimes 
-                            ? 'bg-white border-gray-200 hover:bg-gray-50' 
-                            : 'bg-gray-50 border-gray-200'
-                        }`}
-                      >
-                        <div className="flex flex-col h-full">
-                          <div className={`text-sm font-bold mb-1 ${
-                            isCurrentDay ? 'text-emerald-900' : 'text-gray-900'
-                          }`}>
-                            {day}
-                          </div>
-                          
-                          {prayerTimes ? (
-                            <div className="flex-1 text-xs space-y-0.5">
-                              <div className="flex justify-between">
-                                <span className="text-gray-600">F:</span>
-                                <span className="font-medium text-gray-800">{prayerTimes.fajr}</span>
-                              </div>
-                              <div className="flex justify-between">
-                                <span className="text-gray-600">D:</span>
-                                <span className="font-medium text-gray-800">{prayerTimes.duhr}</span>
-                              </div>
-                              <div className="flex justify-between">
-                                <span className="text-gray-600">A:</span>
-                                <span className="font-medium text-gray-800">{prayerTimes.asr}</span>
-                              </div>
-                              <div className="flex justify-between">
-                                <span className="text-gray-600">M:</span>
-                                <span className="font-medium text-gray-800">{prayerTimes.maghrib}</span>
-                              </div>
-                              <div className="flex justify-between">
-                                <span className="text-gray-600">I:</span>
-                                <span className="font-medium text-gray-800">{prayerTimes.isha}</span>
-                              </div>
-                              <div className="text-xs text-emerald-700 mt-1 truncate">
-                                {prayerTimes.hijriDate}
-                              </div>
-                            </div>
-                          ) : (
-                            <div className="flex-1 flex items-center justify-center text-gray-400 text-xs">
-                              Ingen data
-                            </div>
-                          )}
-                        </div>
+            {hasData ? (
+              <>
+                <div className="p-6">
+                  {/* Day Headers */}
+                  <div className="grid grid-cols-7 gap-2 mb-4">
+                    {['Man', 'Tir', 'Ons', 'Tor', 'Fre', 'Lør', 'Søn'].map((day) => (
+                      <div key={day} className="text-center font-semibold text-gray-600 py-2">
+                        {day}
                       </div>
-                    );
-                  })}
-                </div>
-              </div>
+                    ))}
+                  </div>
 
-              {/* Legend */}
-              <div className="bg-gradient-to-r from-gray-50 to-gray-100 px-6 py-4 border-t border-gray-200">
-                <div className="flex flex-col sm:flex-row items-center justify-between space-y-2 sm:space-y-0">
-                  <div className="flex items-center space-x-6 text-sm text-gray-600">
-                    <div className="flex items-center space-x-2">
-                      <div className="w-3 h-3 bg-emerald-100 border border-emerald-400 rounded"></div>
-                      <span>I dag</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <Calendar className="w-4 h-4" />
-                      <span>F=Fajr, D=Duhr, A=Asr, M=Maghrib, I=Isha</span>
-                    </div>
-                  </div>
-                  <div className="text-xs text-gray-500">
-                    Tidene er for Lillehammer, Norge
+                  {/* Calendar Days */}
+                  <div className="grid grid-cols-7 gap-2">
+                    {/* Empty cells for days before month starts */}
+                    {Array.from({ length: firstDayOfMonth === 0 ? 6 : firstDayOfMonth - 1 }).map((_, index) => (
+                      <div key={`empty-${index}`} className="h-32"></div>
+                    ))}
+
+                    {/* Days of the month */}
+                    {Array.from({ length: daysInMonth }, (_, i) => i + 1).map((day) => {
+                      const prayerTimes = getPrayerTimesForDay(day);
+                      const isCurrentDay = isToday(day);
+                      
+                      return (
+                        <div
+                          key={day}
+                          className={`h-32 p-2 border rounded-lg transition-all duration-200 hover:shadow-md ${
+                            isCurrentDay 
+                              ? 'bg-emerald-100 border-emerald-400 shadow-md' 
+                              : prayerTimes 
+                              ? 'bg-white border-gray-200 hover:bg-gray-50' 
+                              : 'bg-gray-50 border-gray-200'
+                          }`}
+                        >
+                          <div className="flex flex-col h-full">
+                            <div className={`text-sm font-bold mb-1 ${
+                              isCurrentDay ? 'text-emerald-900' : 'text-gray-900'
+                            }`}>
+                              {day}
+                            </div>
+                            
+                            {prayerTimes ? (
+                              <div className="flex-1 text-xs space-y-0.5">
+                                <div className="flex justify-between">
+                                  <span className="text-gray-600">F:</span>
+                                  <span className="font-medium text-gray-800">{prayerTimes.fajr}</span>
+                                </div>
+                                <div className="flex justify-between">
+                                  <span className="text-gray-600">D:</span>
+                                  <span className="font-medium text-gray-800">{prayerTimes.duhr}</span>
+                                </div>
+                                <div className="flex justify-between">
+                                  <span className="text-gray-600">A:</span>
+                                  <span className="font-medium text-gray-800">{prayerTimes.asr}</span>
+                                </div>
+                                <div className="flex justify-between">
+                                  <span className="text-gray-600">M:</span>
+                                  <span className="font-medium text-gray-800">{prayerTimes.maghrib}</span>
+                                </div>
+                                <div className="flex justify-between">
+                                  <span className="text-gray-600">I:</span>
+                                  <span className="font-medium text-gray-800">{prayerTimes.isha}</span>
+                                </div>
+                                <div className="text-xs text-emerald-700 mt-1 truncate">
+                                  {prayerTimes.hijriDate}
+                                </div>
+                              </div>
+                            ) : (
+                              <div className="flex-1 flex items-center justify-center text-gray-400 text-xs">
+                                Ingen data
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
+
+                {/* Legend */}
+                <div className="bg-gradient-to-r from-gray-50 to-gray-100 px-6 py-4 border-t border-gray-200">
+                  <div className="flex flex-col sm:flex-row items-center justify-between space-y-2 sm:space-y-0">
+                    <div className="flex items-center space-x-6 text-sm text-gray-600">
+                      <div className="flex items-center space-x-2">
+                        <div className="w-3 h-3 bg-emerald-100 border border-emerald-400 rounded"></div>
+                        <span>I dag</span>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <Calendar className="w-4 h-4" />
+                        <span>F=Fajr, D=Duhr, A=Asr, M=Maghrib, I=Isha</span>
+                      </div>
+                    </div>
+                    <div className="text-xs text-gray-500">
+                      Tidene er for Lillehammer, Norge
+                    </div>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <div className="bg-white rounded-2xl shadow-lg p-12 text-center">
+                <Calendar className="w-16 h-16 text-gray-300 mx-auto mb-4" />
+                <h3 className="text-xl font-semibold text-gray-700 mb-2">
+                  Ingen data tilgjengelig
+                </h3>
+                <p className="text-gray-500">
+                  Bønnetider for {monthName} {year} er ikke tilgjengelig ennå.
+                </p>
               </div>
-            </div>
-          ) : (
-            <div className="bg-white rounded-2xl shadow-lg p-12 text-center">
-              <Calendar className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-gray-700 mb-2">
-                Ingen data tilgjengelig
-              </h3>
-              <p className="text-gray-500">
-                Bønnetider for {monthName} {year} er ikke tilgjengelig ennå.
-              </p>
-            </div>
-          )}
+            )}
+          </div>
 
           {/* Additional Info */}
           <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">

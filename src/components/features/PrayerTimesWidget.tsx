@@ -279,7 +279,7 @@ export function PrayerTimesWidget() {
           {nextPrayer && !currentPrayer && (
             <div className="bg-gradient-to-r from-emerald-900 to-emerald-800 rounded-2xl p-8 text-white mb-12 shadow-xl">
               <div className="text-center">
-                <h3 className="text-2xl font-bold mb-4">Neste Bønn</h3>
+                <h3 className="text-2xl font-bold mb-4 text-white">Neste Bønn</h3>
                 <div className="flex items-center justify-center space-x-3 mb-2">
                   {getPrayerIcon(nextPrayer.name)}
                   <div className="text-4xl font-bold">{nextPrayer.name}</div>

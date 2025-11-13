@@ -93,10 +93,10 @@ export function QiblaDirection() {
               </div>
 
               <div className="bg-gradient-to-r from-emerald-900 to-emerald-800 rounded-xl p-6 text-white">
-                <h4 className="text-lg font-semibold mb-2">
+                <h4 className="text-lg font-semibold mb-2 text-white">
                   Qibla i Moskeen
                 </h4>
-                <p className="text-emerald-100">
+                <p className="text-emerald-200">
                   I vår moske er Qibla-retningen tydelig markert med en pil på veggen. 
                   Alle bønnerom har markeringer som viser retningen til Kaaba.
                 </p>
