@@ -81,14 +81,6 @@ export function Navbar() {
           {/* Quick Links */}
           <div className="hidden xl:flex items-center space-x-3">
             <Link
-              href="/prayer-times"
-              className="flex items-center space-x-2 px-4 py-2 bg-emerald-50 hover:bg-emerald-100 rounded-lg transition-colors text-sm font-medium text-emerald-900"
-              aria-label="Se bønnetider"
-            >
-              <Clock className="w-4 h-4" />
-              <span>Bønnetider</span>
-            </Link>
-            <Link
               href="/donate"
               className="px-4 py-2 bg-gold-500 hover:bg-gold-600 text-white rounded-lg font-medium text-sm transition-colors"
             >

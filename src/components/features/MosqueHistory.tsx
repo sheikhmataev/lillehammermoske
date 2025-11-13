@@ -9,7 +9,7 @@ export function MosqueHistory() {
             <h2 className="text-4xl md:text-5xl font-bold text-emerald-900 mb-6">
               Vår Historie
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-gray-800">
               Fra et lite fellesskap til et etablert kulturelt senter i Lillehammer.
             </p>
           </div>
@@ -32,7 +32,7 @@ export function MosqueHistory() {
                     <h3 className="text-xl font-semibold text-emerald-900 mb-3">
                       Grunnleggelse
                     </h3>
-                    <p className="text-gray-600 leading-relaxed">
+                    <p className="text-gray-800 leading-relaxed">
                       Alt startet egentlig med et enkelt spørsmål: &quot;Hvorfor skal vi reise til Oslo bare for å be sammen?&quot;
                       En gruppe engasjerte muslimer i Lillehammer bestemte seg for å skape noe lokalt – noe for fellesskapet vårt. 
                       Det var ikke mye ressurser den gangen, men vi hadde hjerte og vilje. Det var starten på alt vi har i dag.
@@ -56,10 +56,10 @@ export function MosqueHistory() {
                     <h3 className="text-xl font-semibold text-emerald-900 mb-3">
                       Første Lokaler
                     </h3>
-                    <p className="text-gray-600 leading-relaxed">
-                      Etter 5 år med forskjellige leide lokaler fant vi endelig et sted å kalle vårt eget i Bankgata 12. 
-                      Det var en stor dag! Plutselig kunne vi ha bønn hver dag, ikke bare når vi fant et sted. 
-                      Dette ga oss rom til å vokse og planlegge langsiktig.
+                    <p className="text-gray-800 leading-relaxed">
+                      Med voksende medlemstall og økt aktivitet, innså vi at vi trengte et fast sted å samles. 
+                      Etter flere år med leide lokaler, klarte vi endelig å skaffe vårt første permanente hjem i sentrum av Lillehammer. 
+                      Dette var et stort steg fremover for fellesskapet vårt.
                     </p>
                   </div>
                 </div>
@@ -73,11 +73,12 @@ export function MosqueHistory() {
                       <Users className="w-6 h-6 text-emerald-900 mr-3" />
                       <span className="text-2xl font-bold text-emerald-900">2015</span>
                     </div>
-                    <h3 className="text-xl font-semibold text-emerald-900 mb-3">
-                      Quranskole Startet
-                    </h3>
-                    <p className="text-gray-600 leading-relaxed">
-                      Foreldre spurte hele tiden: &quot;Har dere ikke Quranskole?&quot; Så vi startet en. 
+                    <p className="text-gray-800 leading-relaxed">
+                      Behovet for islamsk utdanning ble stadig tydeligere. Vi startet Quranskole for barn og unge, 
+                      og etablerte regelmessige undervisningsprogrammer for voksne. 
+                      Foreldre spurte hele tiden: &quot;Har dere ikke Quranskole?&quot; Så vi startet en.
+                    </p>
+                    <p className="text-gray-800 leading-relaxed">
                       Med bare 8 barn første dag – nå har vi over 150 elever! Det vokste organisk, 
                       basert på hva fellesskapet faktisk trengte. Noen av de første elevene våre er nå selv lærere hos oss. 😊
                     </p>
@@ -100,7 +101,7 @@ export function MosqueHistory() {
                     <h3 className="text-xl font-semibold text-emerald-900 mb-3">
                       Digital Utvikling
                     </h3>
-                    <p className="text-gray-600 leading-relaxed">
+                    <p className="text-gray-800 leading-relaxed">
                       2020 var tøft. Alle var hjemme, men vi kunne ikke bare gi opp. Vi lærte oss å bruke Zoom, 
                       lagde YouTube-videoer, og sendte ut daglige oppdateringer. Det som startet som nødvendighet 
                       ble faktisk en del av hvem vi er i dag – vi er bedre på digitale løsninger nå!
@@ -120,9 +121,12 @@ export function MosqueHistory() {
                     <h3 className="text-xl font-semibold text-emerald-900 mb-3">
                       Moderne Nettside
                     </h3>
-                    <p className="text-gray-600 leading-relaxed">
-                      Nå i 2024 lanserer vi vår helt nye nettside! Felleskapet vårt har bedt om det i lang tid – 
-                      &quot;hvordan ser bønnetidene ut?&quot;, &quot;når er neste arrangement?&quot;, &quot;hvordan melder jeg meg p&aring;?&quot;. 
+                    <p className="text-gray-800 leading-relaxed">
+                      Vi er alltid tilgjengelige for spørsmål og samtaler. Mange lurer på: 
+                      &quot;hvordan ser bønnetidene ut?&quot;, &quot;når er neste arrangement?&quot;, 
+                      &quot;hvordan melder jeg meg på?&quot;. Vi er her for å hjelpe!
+                    </p>
+                    <p className="text-gray-800 leading-relaxed">
                       Nå har vi endelig et sted hvor alt finnes. Vi håper du liker den! 🤲
                     </p>
                   </div>

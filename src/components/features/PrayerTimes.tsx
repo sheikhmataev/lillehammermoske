@@ -2,33 +2,179 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Clock, Calendar, MapPin, ArrowRight } from 'lucide-react';
+import { Clock, Calendar, MapPin, ArrowRight, Moon, Sun, Cloud, CloudRain } from 'lucide-react';
 import { Card } from '@/components/ui/Card';
+import { PrayerTimesService, getNextPrayerTime, getCurrentPrayerTime } from '@/services/prayer-times';
+import { PrayerTime } from '@/types/prayer-times';
 
-interface PrayerTime {
+interface PrayerTimeDisplay {
   name: string;
   time: string;
   isNext: boolean;
+  isCurrent: boolean;
+  arabicName: string;
 }
 
 export function PrayerTimes() {
-  const [prayerTimes, setPrayerTimes] = useState<PrayerTime[]>([
-    { name: 'Fajr', time: '06:30', isNext: false },
-    { name: 'Dhuhr', time: '12:15', isNext: true },
-    { name: 'Asr', time: '14:45', isNext: false },
-    { name: 'Maghrib', time: '16:20', isNext: false },
-    { name: 'Isha', time: '18:00', isNext: false },
-  ]);
-
+  const [prayerTimes, setPrayerTimes] = useState<PrayerTimeDisplay[]>([]);
+  const [todayPrayerTimes, setTodayPrayerTimes] = useState<PrayerTime | null>(null);
+  const [nextPrayerCountdown, setNextPrayerCountdown] = useState<string>('');
   const [currentDate, setCurrentDate] = useState(new Date());
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const prayerService = PrayerTimesService.getInstance();
+
+  useEffect(() => {
+    const loadPrayerTimes = async () => {
+      try {
+        setLoading(true);
+        const todayTimes = await prayerService.getTodayPrayerTimes();
+        
+        if (todayTimes) {
+          setTodayPrayerTimes(todayTimes);
+          
+          const currentPrayer = getCurrentPrayerTime(todayTimes);
+          const nextPrayer = getNextPrayerTime(todayTimes);
+          
+          const times: PrayerTimeDisplay[] = [
+            { 
+              name: 'Fajr', 
+              time: todayTimes.fajr, 
+              isNext: nextPrayer?.name === 'Fajr',
+              isCurrent: currentPrayer?.name === 'Fajr',
+              arabicName: 'الفجر'
+            },
+            { 
+              name: 'Duhr', 
+              time: todayTimes.duhr, 
+              isNext: nextPrayer?.name === 'Duhr',
+              isCurrent: currentPrayer?.name === 'Duhr',
+              arabicName: 'الظهر'
+            },
+            { 
+              name: 'Asr', 
+              time: todayTimes.asr, 
+              isNext: nextPrayer?.name === 'Asr',
+              isCurrent: currentPrayer?.name === 'Asr',
+              arabicName: 'العصر'
+            },
+            { 
+              name: 'Maghrib', 
+              time: todayTimes.maghrib, 
+              isNext: nextPrayer?.name === 'Maghrib',
+              isCurrent: currentPrayer?.name === 'Maghrib',
+              arabicName: 'المغرب'
+            },
+            { 
+              name: 'Isha', 
+              time: todayTimes.isha, 
+              isNext: nextPrayer?.name === 'Isha',
+              isCurrent: currentPrayer?.name === 'Isha',
+              arabicName: 'العشاء'
+            }
+          ];
+          
+          setPrayerTimes(times);
+          
+          if (nextPrayer) {
+            setNextPrayerCountdown(nextPrayer.countdown);
+          }
+        } else {
+          setError('Kunne ikke hente dagens bønnetider');
+        }
+      } catch (err) {
+        setError('Feil ved lasting av bønnetider');
+        console.error('Error loading prayer times:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadPrayerTimes();
+  }, [prayerService]);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentDate(new Date());
+      const now = new Date();
+      setCurrentDate(now);
+      
+      // Update countdown
+      if (todayPrayerTimes) {
+        const nextPrayer = getNextPrayerTime(todayPrayerTimes);
+        if (nextPrayer) {
+          setNextPrayerCountdown(nextPrayer.countdown);
+        }
+      }
     }, 1000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [todayPrayerTimes]);
+
+  const getTimeIcon = (prayerName: string) => {
+    switch (prayerName.toLowerCase()) {
+      case 'fajr':
+        return <Moon className="w-4 h-4" />;
+      case 'duhr':
+      case 'asr':
+        return <Sun className="w-4 h-4" />;
+      case 'maghrib':
+      case 'isha':
+        return <Cloud className="w-4 h-4" />;
+      default:
+        return <Clock className="w-4 h-4" />;
+    }
+  };
+
+  const nextPrayer = prayerTimes.find(p => p.isNext);
+
+  if (loading) {
+    return (
+      <section className="section-padding bg-white">
+        <div className="container-custom">
+          <div className="text-center mb-20">
+            <div className="animate-pulse">
+              <div className="h-8 bg-gray-200 rounded w-1/3 mx-auto mb-4"></div>
+              <div className="h-4 bg-gray-100 rounded w-1/2 mx-auto"></div>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div className="lg:col-span-2">
+              <div className="animate-pulse">
+                <div className="h-64 bg-gray-100 rounded-xl"></div>
+              </div>
+            </div>
+            <div className="space-y-6">
+              <div className="h-32 bg-gray-100 rounded-xl animate-pulse"></div>
+              <div className="h-32 bg-gray-100 rounded-xl animate-pulse"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section className="section-padding bg-white">
+        <div className="container-custom">
+          <div className="text-center mb-20">
+            <h2 className="text-5xl md:text-6xl font-extrabold mb-6 text-emerald-900">
+              Bønnetider
+            </h2>
+            <p className="text-xl text-gray-600 leading-relaxed">
+              Daglige bønnetider for Lillehammer. Automatisk oppdatert hver dag basert på vår lokasjon.
+            </p>
+          </div>
+          <div className="max-w-2xl mx-auto text-center">
+            <div className="bg-red-50 border border-red-200 rounded-xl p-8">
+              <p className="text-red-600">{error}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="section-padding bg-white">
@@ -62,6 +208,11 @@ export function PrayerTimes() {
                         year: 'numeric'
                       })}
                     </h3>
+                    {todayPrayerTimes && (
+                      <p className="text-sm text-emerald-700 font-medium">
+                        {todayPrayerTimes.hijriDate}
+                      </p>
+                    )}
                   </div>
                 </div>
                 <div className="flex items-center space-x-2 px-3 py-1.5 bg-gray-50 rounded-lg border border-gray-200">
@@ -75,23 +226,35 @@ export function PrayerTimes() {
                 {prayerTimes.map((prayer) => (
                   <div
                     key={prayer.name}
-                    className={`p-5 rounded-xl text-center transition-colors border-2 ${
-                      prayer.isNext
-                        ? 'bg-emerald-900 text-white border-emerald-800 shadow-md'
+                    className={`p-5 rounded-xl text-center transition-all duration-200 border-2 ${
+                      prayer.isCurrent
+                        ? 'bg-emerald-900 text-white border-emerald-800 shadow-lg scale-105'
+                        : prayer.isNext
+                        ? 'bg-gold-500 text-white border-gold-600 shadow-md'
                         : 'bg-gray-50 hover:bg-gray-100 border-transparent hover:border-emerald-200'
                     }`}
                   >
-                    <h4 className={`font-bold text-base mb-3 ${prayer.isNext ? 'text-white' : 'text-emerald-900'}`}>
+                    <div className={`font-bold text-base mb-2 ${prayer.isCurrent || prayer.isNext ? 'text-white' : 'text-emerald-900'}`}>
                       {prayer.name}
-                    </h4>
+                    </div>
+                    <div className={`text-xs mb-3 font-medium ${prayer.isCurrent || prayer.isNext ? 'text-white/90' : 'text-gray-500'}`}>
+                      {prayer.arabicName}
+                    </div>
                     <div className="flex items-center justify-center space-x-1.5 mb-2">
-                      <Clock className={`w-4 h-4 ${prayer.isNext ? 'text-gold-400' : 'text-gray-400'}`} />
-                      <span className={`text-2xl font-extrabold ${prayer.isNext ? 'text-white' : 'text-gray-900'}`}>
+                      {prayer.isCurrent || prayer.isNext ? (
+                        getTimeIcon(prayer.name)
+                      ) : (
+                        <Clock className={`w-4 h-4 ${prayer.isNext ? 'text-white' : 'text-gray-400'}`} />
+                      )}
+                      <span className={`text-2xl font-extrabold ${prayer.isCurrent || prayer.isNext ? 'text-white' : 'text-gray-900'}`}>
                         {prayer.time}
                       </span>
                     </div>
-                    {prayer.isNext && (
-                      <p className="text-xs text-gold-300 font-medium mt-1">Neste bønn</p>
+                    {prayer.isCurrent && (
+                      <p className="text-xs text-white font-medium mt-1">Nåværende bønn</p>
+                    )}
+                    {prayer.isNext && !prayer.isCurrent && (
+                      <p className="text-xs text-white font-medium mt-1">Neste bønn</p>
                     )}
                   </div>
                 ))}
@@ -134,10 +297,14 @@ export function PrayerTimes() {
             <Card variant="elevated" className="bg-emerald-900 text-white border-0">
               <h3 className="text-lg font-bold mb-5 text-white">Neste Bønn</h3>
               <div className="text-center py-6 bg-white/10 rounded-xl border border-white/20">
-                <div className="text-3xl font-bold mb-2 text-gold-400">Dhuhr</div>
-                <div className="text-5xl font-extrabold mb-2 text-white">12:15</div>
+                <div className="text-3xl font-bold mb-2 text-gold-400">
+                  {nextPrayer?.name || 'Ingen'}
+                </div>
+                <div className="text-5xl font-extrabold mb-2 text-white">
+                  {nextPrayer?.time || '--:--'}
+                </div>
                 <div className="text-sm text-white/80 font-medium">
-                  om 2 timer og 15 minutter
+                  {nextPrayerCountdown || 'Laster...'}
                 </div>
               </div>
             </Card>
