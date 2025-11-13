@@ -12,6 +12,11 @@ export const metadata: Metadata = {
   description: 'Offisiell nettside for The Muslim Cultural Center Lillehammer. Bønnetider, Ramadan kalender, Quranskole og mer.',
   keywords: 'moske, lillehammer, islam, bønnetider, ramadan, quranskole',
   authors: [{ name: 'The Muslim Cultural Center Lillehammer' }],
+  icons: {
+    icon: '/assets/favicons/favicon.ico',
+    shortcut: '/assets/favicons/favicon.ico',
+    apple: '/assets/favicons/favicon.ico',
+  },
   openGraph: {
     title: 'Lillehammer Moske',
     description: 'The Muslim Cultural Center Lillehammer',

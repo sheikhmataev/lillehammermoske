@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Calendar, Clock, Users } from 'lucide-react';
 
 export function Hero() {
@@ -81,46 +82,57 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Features Grid - Minimal */}
-          <div className="grid grid-cols-2 gap-4">
-            <div className="p-6 bg-white/15 backdrop-blur-sm rounded-xl border border-white/25 hover:bg-white/20 transition-colors">
-              <div className="w-12 h-12 bg-gold-500/25 rounded-lg flex items-center justify-center mb-4 border border-gold-500/30">
-                <Calendar className="w-6 h-6 text-gold-300" />
+          {/* Mosque Image */}
+          <div className="relative">
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-white/20">
+              <Image 
+                src="/assets/images/mosque/entrance.png" 
+                alt="Lillehammer Moske - Inngang"
+                width={800}
+                height={600}
+                className="w-full h-auto object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+              
+              {/* Image overlay info */}
+              <div className="absolute bottom-4 left-4 right-4">
+                <div className="bg-white/95 backdrop-blur-sm rounded-lg p-4 shadow-lg">
+                  <h3 className="text-emerald-900 font-bold text-lg mb-1">
+                    The Muslim Cultural Center
+                  </h3>
+                  <p className="text-gray-600 text-sm">
+                    Bankgata 12, 2609 Lillehammer
+                  </p>
+                </div>
               </div>
-              <h3 className="font-semibold mb-2 text-white">Bønnetider</h3>
-              <p className="text-sm text-white/80">
-                Automatisk oppdaterte bønnetider
-              </p>
             </div>
-
-            <div className="p-6 bg-white/15 backdrop-blur-sm rounded-xl border border-white/25 hover:bg-white/20 transition-colors">
-              <div className="w-12 h-12 bg-gold-500/25 rounded-lg flex items-center justify-center mb-4 border border-gold-500/30">
-                <Users className="w-6 h-6 text-gold-300" />
+            
+            {/* Small feature indicators */}
+            <div className="grid grid-cols-4 gap-2 mt-6">
+              <div className="text-center">
+                <div className="w-12 h-12 bg-gold-500/20 rounded-lg flex items-center justify-center mx-auto mb-2 border border-gold-500/30">
+                  <Calendar className="w-5 h-5 text-gold-300" />
+                </div>
+                <p className="text-xs text-white/80 font-medium">Bønnetider</p>
               </div>
-              <h3 className="font-semibold mb-2 text-white">Quranskole</h3>
-              <p className="text-sm text-white/80">
-                Utdanning for barn og voksne
-              </p>
-            </div>
-
-            <div className="p-6 bg-white/15 backdrop-blur-sm rounded-xl border border-white/25 hover:bg-white/20 transition-colors">
-              <div className="w-12 h-12 bg-gold-500/25 rounded-lg flex items-center justify-center mb-4 border border-gold-500/30">
-                <Users className="w-6 h-6 text-gold-300" />
+              <div className="text-center">
+                <div className="w-12 h-12 bg-gold-500/20 rounded-lg flex items-center justify-center mx-auto mb-2 border border-gold-500/30">
+                  <Users className="w-5 h-5 text-gold-300" />
+                </div>
+                <p className="text-xs text-white/80 font-medium">Quranskole</p>
               </div>
-              <h3 className="font-semibold mb-2 text-white">Fellesskap</h3>
-              <p className="text-sm text-white/80">
-                Styrke det muslimske fellesskapet
-              </p>
-            </div>
-
-            <div className="p-6 bg-white/15 backdrop-blur-sm rounded-xl border border-white/25 hover:bg-white/20 transition-colors">
-              <div className="w-12 h-12 bg-gold-500/25 rounded-lg flex items-center justify-center mb-4 border border-gold-500/30">
-                <Clock className="w-6 h-6 text-gold-300" />
+              <div className="text-center">
+                <div className="w-12 h-12 bg-gold-500/20 rounded-lg flex items-center justify-center mx-auto mb-2 border border-gold-500/30">
+                  <Users className="w-5 h-5 text-gold-300" />
+                </div>
+                <p className="text-xs text-white/80 font-medium">Fellesskap</p>
               </div>
-              <h3 className="font-semibold mb-2 text-white">Ramadan</h3>
-              <p className="text-sm text-white/80">
-                Kalender og informasjon
-              </p>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-gold-500/20 rounded-lg flex items-center justify-center mx-auto mb-2 border border-gold-500/30">
+                  <Clock className="w-5 h-5 text-gold-300" />
+                </div>
+                <p className="text-xs text-white/80 font-medium">Ramadan</p>
+              </div>
             </div>
           </div>
         </div>

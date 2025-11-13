@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Users, Heart, BookOpen, Clock, MapPin } from 'lucide-react';
 import { Card } from '@/components/ui/Card';
 
@@ -56,55 +57,53 @@ export function AboutSection() {
             </div>
           </div>
 
-          {/* Features Grid - Enhanced Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <Card hover variant="elevated" className="h-full flex flex-col">
-              <div className="w-12 h-12 bg-emerald-900 rounded-xl flex items-center justify-center mb-5 shadow-sm">
-                <Users className="w-6 h-6 text-white" />
+          {/* Mosque Interior Images */}
+          <div className="space-y-6">
+            <div className="grid grid-cols-1 gap-6">
+              <div className="relative rounded-2xl overflow-hidden shadow-xl">
+                <Image 
+                  src="/assets/images/mosque/inside_image.png" 
+                  alt="Lillehammer Moske - Interiør"
+                  width={800}
+                  height={600}
+                  className="w-full h-auto object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                <div className="absolute bottom-6 left-6 right-6">
+                  <div className="bg-white/95 backdrop-blur-sm rounded-lg p-5 shadow-lg">
+                    <h3 className="text-emerald-900 font-bold text-xl mb-2">
+                      Vakert Bønnerom
+                    </h3>
+                    <p className="text-gray-600">
+                      Romslige og fredfulle omgivelser for bønn og meditasjon
+                    </p>
+                  </div>
+                </div>
               </div>
-              <h3 className="text-xl font-bold text-emerald-900 mb-3">
-                Felleskap
-              </h3>
-              <p className="text-gray-600 leading-relaxed text-sm flex-grow">
-                Et sterkt muslimsk fellesskap som støtter hverandre gjennom gode og vanskelige tider.
-              </p>
-            </Card>
-
-            <Card hover variant="elevated" className="h-full flex flex-col">
-              <div className="w-12 h-12 bg-gold-500 rounded-xl flex items-center justify-center mb-5 shadow-sm">
-                <BookOpen className="w-6 h-6 text-white" />
+            </div>
+            
+            <div className="grid grid-cols-1 gap-6">
+              <div className="relative rounded-2xl overflow-hidden shadow-xl">
+                <Image 
+                  src="/assets/images/mosque/inside2.png" 
+                  alt="Lillehammer Moske - Interiør 2"
+                  width={800}
+                  height={600}
+                  className="w-full h-auto object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                <div className="absolute bottom-6 left-6 right-6">
+                  <div className="bg-white/95 backdrop-blur-sm rounded-lg p-5 shadow-lg">
+                    <h3 className="text-emerald-900 font-bold text-xl mb-2">
+                      Fellesskapsområder
+                    </h3>
+                    <p className="text-gray-600">
+                      Møteplasser for sosiale og kulturelle aktiviteter
+                    </p>
+                  </div>
+                </div>
               </div>
-              <h3 className="text-xl font-bold text-emerald-900 mb-3">
-                Utdanning
-              </h3>
-              <p className="text-gray-600 leading-relaxed text-sm flex-grow">
-                Quranskole for barn og voksne, samt religiøs veiledning og opplæring.
-              </p>
-            </Card>
-
-            <Card hover variant="elevated" className="h-full flex flex-col">
-              <div className="w-12 h-12 bg-emerald-900 rounded-xl flex items-center justify-center mb-5 shadow-sm">
-                <Clock className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-emerald-900 mb-3">
-                Bønnetider
-              </h3>
-              <p className="text-gray-600 leading-relaxed text-sm flex-grow">
-                Regelmessige bønnetider og religiøse aktiviteter for hele familien.
-              </p>
-            </Card>
-
-            <Card hover variant="elevated" className="h-full flex flex-col">
-              <div className="w-12 h-12 bg-gold-500 rounded-xl flex items-center justify-center mb-5 shadow-sm">
-                <Heart className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-emerald-900 mb-3">
-                Støtte
-              </h3>
-              <p className="text-gray-600 leading-relaxed text-sm flex-grow">
-                Støtte og veiledning for muslimske familier og enkeltpersoner.
-              </p>
-            </Card>
+            </div>
           </div>
         </div>
 

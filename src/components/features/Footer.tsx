@@ -56,6 +56,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/membership" className="text-gray-300 hover:text-white transition-colors text-sm">
+                  Medlemskap
+                </Link>
+              </li>
+              <li>
                 <Link href="/board" className="text-gray-300 hover:text-white transition-colors text-sm">
                   Styret
                 </Link>
@@ -151,7 +156,7 @@ export function Footer() {
             <p className="text-gray-300 text-sm">
               © {new Date().getFullYear()} The Muslim Cultural Center Lillehammer. Alle rettigheter forbeholdt.
             </p>
-            <div className="flex space-x-6">
+            <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-6">
               <Link href="/privacy" className="text-gray-300 hover:text-white text-sm transition-colors">
                 Personvern
               </Link>
@@ -161,6 +166,14 @@ export function Footer() {
               <Link href="/donate" className="text-gray-300 hover:text-white text-sm transition-colors">
                 Donasjoner
               </Link>
+              <a 
+                href="https://forms.gle/TyJDF2t7fZAhrEiB6" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-300 hover:text-white text-sm transition-colors"
+              >
+                Utmelding
+              </a>
             </div>
           </div>
         </div>

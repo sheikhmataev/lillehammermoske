@@ -1,6 +1,6 @@
 import { QuranSchoolHero } from '@/components/features/QuranSchoolHero';
 import { QuranClasses } from '@/components/features/QuranClasses';
-import { RegistrationForm } from '@/components/features/RegistrationForm';
+import { RegistrationForms } from '@/components/features/RegistrationForms';
 import { Teachers } from '@/components/features/Teachers';
 import { SchoolSchedule } from '@/components/features/SchoolSchedule';
 
@@ -19,8 +19,8 @@ export default function QuranSchoolPage() {
       {/* School Schedule */}
       <SchoolSchedule />
 
-      {/* Registration Form */}
-      <RegistrationForm />
+      {/* Registration Forms */}
+      <RegistrationForms />
     </div>
   );
 }

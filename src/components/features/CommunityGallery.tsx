@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { Image as ImageIcon, ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { Modal } from '@/components/ui/Modal';
 
@@ -12,48 +13,27 @@ interface GalleryImage {
   category: 'facilities' | 'events' | 'community' | 'education';
 }
 
-// Placeholder images - replace with actual images
+// Real mosque images
 const galleryImages: GalleryImage[] = [
   {
     id: 1,
-    src: '/images/mosque-exterior.jpg',
+    src: '/assets/images/mosque/entrance.png',
     alt: 'Moskeen utvendig',
-    title: 'Lillehammer Moske - Utvendig',
+    title: 'Lillehammer Moske - Inngang',
     category: 'facilities',
   },
   {
     id: 2,
-    src: '/images/prayer-hall.jpg',
+    src: '/assets/images/mosque/inside_image.png',
     alt: 'Bønnesal',
     title: 'Hovedbønnesal',
     category: 'facilities',
   },
   {
     id: 3,
-    src: '/images/quran-school.jpg',
-    alt: 'Quranskole',
-    title: 'Quranskole - Undervisning',
-    category: 'education',
-  },
-  {
-    id: 4,
-    src: '/images/community-iftar.jpg',
-    alt: 'Fellesskap iftar',
-    title: 'Ramadan Iftar - Fellesskap',
-    category: 'community',
-  },
-  {
-    id: 5,
-    src: '/images/jummah-prayer.jpg',
-    alt: 'Jummah bønn',
-    title: 'Jummah Bønn',
-    category: 'events',
-  },
-  {
-    id: 6,
-    src: '/images/youth-program.jpg',
-    alt: 'Ungdomsprogram',
-    title: 'Ungdomsprogram',
+    src: '/assets/images/mosque/inside2.png',
+    alt: 'Fellesskapsområde',
+    title: 'Fellesskapsområder',
     category: 'community',
   },
 ];
@@ -143,12 +123,15 @@ export function CommunityGallery() {
             <div
               key={image.id}
               onClick={() => openImage(image, index)}
-              className="relative group cursor-pointer overflow-hidden rounded-lg aspect-square bg-gray-200 hover:scale-105 transition-transform duration-300"
+              className="relative group cursor-pointer overflow-hidden rounded-lg aspect-square hover:scale-105 transition-transform duration-300"
             >
-              {/* Placeholder for now - replace with Next.js Image when images are available */}
-              <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-emerald-100 to-gold-100">
-                <ImageIcon className="w-12 h-12 text-gray-400" />
-              </div>
+              <Image 
+                src={image.src}
+                alt={image.alt}
+                width={400}
+                height={400}
+                className="w-full h-full object-cover"
+              />
               
               {/* Overlay */}
               <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-opacity duration-300 flex items-center justify-center">
@@ -172,10 +155,13 @@ export function CommunityGallery() {
             size="xl"
           >
             <div className="relative">
-              {/* Placeholder - replace with actual image */}
-              <div className="w-full aspect-video flex items-center justify-center bg-gradient-to-br from-emerald-100 to-gold-100 rounded-lg mb-4">
-                <ImageIcon className="w-24 h-24 text-gray-400" />
-              </div>
+              <Image 
+                src={selectedImage.src}
+                alt={selectedImage.alt}
+                width={800}
+                height={600}
+                className="w-full rounded-lg mb-4"
+              />
               
               <div className="flex items-center justify-between mt-4">
                 <button
