@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Menu, X, Moon, Clock } from 'lucide-react';
+import { Menu, X, Clock } from 'lucide-react';
 
 const navigation = [
   { name: 'Hjem', href: '/' },
@@ -49,8 +50,14 @@ export function Navbar() {
             className="flex items-center space-x-3 group"
             aria-label="Lillehammer Moske - Gå til hjemmeside"
           >
-            <div className="w-10 h-10 bg-emerald-900 rounded-lg flex items-center justify-center group-hover:bg-emerald-800 transition-colors">
-              <Moon className="w-6 h-6 text-white" aria-hidden="true" />
+            <div className="w-10 h-10 rounded-lg overflow-hidden flex items-center justify-center bg-white shadow-sm group-hover:shadow-md transition-shadow">
+              <Image 
+                src="/lillehammermoske/assets/logos/logo.png" 
+                alt="Lillehammer Moske Logo"
+                width={40}
+                height={40}
+                className="w-full h-full object-contain"
+              />
             </div>
             <div className="hidden sm:block">
               <h1 className="text-lg font-bold text-emerald-900 tracking-tight">Lillehammer Moske</h1>

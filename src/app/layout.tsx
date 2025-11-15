@@ -13,9 +13,9 @@ export const metadata: Metadata = {
   keywords: 'moske, lillehammer, islam, bønnetider, ramadan, quranskole',
   authors: [{ name: 'The Muslim Cultural Center Lillehammer' }],
   icons: {
-    icon: '/assets/favicons/favicon.ico',
-    shortcut: '/assets/favicons/favicon.ico',
-    apple: '/assets/favicons/favicon.ico',
+    icon: '/lillehammermoske/assets/favicons/favicon.ico',
+    shortcut: '/lillehammermoske/assets/favicons/favicon.ico',
+    apple: '/lillehammermoske/assets/favicons/favicon.ico',
   },
   openGraph: {
     title: 'Lillehammer Moske',
