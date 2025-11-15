@@ -62,7 +62,7 @@ export function AboutSection() {
             <div className="grid grid-cols-1 gap-6">
               <div className="relative rounded-2xl overflow-hidden shadow-xl">
                 <Image 
-                  src="/assets/images/mosque/inside_image.png" 
+                  src="/lillehammermoske/assets/images/mosque/inside_image.png" 
                   alt="Lillehammer Moske - Interiør"
                   width={800}
                   height={600}
@@ -85,7 +85,7 @@ export function AboutSection() {
             <div className="grid grid-cols-1 gap-6">
               <div className="relative rounded-2xl overflow-hidden shadow-xl">
                 <Image 
-                  src="/assets/images/mosque/inside2.png" 
+                  src="/lillehammermoske/assets/images/mosque/inside2.png" 
                   alt="Lillehammer Moske - Interiør 2"
                   width={800}
                   height={600}

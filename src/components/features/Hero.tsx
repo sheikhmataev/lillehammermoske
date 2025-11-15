@@ -86,7 +86,7 @@ export function Hero() {
           <div className="relative">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-white/20">
               <Image 
-                src="/assets/images/mosque/entrance.png" 
+                src="/lillehammermoske/assets/images/mosque/entrance.png" 
                 alt="Lillehammer Moske - Inngang"
                 width={800}
                 height={600}

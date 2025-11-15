@@ -17,21 +17,21 @@ interface GalleryImage {
 const galleryImages: GalleryImage[] = [
   {
     id: 1,
-    src: '/assets/images/mosque/entrance.png',
+    src: '/lillehammermoske/assets/images/mosque/entrance.png',
     alt: 'Moskeen utvendig',
     title: 'Lillehammer Moske - Inngang',
     category: 'facilities',
   },
   {
     id: 2,
-    src: '/assets/images/mosque/inside_image.png',
+    src: '/lillehammermoske/assets/images/mosque/inside_image.png',
     alt: 'Bønnesal',
     title: 'Hovedbønnesal',
     category: 'facilities',
   },
   {
     id: 3,
-    src: '/assets/images/mosque/inside2.png',
+    src: '/lillehammermoske/assets/images/mosque/inside2.png',
     alt: 'Fellesskapsområde',
     title: 'Fellesskapsområder',
     category: 'community',
