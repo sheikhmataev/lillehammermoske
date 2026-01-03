@@ -181,7 +181,7 @@ export function PrayerTimesCalendar() {
                     {monthName} {year}
                   </h3>
                   <p className="text-emerald-200 text-sm">
-                    {monthName.toLowerCase() === 'november' || monthName.toLowerCase() === 'desember' 
+                    {hasData 
                       ? 'Offisielle bønnetider for Lillehammer' 
                       : 'Data ikke tilgjengelig'}
                   </p>
