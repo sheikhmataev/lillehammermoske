@@ -72,14 +72,17 @@ export class PrayerTimesService {
     return PrayerTimesService.instance;
   }
 
-  // Load prayer times from local CSV files
+  // Load prayer times from API endpoint
   async getLocalPrayerTimes(): Promise<PrayerTimesData[]> {
     try {
       const prayerTimesData: PrayerTimesData[] = [];
+      const basePath = process.env.NODE_ENV === 'development' ? '' : '/lillehammermoske';
 
       for (const csvFile of AVAILABLE_CSV_FILES) {
         try {
-          const response = await fetch(`/data/${csvFile}`);
+          const response = await fetch(`${basePath}/api/prayer-times/csv/?file=${csvFile}`, {
+            redirect: 'follow'
+          });
           
           if (!response.ok) {
             console.warn(`Failed to load ${csvFile}: ${response.statusText}`);
