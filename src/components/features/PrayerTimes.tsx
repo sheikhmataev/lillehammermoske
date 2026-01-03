@@ -165,6 +165,9 @@ export function PrayerTimes() {
             <p className="text-xl text-gray-600 leading-relaxed">
               Daglige bønnetider for Lillehammer. Automatisk oppdatert hver dag basert på vår lokasjon.
             </p>
+            <p className="text-lg text-emerald-700 font-semibold mt-4">
+              Jummah Khutbah: 12:15 | Jamaat: 12:45
+            </p>
           </div>
           <div className="max-w-2xl mx-auto text-center">
             <div className="bg-red-50 border border-red-200 rounded-xl p-8">
@@ -186,6 +189,9 @@ export function PrayerTimes() {
           </h2>
           <p className="text-xl text-gray-600 leading-relaxed">
             Daglige bønnetider for Lillehammer. Automatisk oppdatert hver dag basert på vår lokasjon.
+          </p>
+          <p className="text-lg text-emerald-700 font-semibold mt-4">
+            Jummah Khutbah: 12:15 | Jamaat: 12:45
           </p>
         </div>
 
