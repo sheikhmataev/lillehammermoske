@@ -12,8 +12,7 @@ export const config = {
     country: 'Norway',
     latitude: 61.1153,
     longitude: 10.4663,
-    method: 2, // Islamic Society of North America (ISNA)
-    apiUrl: 'https://api.aladhan.com/v1',
+    dataSource: 'local_csv',
   },
   
   organization: {
