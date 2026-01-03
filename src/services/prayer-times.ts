@@ -1,21 +1,22 @@
 import { PrayerTime, PrayerTimesData, PrayerTimesResponse, PrayerTimesApiConfig } from '@/types/prayer-times';
+import { CSV_DATA } from '@/data/csv-data';
 
-// Available CSV files in public/data directory
-const AVAILABLE_CSV_FILES = [
-  'Bonnetid_Lillehammer_2025-11.csv',
-  'Bonnetid_Lillehammer_2025-12.csv',
-  'Bonnetid_Lillehammer_2026-01.csv',
-  'Bonnetid_Lillehammer_2026-02.csv',
-  'Bonnetid_Lillehammer_2026-03.csv',
-  'Bonnetid_Lillehammer_2026-04.csv',
-  'Bonnetid_Lillehammer_2026-05.csv',
-  'Bonnetid_Lillehammer_2026-06.csv',
-  'Bonnetid_Lillehammer_2026-07.csv',
-  'Bonnetid_Lillehammer_2026-08.csv',
-  'Bonnetid_Lillehammer_2026-09.csv',
-  'Bonnetid_Lillehammer_2026-10.csv',
-  'Bonnetid_Lillehammer_2026-11.csv',
-  'Bonnetid_Lillehammer_2026-12.csv'
+// CSV file metadata
+const CSV_FILES = [
+  { filename: 'Bonnetid_Lillehammer_2025-11.csv', year: 2025, month: '11' },
+  { filename: 'Bonnetid_Lillehammer_2025-12.csv', year: 2025, month: '12' },
+  { filename: 'Bonnetid_Lillehammer_2026-01.csv', year: 2026, month: '01' },
+  { filename: 'Bonnetid_Lillehammer_2026-02.csv', year: 2026, month: '02' },
+  { filename: 'Bonnetid_Lillehammer_2026-03.csv', year: 2026, month: '03' },
+  { filename: 'Bonnetid_Lillehammer_2026-04.csv', year: 2026, month: '04' },
+  { filename: 'Bonnetid_Lillehammer_2026-05.csv', year: 2026, month: '05' },
+  { filename: 'Bonnetid_Lillehammer_2026-06.csv', year: 2026, month: '06' },
+  { filename: 'Bonnetid_Lillehammer_2026-07.csv', year: 2026, month: '07' },
+  { filename: 'Bonnetid_Lillehammer_2026-08.csv', year: 2026, month: '08' },
+  { filename: 'Bonnetid_Lillehammer_2026-09.csv', year: 2026, month: '09' },
+  { filename: 'Bonnetid_Lillehammer_2026-10.csv', year: 2026, month: '10' },
+  { filename: 'Bonnetid_Lillehammer_2026-11.csv', year: 2026, month: '11' },
+  { filename: 'Bonnetid_Lillehammer_2026-12.csv', year: 2026, month: '12' },
 ];
 
 // Map month numbers to Norwegian month names
@@ -72,41 +73,29 @@ export class PrayerTimesService {
     return PrayerTimesService.instance;
   }
 
-  // Load prayer times from API endpoint
+  // Load prayer times from embedded CSV data
   async getLocalPrayerTimes(): Promise<PrayerTimesData[]> {
     try {
       const prayerTimesData: PrayerTimesData[] = [];
-      const basePath = process.env.NODE_ENV === 'development' ? '' : '/lillehammermoske';
 
-      for (const csvFile of AVAILABLE_CSV_FILES) {
+      for (const csvFile of CSV_FILES) {
         try {
-          const response = await fetch(`${basePath}/api/prayer-times/csv/?file=${csvFile}`, {
-            redirect: 'follow'
-          });
-          
-          if (!response.ok) {
-            console.warn(`Failed to load ${csvFile}: ${response.statusText}`);
+          const csvContent = CSV_DATA[csvFile.filename];
+          if (!csvContent) {
+            console.warn(`CSV data not found for ${csvFile.filename}`);
             continue;
           }
-
-          const csvContent = await response.text();
-          const parsedTimes = parseCSVData(csvContent);
           
-          // Extract year and month from filename
-          const match = csvFile.match(/Bonnetid_Lillehammer_(\d{4})-(\d{2})\.csv/);
-          if (match) {
-            const year = parseInt(match[1]);
-            const monthNumber = match[2];
-            const monthName = MONTH_NAMES[monthNumber];
-            
-            prayerTimesData.push({
-              month: monthName,
-              year: year,
-              times: parsedTimes
-            });
-          }
+          const parsedTimes = parseCSVData(csvContent);
+          const monthName = MONTH_NAMES[csvFile.month];
+          
+          prayerTimesData.push({
+            month: monthName,
+            year: csvFile.year,
+            times: parsedTimes
+          });
         } catch (error) {
-          console.error(`Error processing ${csvFile}:`, error);
+          console.error(`Error processing ${csvFile.filename}:`, error);
         }
       }
 
