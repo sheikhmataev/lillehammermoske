@@ -13,7 +13,7 @@ export default function AboutPage() {
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
               Om Lillehammer Moske
             </h1>
-            <p className="text-xl md:text-2xl text-gray-200 leading-relaxed">
+            <p className="text-xl md:text-2xl text-emerald-100 leading-relaxed">
               The Muslim Cultural Center Lillehammer - Et fellesskap for muslimer i Lillehammer og omegn siden 2005
             </p>
           </div>
