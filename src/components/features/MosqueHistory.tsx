@@ -21,21 +21,22 @@ export function MosqueHistory() {
 
             {/* Timeline items */}
             <div className="space-y-16">
-              {/* 2005 - Foundation */}
+              {/* 1998 - Foundation */}
               <div className="relative flex items-center">
                 <div className="w-1/2 pr-8 text-right">
                   <div className="card">
                     <div className="flex items-center mb-4">
                       <Calendar className="w-6 h-6 text-emerald-900 mr-3" />
-                      <span className="text-2xl font-bold text-emerald-900">2005</span>
+                      <span className="text-2xl font-bold text-emerald-900">1998</span>
                     </div>
                     <h3 className="text-xl font-semibold text-emerald-900 mb-3">
-                      Grunnleggelse
+                      Moskeen Etablert
                     </h3>
                     <p className="text-gray-800 leading-relaxed">
-                      Alt startet egentlig med et enkelt spørsmål: &quot;Hvorfor skal vi reise til Oslo bare for å be sammen?&quot;
-                      En gruppe engasjerte muslimer i Lillehammer bestemte seg for å skape noe lokalt – noe for fellesskapet vårt. 
-                      Det var ikke mye ressurser den gangen, men vi hadde hjerte og vilje. Det var starten på alt vi har i dag.
+                      The Muslim Cultural Center Lillehammer ble etablert med 150 medlemmer. 
+                      Vi startet i enkle lokaler, men med et sterkt ønske om å skape et permanent samlingspunkt 
+                      for muslimer i Lillehammer og Gudbrandsdalen. Dette var begynnelsen på det som skulle bli 
+                      det største muslimske trossamfunnet i Oppland.
                     </p>
                   </div>
                 </div>
@@ -43,7 +44,7 @@ export function MosqueHistory() {
                 <div className="w-1/2 pl-8"></div>
               </div>
 
-              {/* 2010 - First Building */}
+              {/* 2015 - Bliksethjørnet */}
               <div className="relative flex items-center">
                 <div className="w-1/2 pr-8"></div>
                 <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gold-500 rounded-full border-4 border-white"></div>
@@ -51,36 +52,39 @@ export function MosqueHistory() {
                   <div className="card">
                     <div className="flex items-center mb-4">
                       <Building className="w-6 h-6 text-gold-500 mr-3" />
-                      <span className="text-2xl font-bold text-emerald-900">2010</span>
+                      <span className="text-2xl font-bold text-emerald-900">2015</span>
                     </div>
                     <h3 className="text-xl font-semibold text-emerald-900 mb-3">
-                      Første Lokaler
+                      Brannsikkerhetskrise
                     </h3>
                     <p className="text-gray-800 leading-relaxed">
-                      Med voksende medlemstall og økt aktivitet, innså vi at vi trengte et fast sted å samles. 
-                      Etter flere år med leide lokaler, klarte vi endelig å skaffe vårt første permanente hjem i sentrum av Lillehammer. 
-                      Dette var et stort steg fremover for fellesskapet vårt.
+                      Etter 17 år i lokalene på Bliksethjørnet, ble moskeen stengt av kommunen på grunn av brannsikkerhet. 
+                      Bygget var sterkt forfallent og manglet nødvendige godkjenninger. Plutselig sto 750 medlemmer uten et sted å samles. 
+                      Dette startet en lang kamp for å finne nye, egnede lokaler sentralt i Lillehammer.
                     </p>
                   </div>
                 </div>
               </div>
 
-              {/* 2015 - Quran School */}
+              {/* 2016 - Søk etter Nye Lokaler */}
               <div className="relative flex items-center">
                 <div className="w-1/2 pr-8 text-right">
                   <div className="card">
                     <div className="flex items-center mb-4">
                       <Users className="w-6 h-6 text-emerald-900 mr-3" />
-                      <span className="text-2xl font-bold text-emerald-900">2015</span>
+                      <span className="text-2xl font-bold text-emerald-900">2016</span>
                     </div>
+                    <h3 className="text-xl font-semibold text-emerald-900 mb-3">
+                      Søk etter Nye Lokaler
+                    </h3>
                     <p className="text-gray-800 leading-relaxed">
-                      Behovet for islamsk utdanning ble stadig tydeligere. Vi startet Quranskole for barn og unge, 
-                      og etablerte regelmessige undervisningsprogrammer for voksne. 
-                      Foreldre spurte hele tiden: &quot;Har dere ikke Quranskole?&quot; Så vi startet en.
+                      Etter stengningen av Bliksethjørnet, startet vi intensivt søk etter nye lokaler. 
+                      Vi fant gode egnede lokaler i Fagstadhaven (400 kvm), men kommunen var skeptisk. 
+                      De mente det ikke var heldig med trossamfunn i første etasje i boligblokk og foreslo alternativer utenfor sentrum.
                     </p>
                     <p className="text-gray-800 leading-relaxed">
-                      Med bare 8 barn første dag – nå har vi over 150 elever! Det vokste organisk, 
-                      basert på hva fellesskapet faktisk trengte. Noen av de første elevene våre er nå selv lærere hos oss. 😊
+                      Samtidig startet vi arbeidet med å reise kapital for å bygge egen moské på sikt. 
+                      Sharif Mukhtar og Javaid Sheikh ledet arbeidet med å finne en kortsiktig løsning mens vi planla for fremtiden.
                     </p>
                   </div>
                 </div>
@@ -144,21 +148,26 @@ export function MosqueHistory() {
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
               <div className="text-center">
-                <div className="text-4xl font-bold text-emerald-900 mb-2">19+</div>
+                <div className="text-4xl font-bold text-emerald-900 mb-2">25+</div>
                 <div className="text-gray-600">År i fellesskapet</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold text-emerald-900 mb-2">200+</div>
-                <div className="text-gray-600">Aktive medlemmer</div>
+                <div className="text-4xl font-bold text-emerald-900 mb-2">750+</div>
+                <div className="text-gray-600">Medlemmer i Lillehammer</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold text-emerald-900 mb-2">50+</div>
-                <div className="text-gray-600">Barn i Quranskole</div>
+                <div className="text-4xl font-bold text-emerald-900 mb-2">700+</div>
+                <div className="text-gray-600">Medlemmer i Oppland</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold text-emerald-900 mb-2">365</div>
-                <div className="text-gray-600">Dager åpent</div>
+                <div className="text-4xl font-bold text-emerald-900 mb-2">100+</div>
+                <div className="text-gray-600">Fredagsbønn-gjester</div>
               </div>
+            </div>
+            <div className="mt-8 text-center">
+              <p className="text-gray-600 italic">
+                Fra 150 medlemmer i 1998 til over 750 i dag – vi er den største moskeen i Oppland
+              </p>
             </div>
           </div>
         </div>
