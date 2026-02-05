@@ -1,5 +1,4 @@
 /** @type {import('next').NextConfig} */
-const isDev = process.env.NODE_ENV === 'development';
 const isExport = process.env.NEXT_PUBLIC_EXPORT === 'true';
 
 const nextConfig = {
@@ -11,12 +10,7 @@ const nextConfig = {
     unoptimized: true,
     domains: ['images.unsplash.com', 'via.placeholder.com'],
   },
-  
-  // Only use basePath and assetPrefix for production/deployment
-  ...(!isDev && {
-    basePath: '/lillehammermoske',
-    assetPrefix: '/lillehammermoske',
-  }),
+  // No basePath needed - using custom domain lillehammermoske.no
 }
 
 module.exports = nextConfig
