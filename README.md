@@ -1,5 +1,7 @@
 # 🕌 Lillehammer Moske - Offisiell Nettside
 
+[![GitHub Pages](https://github.com/sheikhmataev/lillehammermoske/actions/workflows/pages-build-deployment.yml/badge.svg)](https://github.com/sheikhmataev/lillehammermoske/actions/workflows/pages-build-deployment.yml)
+
 **The Muslim Cultural Center Lillehammer** - En moderne, brukervennlig nettside for det muslimske fellesskapet i Lillehammer.
 
 🌐 **Nettside:** https://lillehammermoske.no (planlagt)
