@@ -52,7 +52,7 @@ export function Navbar() {
           >
             <div className="w-10 h-10 rounded-lg overflow-hidden flex items-center justify-center bg-white shadow-sm group-hover:shadow-md transition-shadow">
               <Image 
-                src="/lillehammermoske/assets/logos/logo.png" 
+                src="/assets/logos/logo.png" 
                 alt="Lillehammer Moske Logo"
                 width={40}
                 height={40}
