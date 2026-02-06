@@ -1,4 +1,5 @@
 import { PrayerTimesWidget } from '@/components/features/PrayerTimesWidget';
+import { config } from '@/lib/config';
 import { PrayerGuide } from '@/components/features/PrayerGuide';
 import { QiblaDirection } from '@/components/features/QiblaDirection';
 import { PrayerTimesCalendar } from '@/components/features/PrayerTimesCalendar';
@@ -17,7 +18,7 @@ export default function PrayerTimesPage() {
               Daglige bønnetider for Lillehammer. Automatisk oppdatert hver dag.
             </p>
             <p className="text-lg text-emerald-200 mt-4 font-semibold">
-              Jummah Khutbah: 12:15 | Jamaat: 12:45
+              Jummah Khutbah: {config.jummah.khutbah} | Jamaat: {config.jummah.jamat}
             </p>
           </div>
         </div>

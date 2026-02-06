@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Users, Heart, BookOpen, Clock, MapPin } from 'lucide-react';
 import { Card } from '@/components/ui/Card';
+import { config } from '@/lib/config';
 
 export function AboutSection() {
   return (
@@ -34,7 +35,7 @@ export function AboutSection() {
                 <div className="text-gray-600 text-sm font-medium">År i fellesskapet</div>
               </Card>
               <Card variant="subtle" className="text-center">
-                <div className="text-4xl font-extrabold text-emerald-900 mb-2">200+</div>
+                <div className="text-4xl font-extrabold text-emerald-900 mb-2">1000+</div>
                 <div className="text-gray-600 text-sm font-medium">Medlemmer</div>
               </Card>
               <Card variant="subtle" className="text-center">
@@ -72,7 +73,7 @@ export function AboutSection() {
                 <div className="absolute bottom-6 left-6 right-6">
                   <div className="bg-white/95 backdrop-blur-sm rounded-lg p-5 shadow-lg">
                     <h3 className="text-emerald-900 font-bold text-xl mb-2">
-                      Vakert Bønnerom
+                      Vakkert Bønnerom
                     </h3>
                     <p className="text-gray-600">
                       Romslige og fredfulle omgivelser for bønn og meditasjon
@@ -109,7 +110,7 @@ export function AboutSection() {
 
         {/* Location Info - Enhanced Card */}
         <div className="mt-16">
-          <Card variant="elevated" className="bg-emerald-900 text-white border-0 p-10">
+          <div className="bg-emerald-900 text-white rounded-xl shadow-md p-10 border-0">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
               <div>
                 <h3 className="text-3xl font-bold mb-6 text-white">Besøk oss</h3>
@@ -138,7 +139,7 @@ export function AboutSection() {
                   </div>
                   <div className="flex justify-between py-2.5 border-b border-white/10">
                     <span className="text-white/90">Jummah (Fredag)</span>
-                    <span className="font-bold text-gold-400">12:00 - 13:00</span>
+                    <span className="font-bold text-gold-400">Khutbah {config.jummah.khutbah} | Jamat {config.jummah.jamat}</span>
                   </div>
                   <div className="flex justify-between py-2.5">
                     <span className="text-white/90">Ramadan</span>
@@ -147,7 +148,7 @@ export function AboutSection() {
                 </div>
               </div>
             </div>
-          </Card>
+          </div>
         </div>
       </div>
     </section>

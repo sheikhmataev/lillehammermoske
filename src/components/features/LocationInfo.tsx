@@ -1,4 +1,5 @@
 import { MapPin, Clock, Phone, Mail, Car, Bus } from 'lucide-react';
+import { config } from '@/lib/config';
 
 export function LocationInfo() {
   return (
@@ -72,7 +73,7 @@ export function LocationInfo() {
                     <Clock className="w-5 h-5 text-emerald-900" />
                     <div className="flex justify-between w-full">
                       <span className="text-gray-800">Jummah (Fredag)</span>
-                      <span className="font-medium">12:00 - 13:00</span>
+                      <span className="font-medium">Khutbah {config.jummah.khutbah} | Jamat {config.jummah.jamat}</span>
                     </div>
                   </div>
                   

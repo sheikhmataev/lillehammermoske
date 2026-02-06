@@ -15,9 +15,16 @@ module.exports = {
           900: '#1B5E20', // Emerald Green
         },
         'gold': {
+          50: '#FDF8E8',
+          100: '#FAF0C8',
+          200: '#F5E08A',
+          300: '#E6C547',
           400: '#E6C547',
           500: '#D4AF37', // Gold/Sand
           600: '#B8941F',
+          700: '#9A7A15',
+          800: '#7C620F',
+          900: '#5E4A0A',
         },
         // Secondary colors
         'mint': {

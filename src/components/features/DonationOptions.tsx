@@ -182,7 +182,7 @@ export function DonationOptions() {
 
         {/* Call to Action - Enhanced */}
         <div className="text-center max-w-3xl mx-auto">
-          <Card variant="elevated" className="bg-emerald-900 text-white border-0 p-12">
+          <div className="bg-emerald-900 text-white rounded-xl shadow-md p-12 border-0">
             <h3 className="text-3xl md:text-4xl font-extrabold mb-4 text-white">
               Støtt vårt fellesskap
             </h3>
@@ -205,7 +205,7 @@ export function DonationOptions() {
                 </Button>
               </Link>
             </div>
-          </Card>
+          </div>
         </div>
 
         {/* Bank Account Info - Enhanced */}

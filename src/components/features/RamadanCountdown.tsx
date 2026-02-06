@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Calendar, Clock, Moon, Sun, Coffee } from 'lucide-react';
+import { Moon, Sun, Coffee, Clock } from 'lucide-react';
 
 export function RamadanCountdown() {
   const [timeLeft, setTimeLeft] = useState({
@@ -12,25 +12,24 @@ export function RamadanCountdown() {
   });
   
   const [isRamadanActive, setIsRamadanActive] = useState(false);
+  const [isRamadanOver, setIsRamadanOver] = useState(false);
   const [currentDay, setCurrentDay] = useState(0);
 
   useEffect(() => {
-    // Ramadan 2026 expected dates (approximate - will be confirmed closer to date)
-    const ramadanStart = new Date('2026-02-18T00:00:00');
-    const ramadanEnd = new Date('2026-03-19T23:59:59'); // Approximately 30 days
+    const ramadanStart = new Date('2026-02-19T00:00:00');
+    const ramadanEnd = new Date('2026-03-20T23:59:59');
     
     const timer = setInterval(() => {
       const now = new Date();
       
       if (now >= ramadanStart && now <= ramadanEnd) {
-        // Ramadan is active
         setIsRamadanActive(true);
+        setIsRamadanOver(false);
         const dayNumber = Math.floor((now.getTime() - ramadanStart.getTime()) / (1000 * 60 * 60 * 24)) + 1;
         setCurrentDay(dayNumber);
         
-        // Countdown to Iftar today (sunset - approximately 18:00)
-        const today = new Date();
-        const iftarTime = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 18, 0, 0);
+        // Countdown to Iftar today (approximate sunset)
+        const iftarTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 18, 0, 0);
         
         if (now < iftarTime) {
           const difference = iftarTime.getTime() - now.getTime();
@@ -41,14 +40,12 @@ export function RamadanCountdown() {
             seconds: Math.floor((difference % (1000 * 60)) / 1000)
           });
         } else {
-          // After iftar, countdown to tomorrow's iftar
-          setTimeLeft({ days: 0, hours: 23, minutes: 59, seconds: 59 });
+          setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
         }
       } else if (now < ramadanStart) {
-        // Countdown to Ramadan start
         setIsRamadanActive(false);
+        setIsRamadanOver(false);
         const difference = ramadanStart.getTime() - now.getTime();
-        
         setTimeLeft({
           days: Math.floor(difference / (1000 * 60 * 60 * 24)),
           hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
@@ -56,8 +53,8 @@ export function RamadanCountdown() {
           seconds: Math.floor((difference % (1000 * 60)) / 1000)
         });
       } else {
-        // Ramadan has ended
         setIsRamadanActive(false);
+        setIsRamadanOver(true);
         setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
       }
     }, 1000);
@@ -66,94 +63,84 @@ export function RamadanCountdown() {
   }, []);
 
   return (
-    <section className="section-padding bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-700 text-emerald-200">
+    <section className="py-16 md:py-20 bg-cream-50">
       <div className="container-custom">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="flex items-center justify-center mb-8">
-            <Moon className="w-12 h-12 text-gold-500 mr-4" />
-            <h2 className="text-4xl md:text-5xl font-bold">
-              Ramadan 2025
-            </h2>
+        <div className="max-w-4xl mx-auto">
+          {/* Countdown Cards */}
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center gap-2 mb-4">
+              <Clock className="w-5 h-5 text-gold-500" />
+              <span className="text-emerald-900 font-semibold text-sm uppercase tracking-wider">
+                {isRamadanActive 
+                  ? `Ramadan Dag ${currentDay} av 30`
+                  : isRamadanOver 
+                    ? 'Ramadan 2026 er over - Eid Mubarak!'
+                    : 'Nedtelling til Ramadan 2026'
+                }
+              </span>
+            </div>
+            {isRamadanActive && (
+              <p className="text-gray-600">Tid til Iftar:</p>
+            )}
           </div>
-          
-          {isRamadanActive ? (
-            <>
-              <p className="text-xl text-emerald-200 mb-4">
-                Ramadan Dag {currentDay}
-              </p>
-              <p className="text-lg text-emerald-300 mb-12">
-                Tid til Iftar (måltid ved solnedgang):
-              </p>
-            </>
-          ) : (
-            <p className="text-xl text-emerald-200 mb-12">
-              Den hellige måneden starter om:
-            </p>
-          )}
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-colors">
-              <div className="text-4xl font-bold text-gold-500 mb-2">
+          <div className="grid grid-cols-4 gap-3 md:gap-6 max-w-2xl mx-auto mb-10">
+            <div className="bg-white rounded-2xl p-4 md:p-6 shadow-md border border-gray-100 text-center">
+              <div className="text-3xl md:text-5xl font-extrabold text-emerald-900 mb-1">
                 {String(timeLeft.days).padStart(2, '0')}
               </div>
-              <div className="text-emerald-200">{isRamadanActive ? 'Timer' : 'Dager'}</div>
+              <div className="text-gray-500 text-xs md:text-sm font-medium uppercase tracking-wider">Dager</div>
             </div>
-            
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-colors">
-              <div className="text-4xl font-bold text-gold-500 mb-2">
+            <div className="bg-white rounded-2xl p-4 md:p-6 shadow-md border border-gray-100 text-center">
+              <div className="text-3xl md:text-5xl font-extrabold text-emerald-900 mb-1">
                 {String(timeLeft.hours).padStart(2, '0')}
               </div>
-              <div className="text-emerald-200">{isRamadanActive ? 'Minutter' : 'Timer'}</div>
+              <div className="text-gray-500 text-xs md:text-sm font-medium uppercase tracking-wider">Timer</div>
             </div>
-            
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-colors">
-              <div className="text-4xl font-bold text-gold-500 mb-2">
+            <div className="bg-white rounded-2xl p-4 md:p-6 shadow-md border border-gray-100 text-center">
+              <div className="text-3xl md:text-5xl font-extrabold text-emerald-900 mb-1">
                 {String(timeLeft.minutes).padStart(2, '0')}
               </div>
-              <div className="text-emerald-200">{isRamadanActive ? 'Sekunder' : 'Minutter'}</div>
+              <div className="text-gray-500 text-xs md:text-sm font-medium uppercase tracking-wider">Minutter</div>
             </div>
-            
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-colors">
-              <div className="text-4xl font-bold text-gold-500 mb-2">
+            <div className="bg-white rounded-2xl p-4 md:p-6 shadow-md border border-gray-100 text-center">
+              <div className="text-3xl md:text-5xl font-extrabold text-emerald-900 mb-1">
                 {String(timeLeft.seconds).padStart(2, '0')}
               </div>
-              <div className="text-emerald-200">{isRamadanActive ? 'Nå' : 'Sekunder'}</div>
+              <div className="text-gray-500 text-xs md:text-sm font-medium uppercase tracking-wider">Sekunder</div>
             </div>
           </div>
 
-          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8 border border-white/20">
-            <h3 className="text-2xl font-bold mb-4">
-              {isRamadanActive ? `Ramadan Dag ${currentDay} - 2026` : 'Ramadan Starter 18. Februar 2026'}
-            </h3>
-            <p className="text-emerald-200 mb-6">
-              {isRamadanActive 
-                ? 'Må Allah akseptere din fasting og dina gode gjerninger i denne hellige måneden.'
-                : 'Forbered deg på den hellige måneden med bønn, fasting og fellesskap.'
-              }
-            </p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-              <div className="flex items-center justify-center space-x-2 text-emerald-200">
-                <Coffee className="w-5 h-5 text-gold-500" />
-                <span className="text-sm">Suhoor: 05:00</span>
+          {/* Quick Info */}
+          <div className="bg-white rounded-2xl shadow-md border border-gray-100 p-6 md:p-8 max-w-2xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="flex items-center gap-3 justify-center md:justify-start">
+                <div className="w-10 h-10 bg-emerald-50 rounded-lg flex items-center justify-center">
+                  <Coffee className="w-5 h-5 text-emerald-900" />
+                </div>
+                <div>
+                  <p className="text-xs text-gray-500 uppercase tracking-wider">Suhoor</p>
+                  <p className="font-bold text-emerald-900">Før Fajr</p>
+                </div>
               </div>
-              <div className="flex items-center justify-center space-x-2 text-emerald-200">
-                <Sun className="w-5 h-5 text-gold-500" />
-                <span className="text-sm">Fasting: 05:00-18:00</span>
+              <div className="flex items-center gap-3 justify-center">
+                <div className="w-10 h-10 bg-gold-500/10 rounded-lg flex items-center justify-center">
+                  <Sun className="w-5 h-5 text-gold-500" />
+                </div>
+                <div>
+                  <p className="text-xs text-gray-500 uppercase tracking-wider">Faste</p>
+                  <p className="font-bold text-emerald-900">Fajr &ndash; Maghrib</p>
+                </div>
               </div>
-              <div className="flex items-center justify-center space-x-2 text-emerald-200">
-                <Moon className="w-5 h-5 text-gold-500" />
-                <span className="text-sm">Iftar: 18:00</span>
+              <div className="flex items-center gap-3 justify-center md:justify-end">
+                <div className="w-10 h-10 bg-emerald-50 rounded-lg flex items-center justify-center">
+                  <Moon className="w-5 h-5 text-emerald-900" />
+                </div>
+                <div>
+                  <p className="text-xs text-gray-500 uppercase tracking-wider">Iftar</p>
+                  <p className="font-bold text-emerald-900">Ved Maghrib</p>
+                </div>
               </div>
-            </div>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-gold-500 hover:bg-gold-600 text-white px-8 py-3 rounded-lg font-medium transition-colors">
-                Se Ramadan Kalender
-              </button>
-              <button className="border-2 border-emerald-300 text-emerald-200 hover:bg-emerald-100 hover:text-emerald-900 px-8 py-3 rounded-lg font-medium transition-colors">
-                Lær om Ramadan
-              </button>
             </div>
           </div>
         </div>

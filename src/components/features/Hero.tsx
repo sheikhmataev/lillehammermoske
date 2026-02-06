@@ -3,7 +3,8 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Calendar, Clock, Users } from 'lucide-react';
+import { Calendar, Clock, Users, MessageCircle, Moon, ArrowRight } from 'lucide-react';
+import { config } from '@/lib/config';
 
 export function Hero() {
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -17,129 +18,89 @@ export function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-[85vh] bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-900 flex items-center">
-      {/* Subtle overlay for better text contrast */}
-      <div className="absolute inset-0 bg-black/10"></div>
-      
-      <div className="relative container-custom section-padding">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
-          {/* Content */}
-          <div className="space-y-8 text-white">
-            <div className="inline-block px-4 py-1.5 bg-white/20 backdrop-blur-sm rounded-full border border-white/30 mb-6">
-              <span className="text-sm font-medium text-white">Siden 2005</span>
-            </div>
-            
-            <h1 className="text-6xl md:text-7xl lg:text-8xl font-extrabold leading-[1.1] tracking-tight text-white">
-              Velkommen til
-              <span className="block text-gold-400 mt-3">
-                Lillehammer Moske
-              </span>
-            </h1>
-            
-            <p className="text-xl md:text-2xl text-white/90 leading-relaxed max-w-2xl">
-              The Muslim Cultural Center
-              <span className="block mt-2 text-lg text-white/80">
-                Et fellesskap for muslimer i Lillehammer og omegn
-              </span>
-            </p>
-            
-            <p className="text-lg text-gold-300 font-medium">
-              Vi er her for deg, hver dag, hele året 🙏
-            </p>
+    <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+      {/* Full-bleed background image */}
+      <div className="absolute inset-0">
+        <Image
+          src="/assets/images/mosque/inside_image.png"
+          alt="Lillehammer Moske - Interiør"
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-emerald-900/95 via-emerald-900/80 to-emerald-900/60"></div>
+      </div>
 
-            {/* Current Time Display */}
-            <div className="flex items-center space-x-4 p-5 bg-white/15 backdrop-blur-sm rounded-lg border border-white/25 max-w-fit">
-              <div className="w-10 h-10 bg-gold-500/20 rounded-lg flex items-center justify-center">
-                <Clock className="w-5 h-5 text-gold-300" />
-              </div>
-              <div>
-                <p className="text-xs text-white/70 uppercase tracking-wider">Nåværende tid</p>
-                <p className="text-2xl font-bold font-mono text-white">
-                  {currentTime.toLocaleTimeString('nb-NO', {
-                    hour: '2-digit',
-                    minute: '2-digit'
-                  })}
-                </p>
-              </div>
-            </div>
+      <div className="relative container-custom py-20 md:py-28">
+        <div className="max-w-3xl">
+          <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm rounded-full px-5 py-2 border border-white/20 mb-8">
+            <Moon className="w-4 h-4 text-gold-400" />
+            <span className="text-sm font-medium text-white/90">Siden 2005 &middot; Lillehammer</span>
+          </div>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Link 
-                href="/prayer-times" 
-                className="btn-secondary inline-flex items-center justify-center space-x-2"
-              >
-                <Calendar className="w-5 h-5" />
-                <span>Se Bønnetider</span>
-              </Link>
-              <Link 
-                href="/about" 
-                className="border-2 border-white/40 text-white hover:bg-white hover:text-emerald-900 px-8 py-3.5 rounded-lg font-semibold inline-flex items-center justify-center space-x-2 transition-colors bg-white/10 backdrop-blur-sm"
-              >
-                <Users className="w-5 h-5" />
-                <span>Lær mer om oss</span>
-              </Link>
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight text-white mb-6">
+            Velkommen til
+            <span className="block text-gold-400 mt-2">
+              Lillehammer Moske
+            </span>
+          </h1>
+
+          <p className="text-xl md:text-2xl text-white/90 leading-relaxed mb-3 max-w-2xl">
+            The Muslim Cultural Center
+          </p>
+          <p className="text-lg text-white/70 leading-relaxed mb-8 max-w-xl">
+            Et fellesskap for muslimer i Lillehammer og omegn. Vi er her for deg, hver dag, hele året.
+          </p>
+
+          {/* Current Time */}
+          <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-xl px-5 py-3 border border-white/15 mb-10">
+            <Clock className="w-5 h-5 text-gold-400" />
+            <div>
+              <p className="text-xs text-white/60 uppercase tracking-wider">Nåværende tid</p>
+              <p className="text-xl font-bold font-mono text-white">
+                {currentTime.toLocaleTimeString('nb-NO', {
+                  hour: '2-digit',
+                  minute: '2-digit',
+                  second: '2-digit'
+                })}
+              </p>
             </div>
           </div>
 
-          {/* Mosque Image */}
-          <div className="relative">
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-white/20">
-              <Image 
-                src="/assets/images/mosque/entrance.png" 
-                alt="Lillehammer Moske - Inngang"
-                width={800}
-                height={600}
-                className="w-full h-auto object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
-              
-              {/* Image overlay info */}
-              <div className="absolute bottom-4 left-4 right-4">
-                <div className="bg-white/95 backdrop-blur-sm rounded-lg p-4 shadow-lg">
-                  <h3 className="text-emerald-900 font-bold text-lg mb-1">
-                    The Muslim Cultural Center
-                  </h3>
-                  <p className="text-gray-600 text-sm">
-                    Bankgata 12, 2609 Lillehammer
-                  </p>
-                </div>
-              </div>
-            </div>
-            
-            {/* Small feature indicators */}
-            <div className="grid grid-cols-4 gap-2 mt-6">
-              <div className="text-center">
-                <div className="w-12 h-12 bg-gold-500/20 rounded-lg flex items-center justify-center mx-auto mb-2 border border-gold-500/30">
-                  <Calendar className="w-5 h-5 text-gold-300" />
-                </div>
-                <p className="text-xs text-white/80 font-medium">Bønnetider</p>
-              </div>
-              <div className="text-center">
-                <div className="w-12 h-12 bg-gold-500/20 rounded-lg flex items-center justify-center mx-auto mb-2 border border-gold-500/30">
-                  <Users className="w-5 h-5 text-gold-300" />
-                </div>
-                <p className="text-xs text-white/80 font-medium">Quranskole</p>
-              </div>
-              <div className="text-center">
-                <div className="w-12 h-12 bg-gold-500/20 rounded-lg flex items-center justify-center mx-auto mb-2 border border-gold-500/30">
-                  <Users className="w-5 h-5 text-gold-300" />
-                </div>
-                <p className="text-xs text-white/80 font-medium">Fellesskap</p>
-              </div>
-              <div className="text-center">
-                <div className="w-12 h-12 bg-gold-500/20 rounded-lg flex items-center justify-center mx-auto mb-2 border border-gold-500/30">
-                  <Clock className="w-5 h-5 text-gold-300" />
-                </div>
-                <p className="text-xs text-white/80 font-medium">Ramadan</p>
-              </div>
-            </div>
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 mb-10">
+            <Link
+              href="/prayer-times"
+              className="btn-secondary inline-flex items-center justify-center space-x-2"
+            >
+              <Calendar className="w-5 h-5" />
+              <span>Se Bønnetider</span>
+            </Link>
+            <Link
+              href="/ramadan"
+              className="bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white hover:bg-white hover:text-emerald-900 px-8 py-3.5 rounded-lg font-semibold inline-flex items-center justify-center space-x-2 transition-colors"
+            >
+              <Moon className="w-5 h-5" />
+              <span>Ramadan 2026</span>
+            </Link>
           </div>
+
+          {/* WhatsApp CTA - prominent */}
+          <a
+            href={config.social.whatsapp}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 bg-[#25D366] hover:bg-[#20BD5A] text-white px-6 py-3.5 rounded-xl font-semibold transition-colors shadow-lg"
+          >
+            <MessageCircle className="w-5 h-5" />
+            <span>Bli med i vår WhatsApp-gruppe</span>
+            <ArrowRight className="w-4 h-4" />
+          </a>
         </div>
       </div>
 
-      {/* Subtle bottom fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent"></div>
+      {/* Bottom fade */}
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent"></div>
     </section>
   );
 }

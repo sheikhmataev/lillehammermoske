@@ -84,7 +84,7 @@ export function Services() {
                   </div>
                   
                   {/* Title */}
-                  <h3 className={`text-xl font-bold mb-3 ${isGold ? 'text-gold-900' : 'text-emerald-900'} group-hover:opacity-90 transition-opacity`}>
+                  <h3 className={`text-xl font-bold mb-3 ${isGold ? 'text-emerald-900' : 'text-emerald-900'} group-hover:opacity-90 transition-opacity`}>
                     {service.title}
                   </h3>
                   
@@ -106,7 +106,7 @@ export function Services() {
 
         {/* Simple CTA */}
         <div className="mt-20 text-center max-w-3xl mx-auto">
-          <Card variant="elevated" className="bg-emerald-900 text-white border-0">
+          <div className="bg-emerald-900 text-white rounded-xl shadow-md p-10 border-0">
             <h3 className="text-3xl md:text-4xl font-extrabold mb-4 text-white">
               Har du spørsmål om våre tjenester?
             </h3>
@@ -130,7 +130,7 @@ export function Services() {
                 <ArrowRight className="w-5 h-5" />
               </Link>
             </div>
-          </Card>
+          </div>
         </div>
       </div>
     </section>

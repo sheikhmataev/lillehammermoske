@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Calendar, Clock, AlertCircle, Info } from 'lucide-react';
+import { config } from '@/lib/config';
 
 interface Announcement {
   id: number;
@@ -31,8 +32,8 @@ const announcements: Announcement[] = [
   },
   {
     id: 3,
-    title: 'Jummah bønn - Fredag 12:00',
-    content: 'Husk at Jummah bønn holdes hver fredag kl. 12:00. Alle er velkommen til å delta.',
+    title: `Jummah bønn - Fredag ${config.jummah.khutbah}`,
+    content: `Husk at Jummah khutbah starter kl. ${config.jummah.khutbah} og jamat kl. ${config.jummah.jamat}. Alle er velkommen til å delta.`,
     date: '2024-02-08',
     type: 'event',
     isNew: false,

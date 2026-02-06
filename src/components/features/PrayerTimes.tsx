@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Clock, Calendar, MapPin, ArrowRight, Moon, Sun, Cloud, CloudRain } from 'lucide-react';
 import { Card } from '@/components/ui/Card';
 import { PrayerTimesService, getNextPrayerTime, getCurrentPrayerTime } from '@/services/prayer-times';
+import { config } from '@/lib/config';
 import { PrayerTime } from '@/types/prayer-times';
 
 interface PrayerTimeDisplay {
@@ -166,7 +167,7 @@ export function PrayerTimes() {
               Daglige bønnetider for Lillehammer. Automatisk oppdatert hver dag basert på vår lokasjon.
             </p>
             <p className="text-lg text-emerald-700 font-semibold mt-4">
-              Jummah Khutbah: 12:15 | Jamaat: 12:45
+              Jummah Khutbah: {config.jummah.khutbah} | Jamaat: {config.jummah.jamat}
             </p>
           </div>
           <div className="max-w-2xl mx-auto text-center">
@@ -180,151 +181,118 @@ export function PrayerTimes() {
   }
 
   return (
-    <section className="section-padding bg-white">
+    <section className="py-16 md:py-20 bg-white">
       <div className="container-custom">
-        {/* Minimal Header */}
-        <div className="text-center mb-20 max-w-3xl mx-auto">
-          <h2 className="text-5xl md:text-6xl font-extrabold mb-6 text-emerald-900">
+        {/* Header */}
+        <div className="text-center mb-12 max-w-3xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-emerald-900">
             Bønnetider
           </h2>
-          <p className="text-xl text-gray-600 leading-relaxed">
-            Daglige bønnetider for Lillehammer. Automatisk oppdatert hver dag basert på vår lokasjon.
+          <p className="text-lg text-gray-600 leading-relaxed">
+            Daglige bønnetider for Lillehammer &middot; Automatisk oppdatert
           </p>
-          <p className="text-lg text-emerald-700 font-semibold mt-4">
-            Jummah Khutbah: 12:15 | Jamaat: 12:45
+          <p className="text-base text-emerald-800 font-semibold mt-3 bg-emerald-50 inline-block px-4 py-1.5 rounded-lg border border-emerald-100">
+            Jummah: Khutbah {config.jummah.khutbah} | Jamat {config.jummah.jamat}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {/* Prayer Times Card - Enhanced */}
-          <div className="lg:col-span-2">
-            <Card variant="elevated">
-              {/* Header */}
-              <div className="flex items-center justify-between mb-8 pb-6 border-b border-gray-200">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-emerald-900 rounded-xl flex items-center justify-center shadow-sm">
-                    <Calendar className="w-6 h-6 text-white" />
+        <div className="max-w-5xl mx-auto">
+          {/* Current / Next Prayer Highlight */}
+          {nextPrayer && (
+            <div className="mb-8 bg-gradient-to-r from-emerald-900 to-emerald-800 rounded-2xl p-6 md:p-8 text-white shadow-lg">
+              <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div className="flex items-center gap-5">
+                  <div className="w-16 h-16 bg-gold-500/20 rounded-2xl flex items-center justify-center border border-gold-500/30">
+                    {getTimeIcon(nextPrayer.name)}
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold text-emerald-900">
-                      {currentDate.toLocaleDateString('nb-NO', {
-                        weekday: 'long',
-                        day: 'numeric',
-                        month: 'long',
-                        year: 'numeric'
-                      })}
+                    <p className="text-emerald-200 text-sm font-medium uppercase tracking-wider mb-1">
+                      {prayerTimes.find(p => p.isCurrent) ? 'Nåværende bønn' : 'Neste bønn'}
+                    </p>
+                    <h3 className="text-3xl md:text-4xl font-extrabold text-white">
+                      {prayerTimes.find(p => p.isCurrent)?.name || nextPrayer.name}
                     </h3>
-                    {todayPrayerTimes && (
-                      <p className="text-sm text-emerald-700 font-medium">
-                        {todayPrayerTimes.hijriDate}
-                      </p>
-                    )}
                   </div>
                 </div>
-                <div className="flex items-center space-x-2 px-3 py-1.5 bg-gray-50 rounded-lg border border-gray-200">
-                  <MapPin className="w-4 h-4 text-emerald-900" />
-                  <span className="text-sm font-semibold text-gray-700">Lillehammer</span>
+                <div className="text-center md:text-right">
+                  <p className="text-5xl md:text-6xl font-extrabold text-white font-mono">
+                    {prayerTimes.find(p => p.isCurrent)?.time || nextPrayer.time}
+                  </p>
+                  <p className="text-gold-400 text-sm font-semibold mt-1">
+                    {nextPrayerCountdown || 'Laster...'}
+                  </p>
                 </div>
               </div>
+            </div>
+          )}
 
-              {/* Prayer Times Grid */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-6">
-                {prayerTimes.map((prayer) => (
-                  <div
-                    key={prayer.name}
-                    className={`p-5 rounded-xl text-center transition-all duration-200 border-2 ${
-                      prayer.isCurrent
-                        ? 'bg-emerald-900 text-white border-emerald-800 shadow-lg scale-105'
-                        : prayer.isNext
-                        ? 'bg-gold-500 text-white border-gold-600 shadow-md'
-                        : 'bg-gray-50 hover:bg-gray-100 border-transparent hover:border-emerald-200'
-                    }`}
-                  >
-                    <div className={`font-bold text-base mb-2 ${prayer.isCurrent || prayer.isNext ? 'text-white' : 'text-emerald-900'}`}>
-                      {prayer.name}
-                    </div>
-                    <div className={`text-xs mb-3 font-medium ${prayer.isCurrent || prayer.isNext ? 'text-white/90' : 'text-gray-500'}`}>
-                      {prayer.arabicName}
-                    </div>
-                    <div className="flex items-center justify-center space-x-1.5 mb-2">
-                      {prayer.isCurrent || prayer.isNext ? (
-                        getTimeIcon(prayer.name)
-                      ) : (
-                        <Clock className={`w-4 h-4 ${prayer.isNext ? 'text-white' : 'text-gray-400'}`} />
-                      )}
-                      <span className={`text-2xl font-extrabold ${prayer.isCurrent || prayer.isNext ? 'text-white' : 'text-gray-900'}`}>
-                        {prayer.time}
-                      </span>
-                    </div>
-                    {prayer.isCurrent && (
-                      <p className="text-xs text-white font-medium mt-1">Nåværende bønn</p>
-                    )}
-                    {prayer.isNext && !prayer.isCurrent && (
-                      <p className="text-xs text-white font-medium mt-1">Neste bønn</p>
-                    )}
-                  </div>
-                ))}
-              </div>
-
-              {/* Note */}
-              <div className="p-4 bg-emerald-50 rounded-lg border border-emerald-100">
-                <p className="text-sm text-gray-700 text-center leading-relaxed">
-                  <strong className="text-emerald-900 font-semibold">Merk:</strong> Bønnetider oppdateres automatisk basert på lokasjon og årstid.
-                </p>
-              </div>
-            </Card>
+          {/* Date bar */}
+          <div className="flex items-center justify-between mb-6 px-2">
+            <div className="flex items-center gap-3">
+              <Calendar className="w-5 h-5 text-emerald-900" />
+              <span className="font-semibold text-emerald-900 capitalize">
+                {currentDate.toLocaleDateString('nb-NO', {
+                  weekday: 'long',
+                  day: 'numeric',
+                  month: 'long',
+                })}
+              </span>
+            </div>
+            <div className="flex items-center gap-2">
+              <MapPin className="w-4 h-4 text-gray-400" />
+              <span className="text-sm text-gray-500">Lillehammer</span>
+            </div>
           </div>
 
-          {/* Sidebar - Enhanced Cards */}
-          <div className="space-y-6">
-            {/* Opening Hours */}
-            <Card variant="elevated">
-              <div className="flex items-center space-x-3 mb-6 pb-4 border-b border-gray-100">
-                <div className="w-10 h-10 bg-emerald-50 rounded-lg flex items-center justify-center">
-                  <Clock className="w-5 h-5 text-emerald-900" />
-                </div>
-                <h3 className="text-lg font-bold text-emerald-900">
-                  Åpningstider
-                </h3>
+          {/* Prayer Times Grid */}
+          <div className="grid grid-cols-5 gap-3 md:gap-4 mb-8">
+            {prayerTimes.map((prayer) => (
+              <div
+                key={prayer.name}
+                className={`rounded-xl text-center transition-all duration-200 ${
+                  prayer.isCurrent
+                    ? 'bg-emerald-900 text-white shadow-lg ring-2 ring-emerald-500 ring-offset-2'
+                    : prayer.isNext
+                    ? 'bg-gold-500 text-white shadow-md'
+                    : 'bg-gray-50 border border-gray-200 hover:border-emerald-200'
+                } p-3 md:p-5`}
+              >
+                <p className={`text-xs md:text-sm font-bold mb-1 ${
+                  prayer.isCurrent || prayer.isNext ? 'text-white' : 'text-emerald-900'
+                }`}>
+                  {prayer.name}
+                </p>
+                <p className={`text-[10px] md:text-xs font-medium mb-2 ${
+                  prayer.isCurrent || prayer.isNext ? 'text-white/80' : 'text-gray-400'
+                }`}>
+                  {prayer.arabicName}
+                </p>
+                <p className={`text-lg md:text-2xl font-extrabold ${
+                  prayer.isCurrent || prayer.isNext ? 'text-white' : 'text-gray-900'
+                }`}>
+                  {prayer.time}
+                </p>
+                {prayer.isCurrent && (
+                  <span className="inline-block mt-1.5 text-[10px] md:text-xs bg-white/20 text-white px-2 py-0.5 rounded-full font-medium">Nå</span>
+                )}
+                {prayer.isNext && !prayer.isCurrent && (
+                  <span className="inline-block mt-1.5 text-[10px] md:text-xs bg-white/20 text-white px-2 py-0.5 rounded-full font-medium">Neste</span>
+                )}
               </div>
-              <div className="space-y-3">
-                <div className="flex justify-between items-center py-2.5 border-b border-gray-100">
-                  <span className="text-gray-600 text-sm">Mandag - Søndag</span>
-                  <span className="font-bold text-emerald-900">05:00 - 22:00</span>
-                </div>
-                <div className="flex justify-between items-center py-2.5">
-                  <span className="text-gray-600 text-sm">Jummah (Fredag)</span>
-                  <span className="font-bold text-gold-600">12:00 - 13:00</span>
-                </div>
-              </div>
-            </Card>
+            ))}
+          </div>
 
-            {/* Next Prayer */}
-            <Card variant="elevated" className="bg-emerald-900 text-white border-0">
-              <h3 className="text-lg font-bold mb-5 text-white">Neste Bønn</h3>
-              <div className="text-center py-6 bg-white/10 rounded-xl border border-white/20">
-                <div className="text-3xl font-bold mb-2 text-gold-400">
-                  {nextPrayer?.name || 'Ingen'}
-                </div>
-                <div className="text-5xl font-extrabold mb-2 text-white">
-                  {nextPrayer?.time || '--:--'}
-                </div>
-                <div className="text-sm text-white/80 font-medium">
-                  {nextPrayerCountdown || 'Laster...'}
-                </div>
-              </div>
-            </Card>
-
-            {/* CTA Link */}
-            <Link href="/prayer-times" className="block">
-              <Card hover variant="outlined" className="group">
-                <div className="flex items-center justify-between">
-                  <span className="font-semibold text-emerald-900">
-                    Se full kalender
-                  </span>
-                  <ArrowRight className="w-5 h-5 text-emerald-900 group-hover:translate-x-1 transition-transform" />
-                </div>
-              </Card>
+          {/* Footer row */}
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p className="text-sm text-gray-500">
+              <strong className="text-emerald-900">Merk:</strong> Tider oppdateres automatisk basert på lokasjon og årstid.
+            </p>
+            <Link 
+              href="/prayer-times" 
+              className="inline-flex items-center gap-2 text-emerald-900 font-semibold hover:text-emerald-800 transition-colors text-sm"
+            >
+              Se full kalender
+              <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
         </div>

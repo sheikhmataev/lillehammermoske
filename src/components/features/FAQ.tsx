@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { ChevronDown, ChevronUp, HelpCircle } from 'lucide-react';
 import { Card } from '@/components/ui/Card';
+import { config } from '@/lib/config';
 
 interface FAQItem {
   question: string;
@@ -38,7 +39,7 @@ const faqItems: FAQItem[] = [
   },
   {
     question: 'Hva er åpningstider for Jummah bønn?',
-    answer: 'Jummah bønn holdes hver fredag klokken 12:00. Alle er velkommen til å delta. Vi anbefaler å komme litt i forveien.',
+    answer: `Jummah khutbah starter kl. ${config.jummah.khutbah} og jamat (bønn) kl. ${config.jummah.jamat} hver fredag. Alle er velkommen til å delta. Vi anbefaler å komme litt i forveien.`,
     category: 'prayer',
   },
   {
@@ -191,7 +192,7 @@ export function FAQ() {
 
         {/* Contact CTA */}
         <div className="mt-16 text-center">
-          <Card className="bg-gradient-to-r from-emerald-900 to-emerald-800 text-white max-w-3xl mx-auto">
+          <div className="bg-gradient-to-r from-emerald-900 to-emerald-800 text-white rounded-xl shadow-md p-8 max-w-3xl mx-auto">
             <h3 className="text-2xl font-bold mb-4 text-white">
               Har du flere spørsmål?
             </h3>
@@ -212,7 +213,7 @@ export function FAQ() {
                 Send en melding
               </a>
             </div>
-          </Card>
+          </div>
         </div>
       </div>
     </section>

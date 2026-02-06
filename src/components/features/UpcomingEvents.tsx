@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { Calendar, Clock, MapPin, Users, ArrowRight } from 'lucide-react';
+import { config } from '@/lib/config';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 
@@ -22,10 +23,10 @@ const events: Event[] = [
     id: 1,
     title: 'Jummah Bønn',
     date: '2024-03-01',
-    time: '12:00',
+    time: config.jummah.khutbah,
     location: 'Hovedsal',
     type: 'prayer',
-    description: 'Fredagsbønn med khutbah på arabisk og norsk.',
+    description: `Fredagsbønn med khutbah kl. ${config.jummah.khutbah} og jamat kl. ${config.jummah.jamat}.`,
     attendees: 50,
   },
   {
@@ -61,7 +62,7 @@ const events: Event[] = [
 const eventTypeColors = {
   prayer: 'bg-emerald-50 text-emerald-900 border border-emerald-200',
   education: 'bg-blue-50 text-blue-900 border border-blue-200',
-  community: 'bg-gold-50 text-gold-900 border border-gold-200',
+  community: 'bg-amber-50 text-amber-900 border border-amber-200',
   ramadan: 'bg-purple-50 text-purple-900 border border-purple-200',
 };
 

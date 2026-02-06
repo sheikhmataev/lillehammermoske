@@ -14,6 +14,15 @@ export const config = {
     longitude: 10.4663,
     dataSource: 'local_csv',
   },
+
+  // ============================================
+  // JUMMAH TIDER - Oppdater disse ved behov
+  // Disse brukes globalt på hele nettsiden
+  // ============================================
+  jummah: {
+    khutbah: '13:00',
+    jamat: '13:30',
+  },
   
   organization: {
     name: 'The Muslim Cultural Center Lillehammer',
@@ -49,7 +58,7 @@ export const config = {
   },
   
   social: {
-    whatsapp: '',
+    whatsapp: 'https://chat.whatsapp.com/BCWaRzTlq5K7htT2p47TSA?mode=wwt',
     facebook: '',
     instagram: '',
     youtube: '',

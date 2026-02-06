@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { MapPin, Phone, Mail, Clock, MessageCircle, Building2, Users } from 'lucide-react';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
+import { config } from '@/lib/config';
 
 export function ContactInfo() {
   return (
@@ -119,7 +120,7 @@ export function ContactInfo() {
               </div>
               <div className="flex justify-between items-center py-2.5 border-b border-gray-100">
                 <span className="text-gray-700 font-medium">Jummah (Fredag)</span>
-                <span className="font-bold text-gold-600">12:00 - 13:00</span>
+                <span className="font-bold text-gold-600">Khutbah {config.jummah.khutbah} | Jamat {config.jummah.jamat}</span>
               </div>
               <div className="flex justify-between items-center py-2.5 border-b border-gray-100">
                 <span className="text-gray-700 font-medium">Ramadan</span>

@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Clock, Calendar, MapPin, Download, Moon, Sun, Cloud, AlertCircle } from 'lucide-react';
 import { PrayerTimesService, getNextPrayerTime, getCurrentPrayerTime } from '@/services/prayer-times';
+import { config } from '@/lib/config';
 import { PrayerTime as PrayerTimeType } from '@/types/prayer-times';
 
 interface PrayerTime {
@@ -214,7 +215,7 @@ export function PrayerTimesWidget() {
               )}
               <div className="flex items-center space-x-2 bg-emerald-100 px-3 py-1 rounded-full">
                 <span className="text-sm font-semibold text-emerald-800">Jummah:</span>
-                <span className="text-sm font-medium text-emerald-700">Khutbah 12:15 | Jamaat 12:45</span>
+                <span className="text-sm font-medium text-emerald-700">Khutbah {config.jummah.khutbah} | Jamaat {config.jummah.jamat}</span>
               </div>
             </div>
           </div>
