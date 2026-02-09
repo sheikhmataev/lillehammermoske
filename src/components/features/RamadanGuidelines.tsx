@@ -7,7 +7,7 @@ export function RamadanGuidelines() {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-extrabold text-emerald-900 mb-6">
-              Sawm &ndash; Islams Fjerde Søyle
+              Sawm &ndash; En av Islams søyler
             </h2>
             <div className="w-24 h-1 bg-gold-500 mx-auto rounded-full mb-6" />
             <p className="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed">

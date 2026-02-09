@@ -36,7 +36,7 @@ export function MosqueHistory() {
                       The Muslim Cultural Center Lillehammer ble etablert med 150 medlemmer. 
                       Vi startet i enkle lokaler, men med et sterkt ønske om å skape et permanent samlingspunkt 
                       for muslimer i Lillehammer og Gudbrandsdalen. Dette var begynnelsen på det som skulle bli 
-                      det største muslimske trossamfunnet i Oppland.
+                      det største muslimske trossamfunnet i Innlandet.
                     </p>
                   </div>
                 </div>
@@ -157,7 +157,7 @@ export function MosqueHistory() {
               </div>
               <div className="text-center">
                 <div className="text-4xl font-bold text-emerald-900 mb-2">700+</div>
-                <div className="text-gray-600">Medlemmer i Oppland</div>
+                <div className="text-gray-600">Medlemmer i Innlandet</div>
               </div>
               <div className="text-center">
                 <div className="text-4xl font-bold text-emerald-900 mb-2">100+</div>
@@ -166,7 +166,7 @@ export function MosqueHistory() {
             </div>
             <div className="mt-8 text-center">
               <p className="text-gray-600 italic">
-                Fra 150 medlemmer i 1998 til over 750 i dag – vi er den største moskeen i Oppland
+                Fra 150 medlemmer i 1998 til over 750 i dag – vi er den største moskeen i Innlandet
               </p>
             </div>
           </div>

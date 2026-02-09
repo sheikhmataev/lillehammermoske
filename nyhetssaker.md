@@ -24,7 +24,7 @@ Men slik blir det altså ikke. Det har vi Sheiks ord for. – Bare innvendig, be
 
 Men saken er altså at Sheikh og hans trosfeller i Lillehammer trenger et sted å samles. Blant annet for å be. Muslimene er gudfryktige og ber hver dag. Helst sammen. Det er ikke mulig hver dag, men fredag er en spesielt viktig dag i deres troslære. Da samles minst 100 til bønn i Lillehammer. Hvis de har et sted å samles. Det har de ikke hatt siden september i fjor. Da ble det de kalte moske – som vi kaller Blikseth-hjørnet – stengt på grunn av brannfare. Ikke direkte luksuriøse lokaler, men det hadde gjort nytten i 17 år. Inntil brannfaren ble oppdaget. Plutselig.
 
-Siden den gang har blant andre Sheikh og Mukhtar Sharif vært på leting etter nye lokaler til en moske. Sharif er leder for det som heter The Muslem cultural center. I Lillehammer er det over 200 medlemmer, mens det i Oppland nærmer seg 700 medlemmer.
+Siden den gang har blant andre Sheikh og Mukhtar Sharif vært på leting etter nye lokaler til en moske. Sharif er leder for det som heter The Muslem cultural center. I Lillehammer er det over 200 medlemmer, mens det i Innlandet nærmer seg 700 medlemmer.
 
 Vi andre skryter av Lillehammer som en internasjonal by. Det burde vel handle om litt mer enn hotellplass for turister og World Cup på ski?
 
@@ -170,7 +170,7 @@ I rapporten fra brannvesenet pekes det på at kontroll og ettersyn av installasj
 Må finne nye lokaler
 Sharif Mukhtar, leder for moskeen i Lillehammer, har mottatt beskjed fra huseier om at lokalet må stenges, og sier at menigheten trolig må søke etter nye lokaler. Utover det vil han ikke knytte kommentarer til det som er avdekket om at moskeen har drevet uten godkjenning gjennom så mange år.
 
-The Muslem Cultural Center, som er navnet på det muslimske trossamfunnet i Lillehammer, er det største av alle trossamfunn utenom kirkemenighetene, registrert i Oppland. De er også det trossamfunnet som har hatt den største medlemsveksten de siste fem årene. I 2010 hadde trossamfunnet 207 registrerte medlemmer. I 2014 hadde de vokst til 643 tilskuddstellende medlemmer.GD har forsøkt å få kontakt med eierne av Blikset-hjørnet for å få klarhet i hvordan de forholder seg til pålegg og krav fra kommunen. Peder Langrusten i Heidal, som eier en mindre del av bygget, ønsker ikke å snakke med GD. Aud Villanger i selskapet Auditor AS har ikke vært tilgjengelig på telefon.
+The Muslem Cultural Center, som er navnet på det muslimske trossamfunnet i Lillehammer, er det største av alle trossamfunn utenom kirkemenighetene, registrert i Innlandet. De er også det trossamfunnet som har hatt den største medlemsveksten de siste fem årene. I 2010 hadde trossamfunnet 207 registrerte medlemmer. I 2014 hadde de vokst til 643 tilskuddstellende medlemmer.GD har forsøkt å få kontakt med eierne av Blikset-hjørnet for å få klarhet i hvordan de forholder seg til pålegg og krav fra kommunen. Peder Langrusten i Heidal, som eier en mindre del av bygget, ønsker ikke å snakke med GD. Aud Villanger i selskapet Auditor AS har ikke vært tilgjengelig på telefon.
 
 Nyheter
 bolig og eiendom
@@ -377,7 +377,7 @@ Fra 150 til 750 medlemmer
 Kasserer Javaid Sheikh og imam Mukhtar Sharif i moskeen i Lillehammer. Foto: Torbjørn Olsen
 I begynnelsen var det nok god plass i kjelleren på Blikseth-hjørnet. Da moskeen ble opprettet i Lillehammer i 1998 hadde de 150 medlemmer, opplyser kasserer Javaid Sheikh. Medlemsmassen har vokst jevnt, og de siste årene har den økt kraftig. I dag teller de 750 medlemmer – og kjelleren virker klaustrofobisk.
 
-– Vi er i dialog med kommunen om å finne større lokaler. Vi er i dag den største moskeen i Oppland, og vi har stor sirkulasjon av flyktninger. Mitt ønske er at moskeen etter hvert også skal ha plass til kvinner og barn, sier imam Mukhtar Sharif.
+– Vi er i dialog med kommunen om å finne større lokaler. Vi er i dag den største moskeen i Innlandet, og vi har stor sirkulasjon av flyktninger. Mitt ønske er at moskeen etter hvert også skal ha plass til kvinner og barn, sier imam Mukhtar Sharif.
 
 Til opplysning. For at kvinner skal få delta på bønn i en moske må det være plass til at rommet kan bli atskilt med et forheng.
 
