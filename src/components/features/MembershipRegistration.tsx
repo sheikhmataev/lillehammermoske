@@ -185,7 +185,7 @@ export function MembershipRegistration() {
                   Send e-post
                 </a>
                 <a
-                  href="tel:+4712345678"
+                  href="tel:+4790083159"
                   className="inline-flex items-center justify-center px-6 py-3 border border-emerald-600 text-emerald-600 rounded-lg hover:bg-emerald-50 transition-colors font-medium"
                 >
                   Ring oss

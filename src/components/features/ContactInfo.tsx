@@ -52,7 +52,7 @@ export function ContactInfo() {
             <div>
               <h4 className="font-bold text-emerald-900 mb-2">Telefon</h4>
               <a
-                href="tel:+47XXXXXXXXX"
+                href="tel:+4790083159"
                 className="text-gray-700 hover:text-emerald-900 transition-colors font-medium block mb-2"
               >
                 Se telefonnummer
@@ -90,7 +90,7 @@ export function ContactInfo() {
             <div>
               <h4 className="font-bold text-emerald-900 mb-2">WhatsApp</h4>
               <a
-                href="https://wa.me/47XXXXXXXXX"
+                href="https://wa.me/4790083159"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-700 hover:text-emerald-900 transition-colors font-medium block mb-2"

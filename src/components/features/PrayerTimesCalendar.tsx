@@ -314,8 +314,8 @@ export function PrayerTimesCalendar() {
               <h4 className="text-lg font-semibold text-blue-900 mb-3">Om Kalenderen</h4>
               <p className="text-blue-700 text-sm leading-relaxed">
                 Kalenderen viser nøyaktige bønnetider for Lillehammer. Tidene følger 
-                Islamic Society of North America (ISNA) beregningsmetode og er tilpasset 
-                lokale geografiske forhold.
+                Islamsk Råd Norge (IRN) sin standardisering av bønnetider og er tilpasset 
+                lokale geografiske forhold. IRN jobber for felles standarder for bønnetider i Norge.
               </p>
             </div>
             <div className="bg-gradient-to-r from-emerald-50 to-green-50 rounded-xl p-6 border border-emerald-100">

@@ -329,7 +329,8 @@ export function PrayerTimesWidget() {
             <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-100">
               <h4 className="text-lg font-semibold text-blue-900 mb-3">Om Bønnetidene</h4>
               <p className="text-blue-700 text-sm leading-relaxed">
-                Bønnetidene er beregnet for Lillehammer og følger Islamic Society of North America (ISNA) metoden. 
+                Bønnetidene er beregnet for Lillehammer og følger Islamsk Råd Norge (IRN) sin standardisering av bønnetider. 
+                IRN er en paraplyorganisasjon for islamske trossamfunn i Norge som jobber med felles standarder for bønnetider.
                 Tidene kan variere med 1-2 minutter avhengig av nøyaktig posisjon i byen.
               </p>
             </div>

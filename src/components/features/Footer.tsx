@@ -84,7 +84,7 @@ export function Footer() {
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="w-5 h-5 text-gold-500 flex-shrink-0" />
-                <a href="tel:+47XXXXXXXXX" className="text-gray-300 hover:text-white transition-colors text-sm">
+                <a href="tel:+4790083159" className="text-gray-300 hover:text-white transition-colors text-sm">
                   Se telefonnummer
                 </a>
               </div>
@@ -96,7 +96,7 @@ export function Footer() {
               </div>
               <div className="flex items-center space-x-3">
                 <MessageCircle className="w-5 h-5 text-gold-500 flex-shrink-0" />
-                <a href="https://wa.me/47XXXXXXXXX" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors text-sm">
+                <a href="https://wa.me/4790083159" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors text-sm">
                   WhatsApp
                 </a>
               </div>
