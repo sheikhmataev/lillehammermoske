@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { RamadanCountdown } from '@/components/features/RamadanCountdown';
 import { RamadanCalendar } from '@/components/features/RamadanCalendar';
 import { RamadanGuidelines } from '@/components/features/RamadanGuidelines';
@@ -64,14 +65,14 @@ export default function RamadanPage() {
       <RamadanCountdown />
 
       {/* What is Ramadan Section */}
-      <section className="py-20 md:py-28 bg-white">
-        <div className="container-custom">
+      <section className="py-16 md:py-28 bg-white">
+        <div className="container-custom px-4">
           <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-extrabold text-emerald-900 mb-6">
+            <div className="text-center mb-12 md:mb-16">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-emerald-900 mb-6">
                 Hva er Ramadan?
               </h2>
-              <div className="w-24 h-1 bg-gold-500 mx-auto rounded-full" />
+              <div className="w-20 md:w-24 h-1 bg-gold-500 mx-auto rounded-full" />
             </div>
             
             <div className="prose prose-lg max-w-none">
@@ -83,30 +84,30 @@ export default function RamadanPage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-              <div className="bg-emerald-50 rounded-2xl p-8 text-center border border-emerald-100">
-                <div className="w-14 h-14 bg-emerald-900 rounded-xl flex items-center justify-center mx-auto mb-5">
-                  <Moon className="w-7 h-7 text-gold-400" />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mt-8 md:mt-12">
+              <div className="bg-emerald-50 rounded-xl md:rounded-2xl p-6 md:p-8 text-center border border-emerald-100">
+                <div className="w-12 h-12 md:w-14 md:h-14 bg-emerald-900 rounded-lg md:rounded-xl flex items-center justify-center mx-auto mb-4 md:mb-5">
+                  <Moon className="w-6 h-6 md:w-7 md:h-7 text-gold-400" />
                 </div>
-                <h3 className="text-xl font-bold text-emerald-900 mb-3">Faste (Sawm)</h3>
+                <h3 className="text-lg md:text-xl font-bold text-emerald-900 mb-2 md:mb-3">Faste (Sawm)</h3>
                 <p className="text-gray-600 text-sm leading-relaxed">
                   Avstå fra mat og drikke fra daggry til solnedgang. En av islams fem søyler.
                 </p>
               </div>
-              <div className="bg-emerald-50 rounded-2xl p-8 text-center border border-emerald-100">
-                <div className="w-14 h-14 bg-emerald-900 rounded-xl flex items-center justify-center mx-auto mb-5">
-                  <BookOpen className="w-7 h-7 text-gold-400" />
+              <div className="bg-emerald-50 rounded-xl md:rounded-2xl p-6 md:p-8 text-center border border-emerald-100">
+                <div className="w-12 h-12 md:w-14 md:h-14 bg-emerald-900 rounded-lg md:rounded-xl flex items-center justify-center mx-auto mb-4 md:mb-5">
+                  <BookOpen className="w-6 h-6 md:w-7 md:h-7 text-gold-400" />
                 </div>
-                <h3 className="text-xl font-bold text-emerald-900 mb-3">Bønn & Koran</h3>
+                <h3 className="text-lg md:text-xl font-bold text-emerald-900 mb-2 md:mb-3">Bønn & Koran</h3>
                 <p className="text-gray-600 text-sm leading-relaxed">
                   Økt tilbedelse, nattbønn (Taraweeh) og lesing av Koranen gjennom hele måneden.
                 </p>
               </div>
-              <div className="bg-emerald-50 rounded-2xl p-8 text-center border border-emerald-100">
-                <div className="w-14 h-14 bg-emerald-900 rounded-xl flex items-center justify-center mx-auto mb-5">
-                  <Heart className="w-7 h-7 text-gold-400" />
+              <div className="bg-emerald-50 rounded-xl md:rounded-2xl p-6 md:p-8 text-center border border-emerald-100">
+                <div className="w-12 h-12 md:w-14 md:h-14 bg-emerald-900 rounded-lg md:rounded-xl flex items-center justify-center mx-auto mb-4 md:mb-5">
+                  <Heart className="w-6 h-6 md:w-7 md:h-7 text-gold-400" />
                 </div>
-                <h3 className="text-xl font-bold text-emerald-900 mb-3">Veldedighet</h3>
+                <h3 className="text-lg md:text-xl font-bold text-emerald-900 mb-2 md:mb-3">Veldedighet</h3>
                 <p className="text-gray-600 text-sm leading-relaxed">
                   Gi Zakat og Sadaqah. Profeten (fvmh) var mest sjenerøs under Ramadan.
                 </p>
@@ -183,6 +184,30 @@ export default function RamadanPage() {
 
       {/* Ramadan Calendar */}
       <RamadanCalendar />
+
+      {/* Ramadan Tabell Image */}
+      <section className="py-12 md:py-20 bg-white">
+        <div className="container-custom">
+          <div className="max-w-2xl mx-auto text-center px-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-emerald-900 mb-6 sm:mb-8">
+              Ramadan Kalender 2026
+            </h2>
+            <div className="rounded-xl sm:rounded-2xl overflow-hidden shadow-lg border border-gray-200">
+              <Image
+                src="/assets/images/posters/ramadan_tabell.png"
+                alt="Ramadan Kalender 2026 - Faste- og bønnetider for Lillehammer"
+                width={700}
+                height={990}
+                className="w-full h-auto"
+                priority
+              />
+            </div>
+            <p className="text-sm text-gray-600 mt-4">
+              Trykk på bildet for å se det større
+            </p>
+          </div>
+        </div>
+      </section>
 
       {/* Ramadan Guidelines - Sawm, Zakat, etc */}
       <RamadanGuidelines />

@@ -13,7 +13,7 @@ export function Footer() {
                 <Moon className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h3 className="text-lg font-bold">Lillehammer Moske</h3>
+                <h3 className="text-lg font-bold text-white">Lillehammer Moske</h3>
                 <p className="text-sm text-gray-300">The Muslim Cultural Center</p>
               </div>
             </div>
