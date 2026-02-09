@@ -354,14 +354,24 @@ export function PrayerTimesWidget() {
                 Last ned vår app for å få varslinger før hver bønn
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button className="bg-white text-gold-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center justify-center space-x-2 shadow-md">
+                <a
+                  href="https://apps.apple.com/no/app/b%C3%B8nnetid/id1615293231"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-white text-gold-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center justify-center space-x-2 shadow-md"
+                >
                   <Download className="w-5 h-5" />
                   <span>App Store</span>
-                </button>
-                <button className="bg-white text-gold-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center justify-center space-x-2 shadow-md">
+                </a>
+                <a
+                  href="https://play.google.com/store/apps/details?id=no.irn.prayertimes&pcampaignid=web_share"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-white text-gold-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center justify-center space-x-2 shadow-md"
+                >
                   <Download className="w-5 h-5" />
                   <span>Google Play</span>
-                </button>
+                </a>
               </div>
             </div>
           </div>

@@ -14,7 +14,6 @@ const navigation = [
   { name: 'Quranskole', href: '/quran-school' },
   { name: 'Medlemskap', href: '/membership' },
   { name: 'Kontakt', href: '/contact' },
-  { name: 'Donasjon', href: '/donate' },
 ];
 
 export function Navbar() {
