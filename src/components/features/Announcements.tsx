@@ -16,17 +16,17 @@ interface Announcement {
 const announcements: Announcement[] = [
   {
     id: 1,
-    title: 'Ramadan 2024 - Viktig informasjon',
-    content: 'Ramadan starter 10. mars 2024. Vi har oppdaterte åpningstider og spesielle arrangementer gjennom hele måneden.',
-    date: '2024-02-15',
+    title: 'Ramadan 2026 - 1. Ramadan 18. februar',
+    content: 'Ramadan starter 18. februar 2026. Isha-bønn kl. 19:30 fra 17.02, etterfulgt av Taraweeh. Følg WhatsApp-gruppen for oppdateringer.',
+    date: '2026-02-17',
     type: 'important',
     isNew: true,
   },
   {
     id: 2,
     title: 'Quranskole påmelding åpnet',
-    content: 'Påmelding for Quranskole våren 2024 er nå åpen. Vi tilbyr klasser for alle aldre.',
-    date: '2024-02-10',
+    content: 'Påmelding for Quranskole er nå åpen. Vi tilbyr klasser for alle aldre.',
+    date: '2026-01-15',
     type: 'info',
     isNew: true,
   },

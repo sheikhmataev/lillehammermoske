@@ -43,12 +43,12 @@ export default function DonatePage() {
                 </div>
                 <h3 className="text-2xl font-bold text-emerald-900 mb-3">Bankoverføring</h3>
                 <p className="text-gray-600 mb-6 leading-relaxed">
-                  Overfør direkte til vår bankkonto. Merk betalingen med ditt navn eller e-post.
+                  Overfør direkte til vår bankkonto.
                 </p>
                 <div className="bg-gray-50 rounded-xl p-5 border border-gray-200 space-y-4">
                   <div>
                     <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-1">Kontonummer</p>
-                    <p className="text-xl font-bold text-emerald-900">[Kontonummer kommer]</p>
+                    <p className="text-xl font-bold text-emerald-900">05394493661</p>
                   </div>
                   <div>
                     <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-1">Org.nr</p>

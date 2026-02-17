@@ -4,8 +4,8 @@ const activities = [
   {
     icon: Moon,
     title: 'Taraweeh-bønn',
-    description: 'Nattlig Ramadan-bønn etter Isha. Hele fellesskapet er velkommen til å delta.',
-    time: 'Etter Isha-bønnen daglig',
+    description: 'Nattlig Ramadan-bønn etter Isha kl. 19:30. Ledes av Hafiz Harun Abdullahi Mukhtar og Hafiz Ilyaas Omar Sayidahmed.',
+    time: 'Etter Isha kl. 19:30 daglig',
     color: 'bg-emerald-50 border-emerald-100',
     iconColor: 'text-emerald-900',
   },

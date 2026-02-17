@@ -42,7 +42,7 @@ export default function RamadanPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl px-6 py-3">
                 <Calendar className="w-5 h-5 text-gold-400" />
-                <span className="text-white font-semibold">19. februar &ndash; 20. mars 2026</span>
+                <span className="text-white font-semibold">18. februar &ndash; 19. mars 2026</span>
               </div>
             </div>
 
@@ -56,6 +56,46 @@ export default function RamadanPage() {
                 den inneholder klare tegn som leder til den rette veien, og som skiller mellom sannheten og falskheten.&raquo;
               </p>
               <p className="text-emerald-300 mt-3 text-sm font-medium">— Surah Al-Baqarah (2:185)</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Isha & Taraweeh Info Banner */}
+      <section className="py-12 md:py-16 bg-gradient-to-r from-emerald-800 to-emerald-900">
+        <div className="container-custom px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 sm:p-8 text-center">
+              <div className="inline-flex items-center gap-2 bg-gold-500/20 border border-gold-500/30 rounded-full px-5 py-1.5 mb-6">
+                <Moon className="w-4 h-4 text-gold-400" />
+                <span className="text-gold-300 font-medium text-xs uppercase tracking-wider">Isha og Taraweeh</span>
+              </div>
+
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white mb-4">
+                Isha-bønn kl. 19:30
+              </h2>
+              <p className="text-emerald-100 text-base sm:text-lg leading-relaxed mb-6 max-w-2xl mx-auto">
+                Isha-bønn starter kl. 19:30 fra og med 17.02.2026, etterfulgt av Taraweeh.
+              </p>
+
+              <div className="bg-white/5 border border-white/10 rounded-xl p-5 sm:p-6 mb-6 max-w-2xl mx-auto">
+                <p className="text-emerald-200 text-sm font-medium mb-3 uppercase tracking-wider">Taraweeh ledes av</p>
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-6 justify-center">
+                  <div className="bg-white/10 rounded-lg px-5 py-3">
+                    <p className="text-white font-bold text-base">Hafiz Harun Abdullahi Mukhtar</p>
+                  </div>
+                  <div className="bg-white/10 rounded-lg px-5 py-3">
+                    <p className="text-white font-bold text-base">Hafiz Ilyaas Omar Sayidahmed</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-gold-500/10 border border-gold-500/20 rounded-lg px-4 py-3 inline-block">
+                <p className="text-gold-300 text-sm">
+                  <strong className="text-gold-400">Merk:</strong> Tidene kan bli endret underveis. 
+                  Følg oss i vår WhatsApp-gruppe for oppdatert informasjon.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -130,11 +170,11 @@ export default function RamadanPage() {
 
             <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
               <div className="bg-emerald-900 p-8 text-center">
-                <p className="text-emerald-200 text-lg mb-2">Ramadan 2026 forventes å starte</p>
+                <p className="text-emerald-200 text-lg mb-2">1. Ramadan</p>
                 <p className="text-4xl md:text-5xl font-extrabold text-white mb-2">
-                  Onsdag 19. februar 2026
+                  Onsdag 18. februar 2026
                 </p>
-                <p className="text-emerald-200">og avsluttes <span className="text-gold-400 font-bold">Fredag 20. mars 2026</span></p>
+                <p className="text-emerald-200">og avsluttes <span className="text-gold-400 font-bold">Torsdag 19. mars 2026</span></p>
               </div>
               <div className="p-8">
                 <div className="bg-gold-500/10 border border-gold-500/20 rounded-xl p-6 mb-6">

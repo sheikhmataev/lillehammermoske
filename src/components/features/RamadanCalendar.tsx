@@ -1,12 +1,12 @@
 import { Calendar, Star, Moon } from 'lucide-react';
 
 const keyDates = [
-  { date: '19. feb', day: '1', label: 'Første fastedag', highlight: true },
-  { date: '11. mar', day: '21', label: 'Start av siste 10 netter', highlight: true },
-  { date: '13. mar', day: '23', label: '23. natt (Laylatul Qadr)', highlight: true },
-  { date: '15. mar', day: '25', label: '25. natt (Laylatul Qadr)', highlight: true },
-  { date: '17. mar', day: '27', label: '27. natt (Laylatul Qadr)', highlight: true },
-  { date: '19. mar', day: '29', label: '29. natt (Laylatul Qadr)', highlight: true },
+  { date: '18. feb', day: '1', label: 'Første fastedag', highlight: true },
+  { date: '10. mar', day: '21', label: 'Start av siste 10 netter', highlight: true },
+  { date: '12. mar', day: '23', label: '23. natt (Laylatul Qadr)', highlight: true },
+  { date: '14. mar', day: '25', label: '25. natt (Laylatul Qadr)', highlight: true },
+  { date: '16. mar', day: '27', label: '27. natt (Laylatul Qadr)', highlight: true },
+  { date: '18. mar', day: '29', label: '29. natt (Laylatul Qadr)', highlight: true },
 ];
 
 export function RamadanCalendar() {
@@ -31,7 +31,7 @@ export function RamadanCalendar() {
                   <Calendar className="w-5 h-5 text-gold-400" />
                   <span className="font-semibold text-base sm:text-lg">Ramadan 2026</span>
                 </div>
-                <span className="text-emerald-200 text-sm">19. feb &ndash; 20. mar</span>
+                <span className="text-emerald-200 text-sm">18. feb &ndash; 19. mar</span>
               </div>
             </div>
 

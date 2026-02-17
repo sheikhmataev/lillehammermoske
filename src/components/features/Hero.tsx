@@ -3,15 +3,28 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Calendar, Clock, Users, MessageCircle, Moon, ArrowRight } from 'lucide-react';
+import { Calendar, Clock, Users, MessageCircle, Moon, ArrowRight, Sparkles } from 'lucide-react';
 import { config } from '@/lib/config';
 
 export function Hero() {
   const [currentTime, setCurrentTime] = useState(new Date());
+  const [isRamadan, setIsRamadan] = useState(false);
+  const [ramadanDay, setRamadanDay] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentTime(new Date());
+      const now = new Date();
+      setCurrentTime(now);
+      
+      const ramadanStart = new Date('2026-02-18T00:00:00');
+      const ramadanEnd = new Date('2026-03-19T23:59:59');
+      
+      if (now >= ramadanStart && now <= ramadanEnd) {
+        setIsRamadan(true);
+        setRamadanDay(Math.floor((now.getTime() - ramadanStart.getTime()) / (1000 * 60 * 60 * 24)) + 1);
+      } else {
+        setIsRamadan(false);
+      }
     }, 1000);
 
     return () => clearInterval(timer);
@@ -31,33 +44,60 @@ export function Hero() {
         <div className="absolute inset-0 bg-gradient-to-r from-emerald-900/95 via-emerald-900/80 to-emerald-900/60"></div>
       </div>
 
-      <div className="relative container-custom py-20 md:py-28">
+      <div className="relative container-custom py-16 sm:py-20 md:py-28 px-4">
         <div className="max-w-3xl">
-          <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm rounded-full px-5 py-2 border border-white/20 mb-8">
-            <Moon className="w-4 h-4 text-gold-400" />
-            <span className="text-sm font-medium text-white/90">Siden 2005 &middot; Lillehammer</span>
-          </div>
+          {/* Ramadan-aware badge */}
+          {isRamadan ? (
+            <div className="inline-flex items-center gap-2 bg-gold-500/20 backdrop-blur-sm rounded-full px-5 py-2 border border-gold-500/30 mb-6 sm:mb-8">
+              <Moon className="w-4 h-4 text-gold-400" />
+              <span className="text-sm font-medium text-gold-300">Ramadan Mubarak &middot; Dag {ramadanDay}</span>
+              <Sparkles className="w-3.5 h-3.5 text-gold-400" />
+            </div>
+          ) : (
+            <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm rounded-full px-5 py-2 border border-white/20 mb-6 sm:mb-8">
+              <Moon className="w-4 h-4 text-gold-400" />
+              <span className="text-sm font-medium text-white/90">Siden 2005 &middot; Lillehammer</span>
+            </div>
+          )}
 
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight text-white mb-6">
-            Velkommen til
-            <span className="block text-gold-400 mt-2">
-              Lillehammer Moske
-            </span>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight text-white mb-6">
+            {isRamadan ? (
+              <>
+                Ramadan Kareem
+                <span className="block text-gold-400 mt-2">
+                  رَمَضَانَ كَرِيم
+                </span>
+              </>
+            ) : (
+              <>
+                Velkommen til
+                <span className="block text-gold-400 mt-2">
+                  Lillehammer Moske
+                </span>
+              </>
+            )}
           </h1>
 
-          <p className="text-xl md:text-2xl text-white/90 leading-relaxed mb-3 max-w-2xl">
+          <p className="text-lg sm:text-xl md:text-2xl text-white/90 leading-relaxed mb-2 sm:mb-3 max-w-2xl">
             The Muslim Cultural Center
           </p>
-          <p className="text-lg text-white/70 leading-relaxed mb-8 max-w-xl">
-            Et fellesskap for muslimer i Lillehammer og omegn. Vi er her for deg, hver dag, hele året.
-          </p>
+          
+          {isRamadan ? (
+            <p className="text-base sm:text-lg text-white/70 leading-relaxed mb-6 sm:mb-8 max-w-xl">
+              Isha-bønn kl. 19:30 etterfulgt av Taraweeh. Velkommen til fellesskap, bønn og iftar.
+            </p>
+          ) : (
+            <p className="text-base sm:text-lg text-white/70 leading-relaxed mb-6 sm:mb-8 max-w-xl">
+              Et fellesskap for muslimer i Lillehammer og omegn. Vi er her for deg, hver dag, hele året.
+            </p>
+          )}
 
           {/* Current Time */}
-          <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-xl px-5 py-3 border border-white/15 mb-10">
+          <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-xl px-4 sm:px-5 py-3 border border-white/15 mb-8 sm:mb-10">
             <Clock className="w-5 h-5 text-gold-400" />
             <div>
-              <p className="text-xs text-white/60 uppercase tracking-wider">Nåværende tid</p>
-              <p className="text-xl font-bold font-mono text-white">
+              <p className="text-[10px] sm:text-xs text-white/60 uppercase tracking-wider">Nåværende tid</p>
+              <p className="text-lg sm:text-xl font-bold font-mono text-white">
                 {currentTime.toLocaleTimeString('nb-NO', {
                   hour: '2-digit',
                   minute: '2-digit',
@@ -68,7 +108,7 @@ export function Hero() {
           </div>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 mb-10">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-8 sm:mb-10">
             <Link
               href="/prayer-times"
               className="btn-secondary inline-flex items-center justify-center space-x-2"
@@ -78,10 +118,10 @@ export function Hero() {
             </Link>
             <Link
               href="/ramadan"
-              className="bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white hover:bg-white hover:text-emerald-900 px-8 py-3.5 rounded-lg font-semibold inline-flex items-center justify-center space-x-2 transition-colors"
+              className="bg-gold-500/20 backdrop-blur-sm border-2 border-gold-500/30 text-white hover:bg-gold-500 hover:text-white px-6 sm:px-8 py-3.5 rounded-lg font-semibold inline-flex items-center justify-center space-x-2 transition-colors"
             >
               <Moon className="w-5 h-5" />
-              <span>Ramadan 2026</span>
+              <span>{isRamadan ? 'Ramadan-side' : 'Ramadan 2026'}</span>
             </Link>
           </div>
 
@@ -90,7 +130,7 @@ export function Hero() {
             href={config.social.whatsapp}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 bg-[#25D366] hover:bg-[#20BD5A] text-white px-6 py-3.5 rounded-xl font-semibold transition-colors shadow-lg"
+            className="inline-flex items-center gap-2 sm:gap-3 bg-[#25D366] hover:bg-[#20BD5A] text-white px-5 sm:px-6 py-3 sm:py-3.5 rounded-xl font-semibold transition-colors shadow-lg text-sm sm:text-base"
           >
             <MessageCircle className="w-5 h-5" />
             <span>Bli med i vår WhatsApp-gruppe</span>
