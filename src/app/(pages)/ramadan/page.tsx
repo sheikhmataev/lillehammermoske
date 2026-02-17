@@ -1,9 +1,21 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import { RamadanCountdown } from '@/components/features/RamadanCountdown';
 import { RamadanCalendar } from '@/components/features/RamadanCalendar';
 import { RamadanGuidelines } from '@/components/features/RamadanGuidelines';
 import { RamadanEvents } from '@/components/features/RamadanEvents';
 import { Moon, Star, Heart, BookOpen, Coins, Calendar } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'Ramadan 2026 – Kalender, Bønnetider og Taraweeh i Lillehammer',
+  description:
+    'Ramadan 2026 starter 18. februar. Se fastekalender, Isha kl. 19:30, Taraweeh-program, Laylatul Qadr og aktiviteter ved Lillehammer Moske.',
+  openGraph: {
+    title: 'Ramadan 2026 – Lillehammer Moske',
+    description: 'Ramadan 2026 i Lillehammer: fastekalender, bønnetider, Taraweeh og fellesskap.',
+  },
+  alternates: { canonical: 'https://lillehammermoske.no/ramadan/' },
+};
 
 export default function RamadanPage() {
   return (

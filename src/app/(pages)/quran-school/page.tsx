@@ -1,5 +1,17 @@
+import type { Metadata } from 'next';
 import { QuranSchoolHero } from '@/components/features/QuranSchoolHero';
 import { RegistrationForms } from '@/components/features/RegistrationForms';
+
+export const metadata: Metadata = {
+  title: 'Quranskole Lillehammer – Påmelding og Informasjon',
+  description:
+    'Quranskole ved Lillehammer Moske. Klasser for alle aldre med Koran-lesing, arabisk og islamsk undervisning. Meld deg på i dag.',
+  openGraph: {
+    title: 'Quranskole – Lillehammer Moske',
+    description: 'Koran- og arabiskundervisning for barn og voksne i Lillehammer.',
+  },
+  alternates: { canonical: 'https://lillehammermoske.no/quran-school/' },
+};
 
 export default function QuranSchoolPage() {
   return (

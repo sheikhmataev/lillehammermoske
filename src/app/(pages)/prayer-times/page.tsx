@@ -1,9 +1,21 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Smartphone } from 'lucide-react';
 import { PrayerTimesWidget } from '@/components/features/PrayerTimesWidget';
 import { config } from '@/lib/config';
 import { QiblaDirection } from '@/components/features/QiblaDirection';
 import { PrayerTimesCalendar } from '@/components/features/PrayerTimesCalendar';
+
+export const metadata: Metadata = {
+  title: 'Bønnetider Lillehammer – Daglige og Månedlige Tider',
+  description:
+    'Se dagens bønnetider for Lillehammer Moske. Fajr, Dhuhr, Asr, Maghrib og Isha – oppdatert daglig etter IRN-standarden. Månedskalender inkludert.',
+  openGraph: {
+    title: 'Bønnetider – Lillehammer Moske',
+    description: 'Daglige bønnetider for Lillehammer. Fajr, Dhuhr, Asr, Maghrib, Isha og Jummah.',
+  },
+  alternates: { canonical: 'https://lillehammermoske.no/prayer-times/' },
+};
 
 export default function PrayerTimesPage() {
   return (

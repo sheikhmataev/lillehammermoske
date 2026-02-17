@@ -1,5 +1,17 @@
+import type { Metadata } from 'next';
 import { DonateHero } from '@/components/features/DonateHero';
 import { Smartphone, Building2, Heart } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'Doner til Lillehammer Moske – Støtt Fellesskapet',
+  description:
+    'Støtt Lillehammer Moske med Vipps eller bankoverføring. Din donasjon bidrar til drift, vedlikehold og aktiviteter for det muslimske fellesskapet.',
+  openGraph: {
+    title: 'Doner – Lillehammer Moske',
+    description: 'Støtt Lillehammer Moske. Doner via Vipps eller bank.',
+  },
+  alternates: { canonical: 'https://lillehammermoske.no/donate/' },
+};
 
 export default function DonatePage() {
   return (

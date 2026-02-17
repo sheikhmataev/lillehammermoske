@@ -1,0 +1,5 @@
+# Lillehammer Moske - lillehammermoske.no
+User-agent: *
+Allow: /
+
+Sitemap: https://lillehammermoske.no/sitemap.xml
