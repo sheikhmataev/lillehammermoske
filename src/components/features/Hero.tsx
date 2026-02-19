@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Calendar, Clock, Users, MessageCircle, Moon, ArrowRight, Sparkles } from 'lucide-react';
+import { Calendar, Clock, Users, MessageCircle, Moon, ArrowRight, Sparkles, Smartphone } from 'lucide-react';
 import { config } from '@/lib/config';
 
 export function Hero() {
@@ -125,17 +125,28 @@ export function Hero() {
             </Link>
           </div>
 
-          {/* WhatsApp CTA - prominent */}
-          <a
-            href={config.social.whatsapp}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 sm:gap-3 bg-[#25D366] hover:bg-[#20BD5A] text-white px-5 sm:px-6 py-3 sm:py-3.5 rounded-xl font-semibold transition-colors shadow-lg text-sm sm:text-base"
-          >
-            <MessageCircle className="w-5 h-5" />
-            <span>Bli med i vår WhatsApp-gruppe</span>
-            <ArrowRight className="w-4 h-4" />
-          </a>
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-8 sm:mb-10">
+            <a
+              href="https://qr.vipps.no/28/2/05/031/4p3k_Hf7g"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 bg-[#FF5B24] hover:bg-[#E54A1F] text-white px-5 sm:px-6 py-3 sm:py-3.5 rounded-xl font-semibold transition-colors shadow-lg text-sm sm:text-base"
+            >
+              <Smartphone className="w-5 h-5" />
+              <span>Doner med Vipps</span>
+            </a>
+            <a
+              href={config.social.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 sm:gap-3 bg-[#25D366] hover:bg-[#20BD5A] text-white px-5 sm:px-6 py-3 sm:py-3.5 rounded-xl font-semibold transition-colors shadow-lg text-sm sm:text-base"
+            >
+              <MessageCircle className="w-5 h-5" />
+              <span>WhatsApp-gruppe</span>
+              <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
         </div>
       </div>
 

@@ -120,7 +120,7 @@ export function MosqueHistory() {
                   <div className="card">
                     <div className="flex items-center mb-4">
                       <Calendar className="w-6 h-6 text-emerald-900 mr-3" />
-                      <span className="text-2xl font-bold text-emerald-900">2024</span>
+                      <span className="text-2xl font-bold text-emerald-900">2026</span>
                     </div>
                     <h3 className="text-xl font-semibold text-emerald-900 mb-3">
                       Moderne Nettside

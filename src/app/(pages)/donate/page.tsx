@@ -1,19 +1,28 @@
-import type { Metadata } from 'next';
-import { DonateHero } from '@/components/features/DonateHero';
-import { Smartphone, Building2, Heart } from 'lucide-react';
+'use client';
 
-export const metadata: Metadata = {
-  title: 'Doner til Lillehammer Moske – Støtt Fellesskapet',
-  description:
-    'Støtt Lillehammer Moske med Vipps eller bankoverføring. Din donasjon bidrar til drift, vedlikehold og aktiviteter for det muslimske fellesskapet.',
-  openGraph: {
-    title: 'Doner – Lillehammer Moske',
-    description: 'Støtt Lillehammer Moske. Doner via Vipps eller bank.',
-  },
-  alternates: { canonical: 'https://lillehammermoske.no/donate/' },
-};
+import { useState } from 'react';
+import { DonateHero } from '@/components/features/DonateHero';
+import { Smartphone, Building2, Heart, Copy, Check } from 'lucide-react';
 
 export default function DonatePage() {
+  const [copiedVipps, setCopiedVipps] = useState(false);
+  const [copiedBank, setCopiedBank] = useState(false);
+
+  const copyToClipboard = async (text: string, type: 'vipps' | 'bank') => {
+    try {
+      await navigator.clipboard.writeText(text);
+      if (type === 'vipps') {
+        setCopiedVipps(true);
+        setTimeout(() => setCopiedVipps(false), 2000);
+      } else {
+        setCopiedBank(true);
+        setTimeout(() => setCopiedBank(false), 2000);
+      }
+    } catch (err) {
+      console.error('Failed to copy:', err);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
@@ -44,7 +53,36 @@ export default function DonatePage() {
                 </p>
                 <div className="bg-gray-50 rounded-xl p-5 border border-gray-200">
                   <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-1">Vipps-nummer</p>
-                  <p className="text-3xl font-extrabold text-emerald-900">503175</p>
+                  <button
+                    onClick={() => copyToClipboard('503175', 'vipps')}
+                    className="group relative w-full text-left hover:bg-white rounded-lg transition-colors -m-2 p-2"
+                  >
+                    <p className="text-3xl font-extrabold text-emerald-900 pr-10">503175</p>
+                    <div className="absolute top-2 right-2 flex items-center">
+                      {copiedVipps ? (
+                        <Check className="w-5 h-5 text-green-600" />
+                      ) : (
+                        <Copy className="w-5 h-5 text-gray-400 group-hover:text-emerald-600 transition-colors" />
+                      )}
+                    </div>
+                    <p className="text-xs text-gray-500 mt-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                      Klikk for å kopiere
+                    </p>
+                  </button>
+                  
+                  <div className="mt-4 pt-4 border-t border-gray-200">
+                    <a
+                      href="https://qr.vipps.no/28/2/05/031/4p3k_Hf7g"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block w-full bg-[#FF5B24] hover:bg-[#E54A1F] text-white font-semibold py-3 px-4 rounded-lg transition-colors text-center"
+                    >
+                      Doner direkte med Vipps
+                    </a>
+                    <p className="text-xs text-gray-500 text-center mt-2">
+                      Åpnes i Vipps-appen
+                    </p>
+                  </div>
                 </div>
               </div>
 
@@ -60,7 +98,22 @@ export default function DonatePage() {
                 <div className="bg-gray-50 rounded-xl p-5 border border-gray-200 space-y-4">
                   <div>
                     <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-1">Kontonummer</p>
-                    <p className="text-xl font-bold text-emerald-900">05394493661</p>
+                    <button
+                      onClick={() => copyToClipboard('05394493661', 'bank')}
+                      className="group relative w-full text-left hover:bg-white rounded-lg transition-colors -m-2 p-2"
+                    >
+                      <p className="text-xl font-bold text-emerald-900 pr-10">05394493661</p>
+                      <div className="absolute top-2 right-2 flex items-center">
+                        {copiedBank ? (
+                          <Check className="w-5 h-5 text-green-600" />
+                        ) : (
+                          <Copy className="w-5 h-5 text-gray-400 group-hover:text-emerald-600 transition-colors" />
+                        )}
+                      </div>
+                      <p className="text-xs text-gray-500 mt-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                        Klikk for å kopiere
+                      </p>
+                    </button>
                   </div>
                   <div>
                     <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-1">Org.nr</p>
