@@ -11,8 +11,8 @@ const navigation = [
   { name: 'Om Oss', href: '/about' },
   { name: 'Bønnetider', href: '/prayer-times' },
   { name: 'Ramadan', href: '/ramadan' },
+  { name: 'Doner Iftar', href: '/iftar' },
   { name: 'Quranskole', href: '/quran-school' },
-  { name: 'Medlemskap', href: '/membership' },
   { name: 'Kontakt', href: '/contact' },
 ];
 
