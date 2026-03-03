@@ -84,7 +84,7 @@ export function Hero() {
           
           {isRamadan ? (
             <p className="text-base sm:text-lg text-white/70 leading-relaxed mb-6 sm:mb-8 max-w-xl">
-              Isha-bønn kl. 19:30 etterfulgt av Taraweeh. Velkommen til fellesskap, bønn og iftar.
+              Isha-bønn kl. 20:00 etterfulgt av Taraweeh. Velkommen til fellesskap, bønn og iftar.
             </p>
           ) : (
             <p className="text-base sm:text-lg text-white/70 leading-relaxed mb-6 sm:mb-8 max-w-xl">

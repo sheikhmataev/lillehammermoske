@@ -196,7 +196,7 @@ export function RamadanCountdown() {
               <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 text-center">
                 <Moon className="w-5 h-5 text-gold-400 mx-auto mb-2" />
                 <p className="text-[10px] text-emerald-300 uppercase tracking-wider mb-1">Taraweeh</p>
-                <p className="font-bold text-white text-sm">Etter Isha 19:30</p>
+                <p className="font-bold text-white text-sm">Etter Isha 20:00</p>
               </div>
             </div>
 

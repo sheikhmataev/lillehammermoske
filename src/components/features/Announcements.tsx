@@ -17,7 +17,7 @@ const announcements: Announcement[] = [
   {
     id: 1,
     title: 'Ramadan 2026 - 1. Ramadan 18. februar',
-    content: 'Ramadan starter 18. februar 2026. Isha-bønn kl. 19:30 fra 17.02, etterfulgt av Taraweeh. Følg WhatsApp-gruppen for oppdateringer.',
+    content: 'Ramadan starter 18. februar 2026. Isha-bønn kl. 20:00 fra 17.02, etterfulgt av Taraweeh. Følg WhatsApp-gruppen for oppdateringer.',
     date: '2026-02-17',
     type: 'important',
     isNew: true,

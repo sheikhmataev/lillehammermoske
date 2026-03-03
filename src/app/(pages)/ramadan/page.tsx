@@ -9,7 +9,7 @@ import { Moon, Star, Heart, BookOpen, Coins, Calendar } from 'lucide-react';
 export const metadata: Metadata = {
   title: 'Ramadan 2026 – Kalender, Bønnetider og Taraweeh i Lillehammer',
   description:
-    'Ramadan 2026 starter 18. februar. Se fastekalender, Isha kl. 19:30, Taraweeh-program, Laylatul Qadr og aktiviteter ved Lillehammer Moske.',
+    'Ramadan 2026 starter 18. februar. Se fastekalender, Isha kl. 20:00, Taraweeh-program, Laylatul Qadr og aktiviteter ved Lillehammer Moske.',
   openGraph: {
     title: 'Ramadan 2026 – Lillehammer Moske',
     description: 'Ramadan 2026 i Lillehammer: fastekalender, bønnetider, Taraweeh og fellesskap.',
@@ -84,10 +84,10 @@ export default function RamadanPage() {
               </div>
 
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white mb-4">
-                Isha-bønn kl. 19:30
+                Isha-bønn kl. 20:00
               </h2>
               <p className="text-emerald-100 text-base sm:text-lg leading-relaxed mb-6 max-w-2xl mx-auto">
-                Isha-bønn starter kl. 19:30 fra og med 17.02.2026, etterfulgt av Taraweeh.
+                Isha-bønn starter kl. 20:00 fra og med 17.02.2026, etterfulgt av Taraweeh.
               </p>
 
               <div className="bg-white/5 border border-white/10 rounded-xl p-5 sm:p-6 mb-6 max-w-2xl mx-auto">
