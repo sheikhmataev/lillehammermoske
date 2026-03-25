@@ -4,15 +4,17 @@ import { RamadanCountdown } from '@/components/features/RamadanCountdown';
 import { RamadanCalendar } from '@/components/features/RamadanCalendar';
 import { RamadanGuidelines } from '@/components/features/RamadanGuidelines';
 import { RamadanEvents } from '@/components/features/RamadanEvents';
+import { RAMADAN_CONFIG } from '@/lib/ramadanConfig';
 import { Moon, Star, Heart, BookOpen, Coins, Calendar } from 'lucide-react';
 
+const R = RAMADAN_CONFIG;
+
 export const metadata: Metadata = {
-  title: 'Ramadan 2026 – Kalender, Bønnetider og Taraweeh i Lillehammer',
-  description:
-    'Ramadan 2026 starter 18. februar. Se fastekalender, Isha kl. 20:00, Taraweeh-program, Laylatul Qadr og aktiviteter ved Lillehammer Moske.',
+  title: `Ramadan ${R.year} – Kalender, Bønnetider og Taraweeh i Lillehammer`,
+  description: `Ramadan ${R.year} starter ${R.startDate}. Se fastekalender, Isha kl. ${R.ishaTime}, Taraweeh-program, Laylatul Qadr og aktiviteter ved Lillehammer Moske.`,
   openGraph: {
-    title: 'Ramadan 2026 – Lillehammer Moske',
-    description: 'Ramadan 2026 i Lillehammer: fastekalender, bønnetider, Taraweeh og fellesskap.',
+    title: `Ramadan ${R.year} – Lillehammer Moske`,
+    description: `Ramadan ${R.year} i Lillehammer: fastekalender, bønnetider, Taraweeh og fellesskap.`,
   },
   alternates: { canonical: 'https://lillehammermoske.no/ramadan/' },
 };
@@ -20,9 +22,8 @@ export const metadata: Metadata = {
 export default function RamadanPage() {
   return (
     <div className="min-h-screen">
-      {/* Hero Section - Deep emerald with gold accents */}
+      {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-900 text-white overflow-hidden">
-        {/* Decorative background elements */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-10 left-10 w-40 h-40 rounded-full bg-gold-500 blur-3xl" />
           <div className="absolute bottom-10 right-10 w-60 h-60 rounded-full bg-gold-500 blur-3xl" />
@@ -31,7 +32,6 @@ export default function RamadanPage() {
 
         <div className="relative container-custom section-padding">
           <div className="max-w-4xl mx-auto text-center">
-            {/* Arabic bismillah */}
             <p className="font-arabic text-3xl md:text-4xl text-gold-400 mb-6">
               بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ
             </p>
@@ -43,7 +43,7 @@ export default function RamadanPage() {
             </div>
 
             <h1 className="text-5xl md:text-7xl font-extrabold mb-6 text-white leading-tight">
-              Ramadan <span className="text-gold-400">2026</span>
+              Ramadan <span className="text-gold-400">{R.year}</span>
             </h1>
 
             <p className="text-xl md:text-2xl text-emerald-100 leading-relaxed mb-8 max-w-3xl mx-auto">
@@ -54,11 +54,10 @@ export default function RamadanPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl px-6 py-3">
                 <Calendar className="w-5 h-5 text-gold-400" />
-                <span className="text-white font-semibold">18. februar &ndash; 19. mars 2026</span>
+                <span className="text-white font-semibold">{R.startDate} &ndash; {R.endDate}</span>
               </div>
             </div>
 
-            {/* Quran Quote */}
             <div className="max-w-3xl mx-auto bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
               <p className="font-arabic text-2xl md:text-3xl text-gold-300 mb-4 leading-relaxed">
                 شَهْرُ رَمَضَانَ الَّذِي أُنزِلَ فِيهِ الْقُرْآنُ هُدًى لِّلنَّاسِ
@@ -84,21 +83,20 @@ export default function RamadanPage() {
               </div>
 
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white mb-4">
-                Isha-bønn kl. 20:00
+                Isha-bønn kl. {R.ishaTime}
               </h2>
               <p className="text-emerald-100 text-base sm:text-lg leading-relaxed mb-6 max-w-2xl mx-auto">
-                Isha-bønn starter kl. 20:00 fra og med 17.02.2026, etterfulgt av Taraweeh.
+                Isha-bønn starter kl. {R.ishaTime} fra og med {R.ishaStartDate}, etterfulgt av Taraweeh.
               </p>
 
               <div className="bg-white/5 border border-white/10 rounded-xl p-5 sm:p-6 mb-6 max-w-2xl mx-auto">
                 <p className="text-emerald-200 text-sm font-medium mb-3 uppercase tracking-wider">Taraweeh ledes av</p>
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-6 justify-center">
-                  <div className="bg-white/10 rounded-lg px-5 py-3">
-                    <p className="text-white font-bold text-base">Hafiz Harun Abdullahi Mukhtar</p>
-                  </div>
-                  <div className="bg-white/10 rounded-lg px-5 py-3">
-                    <p className="text-white font-bold text-base">Hafiz Ilyaas Omar Sayidahmed</p>
-                  </div>
+                  {R.taraweehLeaders.map((leader) => (
+                    <div key={leader} className="bg-white/10 rounded-lg px-5 py-3">
+                      <p className="text-white font-bold text-base">{leader}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
 
@@ -175,7 +173,7 @@ export default function RamadanPage() {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-extrabold text-emerald-900 mb-6">
-                Når er Ramadan 2026?
+                Når er Ramadan {R.year}?
               </h2>
               <div className="w-24 h-1 bg-gold-500 mx-auto rounded-full" />
             </div>
@@ -184,9 +182,9 @@ export default function RamadanPage() {
               <div className="bg-emerald-900 p-8 text-center">
                 <p className="text-emerald-200 text-lg mb-2">1. Ramadan</p>
                 <p className="text-4xl md:text-5xl font-extrabold text-white mb-2">
-                  Onsdag 18. februar 2026
+                  {R.startDayOfWeek} {R.startDate}
                 </p>
-                <p className="text-emerald-200">og avsluttes <span className="text-gold-400 font-bold">Torsdag 19. mars 2026</span></p>
+                <p className="text-emerald-200">og avsluttes <span className="text-gold-400 font-bold">{R.endDate}</span></p>
               </div>
               <div className="p-8">
                 <div className="bg-gold-500/10 border border-gold-500/20 rounded-xl p-6 mb-6">
@@ -198,7 +196,7 @@ export default function RamadanPage() {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="border border-gray-200 rounded-xl p-6">
-                    <h4 className="font-bold text-emerald-900 mb-2 text-lg">Eid al-Fitr 2026</h4>
+                    <h4 className="font-bold text-emerald-900 mb-2 text-lg">Eid al-Fitr {R.year}</h4>
                     <p className="text-gray-600 text-sm leading-relaxed">
                       Eid al-Fitr markerer offisielt slutten på Ramadan. Den nøyaktige timingen er basert på 
                       måneobservasjoner. Eid al-Fitr begynner ved starten av den islamske måneden Shawwal.
@@ -208,7 +206,7 @@ export default function RamadanPage() {
                     <h4 className="font-bold text-emerald-900 mb-2 text-lg">Laylatul Qadr</h4>
                     <p className="text-gray-600 text-sm leading-relaxed">
                       Skjebnenatten er mer verdt enn tusen måneder. Søk den i de siste ti nettene av Ramadan, 
-                      spesielt de oddetallsnettene (21., 23., 25., 27. og 29.).
+                      spesielt de oddetallsnettene ({R.laylatulQadrNights}).
                     </p>
                   </div>
                 </div>
@@ -242,12 +240,12 @@ export default function RamadanPage() {
         <div className="container-custom">
           <div className="max-w-2xl mx-auto text-center px-4">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-emerald-900 mb-6 sm:mb-8">
-              Ramadan Kalender 2026
+              Ramadan Kalender {R.year}
             </h2>
             <div className="rounded-xl sm:rounded-2xl overflow-hidden shadow-lg border border-gray-200">
               <Image
-                src="/assets/images/posters/ramadan_tabell.png"
-                alt="Ramadan Kalender 2026 - Faste- og bønnetider for Lillehammer"
+                src={R.kalenderBilde}
+                alt={R.kalenderBildeAlt}
                 width={700}
                 height={990}
                 className="w-full h-auto"
@@ -261,7 +259,7 @@ export default function RamadanPage() {
         </div>
       </section>
 
-      {/* Ramadan Guidelines - Sawm, Zakat, etc */}
+      {/* Ramadan Guidelines */}
       <RamadanGuidelines />
 
       {/* Hadith Quote */}
@@ -347,7 +345,7 @@ export default function RamadanPage() {
         </div>
       </section>
 
-      {/* Ramadan Events at Mosque */}
+      {/* Ramadan Events */}
       <RamadanEvents />
 
       {/* Final CTA */}
@@ -377,3 +375,4 @@ export default function RamadanPage() {
     </div>
   );
 }
+
