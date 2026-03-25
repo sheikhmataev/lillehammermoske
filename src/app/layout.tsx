@@ -41,6 +41,7 @@ export const metadata: Metadata = {
     shortcut: '/assets/favicons/favicon.ico',
     apple: '/assets/favicons/favicon.ico',
   },
+  manifest: '/manifest.json',
   openGraph: {
     title: 'Lillehammer Moske – Bønnetider, Ramadan og Fellesskap',
     description: SITE_DESCRIPTION,
@@ -68,7 +69,9 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  verification: {},
+  verification: {
+  google: 'your-google-verification-code-here',
+},
   category: 'religion',
 };
 

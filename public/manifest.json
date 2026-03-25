@@ -1,0 +1,19 @@
+{
+  "name": "Lillehammer Moske",
+  "short_name": "Lillehammer Moske",
+  "description": "Lillehammer Moske – bønnetider, Ramadan-kalender, Quranskole og fellesskap i Lillehammer",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A0F0A",
+  "theme_color": "#047857",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/assets/favicons/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+  ],
+  "categories": ["religion", "community", "education"],
+  "lang": "nb-NO"
+}
