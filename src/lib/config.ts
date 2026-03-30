@@ -20,8 +20,8 @@ export const config = {
   // Disse brukes globalt på hele nettsiden
   // ============================================
   jummah: {
-    khutbah: '13:00',
-    jamat: '13:30',
+    khutbah: '14:00',
+    jamat: '14:30',
   },
   
   organization: {
