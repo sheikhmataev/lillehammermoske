@@ -3,8 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { AnimatePresence, motion } from 'framer-motion';
-import { Calendar, Clock, Users, MessageCircle, Moon, ArrowRight, Sparkles, Smartphone } from 'lucide-react';
+import { Calendar, Clock, MessageCircle, Moon, ArrowRight, Smartphone, Star } from 'lucide-react';
 import { config } from '@/lib/config';
 
 const norwayTimeFormatter = new Intl.DateTimeFormat('nb-NO', {
@@ -15,66 +14,58 @@ const norwayTimeFormatter = new Intl.DateTimeFormat('nb-NO', {
   timeZone: 'Europe/Oslo',
 });
 
-function getRamadanState(now: Date) {
-  const ramadanStart = new Date('2026-02-18T00:00:00+01:00');
-  const ramadanEnd = new Date('2026-03-19T23:59:59+01:00');
-  const isRamadan = now >= ramadanStart && now <= ramadanEnd;
+const hijriDateFormatter = new Intl.DateTimeFormat('ar-SA-u-ca-islamic-umalqura', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+  timeZone: 'Europe/Oslo',
+});
 
-  return {
-    isRamadan,
-    ramadanDay: isRamadan
-      ? Math.floor((now.getTime() - ramadanStart.getTime()) / (1000 * 60 * 60 * 24)) + 1
-      : 0,
-  };
-}
+const hijriDayFormatter = new Intl.DateTimeFormat('ar-SA-u-ca-islamic-umalqura', {
+  day: 'numeric',
+  timeZone: 'Europe/Oslo',
+});
+
+const hijriMonthFormatter = new Intl.DateTimeFormat('ar-SA-u-ca-islamic-umalqura', {
+  month: 'long',
+  timeZone: 'Europe/Oslo',
+});
+
+const hijriYearFormatter = new Intl.DateTimeFormat('ar-SA-u-ca-islamic-umalqura', {
+  year: 'numeric',
+  timeZone: 'Europe/Oslo',
+});
+
+const gregorianDateFormatter = new Intl.DateTimeFormat('nb-NO', {
+  weekday: 'long',
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+  timeZone: 'Europe/Oslo',
+});
 
 export function Hero() {
   const [currentTime, setCurrentTime] = useState<Date>(() => new Date());
-  const [seasonalState, setSeasonalState] = useState(() => getRamadanState(new Date()));
-  const [showRamadanContent, setShowRamadanContent] = useState(false);
-  const { isRamadan, ramadanDay } = seasonalState;
 
   useEffect(() => {
-    const updateTimeState = () => {
-      const now = new Date();
-      setCurrentTime(now);
-      setSeasonalState(getRamadanState(now));
-    };
-
-    updateTimeState();
-
-    const timer = setInterval(updateTimeState, 1000);
+    const timer = setInterval(() => setCurrentTime(new Date()), 1000);
     const handleVisibilityChange = () => {
-      if (document.visibilityState === 'visible') {
-        updateTimeState();
-      }
+      if (document.visibilityState === 'visible') setCurrentTime(new Date());
     };
     document.addEventListener('visibilitychange', handleVisibilityChange);
-
     return () => {
       clearInterval(timer);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
   }, []);
 
-  useEffect(() => {
-    if (!isRamadan) {
-      setShowRamadanContent(false);
-      return;
-    }
-
-    // Intentional cinematic delay so users can perceive the transition.
-    const transitionTimer = setTimeout(() => {
-      setShowRamadanContent(true);
-    }, 700);
-
-    return () => clearTimeout(transitionTimer);
-  }, [isRamadan]);
-
-  const displayRamadan = isRamadan && showRamadanContent;
+  const hijriDay = hijriDayFormatter.format(currentTime);
+  const hijriMonth = hijriMonthFormatter.format(currentTime);
+  const hijriYear = hijriYearFormatter.format(currentTime);
+  const gregorianDate = gregorianDateFormatter.format(currentTime);
 
   return (
-    <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+    <section className="relative min-h-[92vh] flex items-center overflow-hidden">
       {/* Full-bleed background image */}
       <div className="absolute inset-0">
         <Image
@@ -84,110 +75,79 @@ export function Hero() {
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-emerald-900/95 via-emerald-900/80 to-emerald-900/60"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-emerald-900/95 via-emerald-900/80 to-emerald-900/60" />
+        {/* Subtle decorative glow */}
+        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-gold-500/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-1/3 left-1/3 w-72 h-72 bg-emerald-400/5 rounded-full blur-3xl pointer-events-none" />
       </div>
 
       <div className="relative container-custom py-16 sm:py-20 md:py-28 px-4">
         <div className="max-w-3xl">
-          <div className="w-full text-left">
-            {/* Ramadan-aware badge */}
-            <div className="relative mb-6 min-h-[44px] sm:mb-8">
-              <motion.div
-                initial={false}
-                animate={{ opacity: displayRamadan ? 0 : 1, y: displayRamadan ? -6 : 0 }}
-                transition={{ duration: 0.55, ease: 'easeInOut' }}
-                className="absolute left-0 top-0"
-              >
-                <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/15 px-5 py-2 backdrop-blur-sm">
-                  <Moon className="w-4 h-4 text-gold-400" />
-                  <span className="text-sm font-medium text-white/90">Siden 2005 &middot; Lillehammer</span>
-                </div>
-              </motion.div>
-
-              <motion.div
-                initial={false}
-                animate={{ opacity: displayRamadan ? 1 : 0, y: displayRamadan ? 0 : 6 }}
-                transition={{ duration: 0.65, ease: 'easeInOut' }}
-                className="absolute left-0 top-0"
-              >
-                <motion.div
-                  initial={false}
-                  animate={{
-                    boxShadow: displayRamadan
-                      ? [
-                          '0 0 0 rgba(245, 158, 11, 0.00)',
-                          '0 0 24px rgba(245, 158, 11, 0.18)',
-                          '0 0 10px rgba(245, 158, 11, 0.10)',
-                        ]
-                      : '0 0 0 rgba(245, 158, 11, 0)',
-                  }}
-                  transition={{ duration: 2.8, repeat: Infinity, ease: 'easeInOut' }}
-                  className="inline-flex items-center gap-2 rounded-full border border-gold-500/30 bg-gold-500/20 px-5 py-2 ring-1 ring-gold-300/20 backdrop-blur-sm"
-                >
-                  <Moon className="w-4 h-4 text-gold-400" />
-                  <span className="text-sm font-medium text-gold-300">Ramadan Mubarak &middot; Dag {ramadanDay}</span>
-                  <Sparkles className="w-3.5 h-3.5 text-gold-400" />
-                </motion.div>
-              </motion.div>
+          {/* Badge */}
+          <div className="mb-6 sm:mb-8">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2 backdrop-blur-sm">
+              <Star className="w-4 h-4 text-gold-400" />
+              <span className="text-sm font-medium text-white/90">Siden 2005 &middot; Lillehammer</span>
             </div>
-
-            <h1 className="relative mb-6 min-h-[168px] text-left text-4xl font-extrabold leading-[1.1] tracking-tight text-white sm:min-h-[208px] sm:text-5xl md:min-h-[236px] md:text-6xl lg:text-7xl">
-              <motion.span
-                initial={false}
-                animate={{ opacity: displayRamadan ? 0 : 1, y: displayRamadan ? -8 : 0 }}
-                transition={{ duration: 0.55, ease: 'easeInOut' }}
-                className="absolute left-0 top-0 block w-full"
-              >
-                <span className="block">Velkommen til</span>
-                <span className="mt-2 block text-left text-gold-400">Lillehammer Moske</span>
-              </motion.span>
-
-              <motion.span
-                initial={false}
-                animate={{ opacity: displayRamadan ? 1 : 0, y: displayRamadan ? 0 : 8 }}
-                transition={{ duration: 0.65, ease: 'easeInOut' }}
-                className="absolute left-0 top-0 block w-full"
-              >
-                <span className="block">Ramadan Kareem</span>
-                <span className="mt-2 block text-left text-gold-400" lang="ar">رَمَضَانَ كَرِيم</span>
-              </motion.span>
-            </h1>
           </div>
 
-          <p className="text-lg sm:text-xl md:text-2xl text-white/90 leading-relaxed mb-2 sm:mb-3 max-w-2xl">
+          {/* Title */}
+          <h1 className="mb-4 text-4xl font-extrabold leading-[1.08] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
+            <span className="block">Velkommen til</span>
+            <span className="mt-1 block text-gold-400">Lillehammer Moske</span>
+          </h1>
+
+          <p className="text-lg sm:text-xl md:text-2xl text-white/85 leading-relaxed mb-2 sm:mb-3 max-w-2xl">
             The Muslim Cultural Center
           </p>
-          
-          <div className="mb-6 min-h-[84px] max-w-xl sm:mb-8">
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.p
-                key={displayRamadan ? 'ramadan-description' : 'default-description'}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.65, ease: 'easeInOut' }}
-                className="text-base sm:text-lg text-white/70 leading-relaxed"
-              >
-                {displayRamadan
-                  ? 'Isha-bønn kl. 20:00 etterfulgt av Taraweeh. Velkommen til fellesskap, bønn og iftar.'
-                  : 'Et fellesskap for muslimer i Lillehammer og omegn. Vi er her for deg, hver dag, hele året.'}
-              </motion.p>
-            </AnimatePresence>
-          </div>
 
-          {/* Current Time */}
-          <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-xl px-4 sm:px-5 py-3 border border-white/15 mb-8 sm:mb-10">
-            <Clock className="w-5 h-5 text-gold-400" />
-            <div>
-              <p className="text-[10px] sm:text-xs text-white/60 uppercase tracking-wider">Nåværende tid</p>
-              <p className="text-lg sm:text-xl font-bold font-mono text-white" suppressHydrationWarning>
-                {norwayTimeFormatter.format(currentTime)}
-              </p>
+          <p className="text-base sm:text-lg text-white/60 leading-relaxed max-w-xl mb-8 sm:mb-10">
+            Et fellesskap for muslimer i Lillehammer og omegn. Vi er her for deg, hver dag, hele året.
+          </p>
+
+          {/* Islamic Calendar & Time Cards */}
+          <div className="flex flex-wrap gap-3 mb-8 sm:mb-10">
+            {/* Hijri Date */}
+            <div className="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-xl px-4 sm:px-5 py-3 border border-white/15">
+              <Moon className="w-5 h-5 text-gold-400 flex-shrink-0" />
+              <div>
+                <p className="text-[10px] sm:text-xs text-white/50 uppercase tracking-wider">Islamsk dato</p>
+                <p className="text-sm sm:text-base font-semibold text-white font-arabic" dir="rtl" suppressHydrationWarning>
+                  {hijriDay} {hijriMonth} {hijriYear}
+                </p>
+              </div>
+            </div>
+
+            {/* Current Time */}
+            <div className="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-xl px-4 sm:px-5 py-3 border border-white/15">
+              <Clock className="w-5 h-5 text-gold-400 flex-shrink-0" />
+              <div>
+                <p className="text-[10px] sm:text-xs text-white/50 uppercase tracking-wider">Klokken nå</p>
+                <p className="text-lg sm:text-xl font-bold font-mono text-white" suppressHydrationWarning>
+                  {norwayTimeFormatter.format(currentTime)}
+                </p>
+              </div>
+            </div>
+
+            {/* Jummah */}
+            <div className="flex items-center gap-3 bg-gold-500/10 backdrop-blur-sm rounded-xl px-4 sm:px-5 py-3 border border-gold-500/20">
+              <Calendar className="w-5 h-5 text-gold-400 flex-shrink-0" />
+              <div>
+                <p className="text-[10px] sm:text-xs text-gold-300/70 uppercase tracking-wider">Jummah fredag</p>
+                <p className="text-sm sm:text-base font-semibold text-gold-300">
+                  Khutbah {config.jummah.khutbah} &middot; Iqamah {config.jummah.jamat}
+                </p>
+              </div>
             </div>
           </div>
 
+          {/* Gregorian date */}
+          <p className="text-xs sm:text-sm text-white/40 mb-6 sm:mb-8 capitalize" suppressHydrationWarning>
+            {gregorianDate}
+          </p>
+
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-8 sm:mb-10">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-8">
             <Link
               href="/prayer-times"
               className="btn-secondary inline-flex items-center justify-center space-x-2"
@@ -195,17 +155,6 @@ export function Hero() {
               <Calendar className="w-5 h-5" />
               <span>Se Bønnetider</span>
             </Link>
-            <Link
-              href="/ramadan"
-              className="bg-gold-500/20 backdrop-blur-sm border-2 border-gold-500/30 text-white hover:bg-gold-500 hover:text-white px-6 sm:px-8 py-3.5 rounded-lg font-semibold inline-flex items-center justify-center space-x-2 transition-colors"
-            >
-              <Moon className="w-5 h-5" />
-              <span>{displayRamadan ? 'Ramadan-side' : 'Ramadan 2026'}</span>
-            </Link>
-          </div>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-8 sm:mb-10">
             <a
               href="https://qr.vipps.no/28/2/05/031/4p3k_Hf7g"
               target="_blank"
@@ -230,7 +179,7 @@ export function Hero() {
       </div>
 
       {/* Bottom fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent" />
     </section>
   );
 }
