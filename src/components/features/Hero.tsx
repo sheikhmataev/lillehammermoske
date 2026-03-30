@@ -213,7 +213,7 @@ export function Hero() {
               className="inline-flex items-center justify-center gap-2 bg-[#FF5B24] hover:bg-[#E54A1F] text-white px-5 sm:px-6 py-3 sm:py-3.5 rounded-xl font-semibold transition-colors shadow-lg text-sm sm:text-base"
             >
               <Smartphone className="w-5 h-5" />
-              <span>Doner med Vipps</span>
+              <span>Støtt moskéen</span>
             </a>
             <a
               href={config.social.whatsapp}
