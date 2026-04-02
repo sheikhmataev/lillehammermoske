@@ -81,7 +81,7 @@ export function Hero() {
         <div className="absolute bottom-1/3 left-1/3 w-72 h-72 bg-emerald-400/5 rounded-full blur-3xl pointer-events-none" />
       </div>
 
-      <div className="relative container-custom py-16 sm:py-20 md:py-28 px-4">
+      <div className="relative container-custom py-20 sm:py-24 md:py-32 lg:py-40 px-4">
         <div className="max-w-3xl">
           {/* Badge */}
           <div className="mb-6 sm:mb-8">
@@ -147,7 +147,7 @@ export function Hero() {
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-8">
+          <div className="grid grid-cols-1 sm:flex sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-8">
             <Link
               href="/prayer-times"
               className="btn-secondary inline-flex items-center justify-center space-x-2"

@@ -181,17 +181,17 @@ export function PrayerTimes() {
   }
 
   return (
-    <section className="py-16 md:py-20 bg-white">
+    <section className="section-padding bg-white">
       <div className="container-custom">
         {/* Header */}
-        <div className="text-center mb-12 max-w-3xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-emerald-900">
+        <div className="text-center mb-16 max-w-3xl mx-auto">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 text-emerald-900">
             Bønnetider
           </h2>
-          <p className="text-lg text-gray-600 leading-relaxed">
+          <p className="text-lg md:text-xl text-gray-600 leading-relaxed mb-8">
             Daglige bønnetider for Lillehammer &middot; Automatisk oppdatert
           </p>
-          <p className="text-base text-emerald-800 font-semibold mt-3 bg-emerald-50 inline-block px-4 py-1.5 rounded-lg border border-emerald-100">
+          <p className="text-sm md:text-base text-emerald-800 font-bold bg-emerald-50 inline-flex items-center px-6 py-2.5 rounded-full border border-emerald-100 shadow-sm">
             Jummah: Khutbah {config.jummah.khutbah} | Jamat {config.jummah.jamat}
           </p>
         </div>
@@ -245,8 +245,8 @@ export function PrayerTimes() {
           </div>
 
           {/* Prayer Times Grid */}
-          <div className="grid grid-cols-5 gap-3 md:gap-4 mb-8">
-            {prayerTimes.map((prayer) => (
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 md:gap-4 mb-8">
+            {prayerTimes.map((prayer, index) => (
               <div
                 key={prayer.name}
                 className={`rounded-xl text-center transition-all duration-200 ${
@@ -255,7 +255,7 @@ export function PrayerTimes() {
                     : prayer.isNext
                     ? 'bg-gold-500 text-white shadow-md'
                     : 'bg-gray-50 border border-gray-200 hover:border-emerald-200'
-                } p-3 md:p-5`}
+                } p-3 md:p-5 ${index === 4 ? 'col-span-2 sm:col-span-1 md:col-span-1' : ''}`}
               >
                 <p className={`text-xs md:text-sm font-bold mb-1 ${
                   prayer.isCurrent || prayer.isNext ? 'text-white' : 'text-emerald-900'

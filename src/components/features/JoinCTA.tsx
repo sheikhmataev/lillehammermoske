@@ -4,7 +4,7 @@ const GOOGLE_FORM_URL = 'https://forms.gle/XFiqQsontqLdpiMP9';
 
 export function JoinCTA() {
   return (
-    <section className="py-16 md:py-24 bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-900 text-white">
+    <section className="section-padding bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-900 text-white">
       <div className="container-custom px-4">
         <div className="max-w-4xl mx-auto">
           {/* Mobile: Stacked layout */}
