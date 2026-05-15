@@ -12,7 +12,6 @@ const navigation = [
   { name: 'Bønnetider', href: '/prayer-times' },
   { name: 'Ramadan', href: '/ramadan' },
   { name: 'Quranskole', href: '/quran-school' },
-  { name: 'Quiz', href: '/quiz' },
   { name: 'Bli medlem', href: '/membership' },
   { name: 'Kontakt', href: '/contact' },
 ];
