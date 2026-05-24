@@ -1,6 +1,7 @@
 ---
-title: Flervalgsspørsmål prøve – Nivå 2
+title: Quiz – Nivå 2
 slug: proeve-niva-2
+visible: false
 intro: Velg ett svar per spørsmål. Du får se hvor mange du har riktig på slutten.
 ---
 

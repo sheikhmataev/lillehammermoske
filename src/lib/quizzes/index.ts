@@ -37,18 +37,22 @@ function loadAll(): Quiz[] {
 }
 
 export function getAllQuizzes(): QuizSummary[] {
-  return loadAll().map((q) => ({
-    slug: q.slug,
-    title: q.title,
-    intro: q.intro,
-    totalQuestions: q.totalQuestions,
-  }));
+  return loadAll()
+    .filter((q) => q.visible)
+    .map((q) => ({
+      slug: q.slug,
+      title: q.title,
+      intro: q.intro,
+      totalQuestions: q.totalQuestions,
+    }));
 }
 
 export function getQuizBySlug(slug: string): Quiz | null {
-  return loadAll().find((q) => q.slug === slug) ?? null;
+  const quiz = loadAll().find((q) => q.slug === slug);
+  if (!quiz || !quiz.visible) return null;
+  return quiz;
 }
 
 export function getAllQuizSlugs(): string[] {
-  return loadAll().map((q) => q.slug);
+  return loadAll().filter((q) => q.visible).map((q) => q.slug);
 }

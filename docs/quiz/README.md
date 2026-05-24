@@ -10,8 +10,9 @@ becomes the URL: `content/quizzes/proeve-niva-2.md` → `/quiz/proeve-niva-2`.
 
 ```markdown
 ---
-title: Flervalgsspørsmål prøve – Nivå 2
+title: Quiz – Nivå 2
 slug: proeve-niva-2
+visible: true
 intro: Velg ett svar per spørsmål.
 ---
 
@@ -30,7 +31,10 @@ intro: Velg ett svar per spørsmål.
 
 Rules:
 
-- Frontmatter must include `title` and `slug`. `intro` is optional.
+- Frontmatter must include `title` and `slug`. `intro` and `visible` are optional.
+- `visible: false` hides the quiz from the `/quiz` listing **and** makes the
+  `/quiz/<slug>` URL return 404. Default is `true` if omitted. Use this to
+  draft a quiz in the repo without publishing it yet.
 - Slugs must be lowercase letters, digits, and dashes only.
 - `## Heading` lines start a new section (one page in the quiz).
 - Questions are numbered consecutively starting at 1, no gaps.

@@ -19,6 +19,7 @@ export interface Quiz {
   slug: string;
   title: string;
   intro?: string;
+  visible: boolean;
   sections: QuizSection[];
   totalQuestions: number;
 }

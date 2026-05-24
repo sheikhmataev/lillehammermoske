@@ -10,6 +10,7 @@ interface Frontmatter {
   title: string;
   slug: string;
   intro?: string;
+  visible: boolean;
 }
 
 function parseFrontmatter(source: string): { fm: Frontmatter; rest: string; restStartLine: number } {
@@ -41,8 +42,20 @@ function parseFrontmatter(source: string): { fm: Frontmatter; rest: string; rest
   if (!/^[a-z0-9-]+$/.test(data.slug)) {
     throw new QuizParseError(`Slug "${data.slug}" must be lowercase letters, digits, and dashes only`);
   }
+  let visible = true;
+  if (data.visible !== undefined) {
+    const v = data.visible.toLowerCase();
+    if (v === 'false' || v === 'no') visible = false;
+    else if (v === 'true' || v === 'yes') visible = true;
+    else throw new QuizParseError(`Field "visible" must be true or false, got "${data.visible}"`);
+  }
   return {
-    fm: { title: data.title, slug: data.slug, intro: data.intro || undefined },
+    fm: {
+      title: data.title,
+      slug: data.slug,
+      intro: data.intro || undefined,
+      visible,
+    },
     rest: lines.slice(end + 1).join('\n'),
     restStartLine: end + 2,
   };
@@ -163,6 +176,7 @@ export function parseQuiz(source: string): Quiz {
     slug: fm.slug,
     title: fm.title,
     intro: fm.intro,
+    visible: fm.visible,
     sections: sections.filter((s) => s.questions.length > 0),
     totalQuestions,
   };
