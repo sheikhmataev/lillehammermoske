@@ -23,7 +23,7 @@ export default function QuizIndexPage() {
               <BookOpen className="h-4 w-4" />
               <span>Lillehammer Moske – Quranskole</span>
             </div>
-            <h1 className="mt-4 text-3xl font-bold sm:text-4xl md:text-5xl">
+            <h1 className="mt-4 text-3xl font-bold text-white sm:text-4xl md:text-5xl">
               Quiz
             </h1>
             <p className="mt-4 text-lg text-emerald-100">
