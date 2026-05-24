@@ -203,13 +203,15 @@ export function EidAlAdhaHero() {
           <blockquote
             dir="rtl"
             lang="ar"
-            className="mt-6 font-arabic text-2xl leading-[2.4] text-[#F5E9C3] sm:text-3xl sm:leading-[2.4]"
+            className="mt-6 font-arabic text-xl leading-[2.4] text-[#F5E9C3] sm:text-2xl sm:leading-[2.4]"
           >
-            لَن يَنَالَ ٱللَّهَ لُحُومُهَا وَلَا دِمَآؤُهَا وَلَـٰكِن يَنَالُهُ ٱلتَّقْوَىٰ مِنكُمْ
+            لَن يَنَالَ ٱللَّهَ لُحُومُهَا وَلَا دِمَآؤُهَا وَلَـٰكِن يَنَالُهُ ٱلتَّقْوَىٰ مِنكُمْ ۚ كَذَٰلِكَ سَخَّرَهَا لَكُمْ لِتُكَبِّرُوا۟ ٱللَّهَ عَلَىٰ مَا هَدَىٰكُمْ ۗ وَبَشِّرِ ٱلْمُحْسِنِينَ ۝
           </blockquote>
-          <figcaption className="mx-auto mt-6 max-w-xl text-base italic leading-relaxed text-white/75 sm:text-lg">
-            «Verken kjøttet eller blodet [av offerdyrene] når Allah, men det er
-            deres gudsfrykt som når Ham.»
+          <figcaption className="mx-auto mt-6 max-w-2xl text-base italic leading-relaxed text-white/80 sm:text-lg">
+            «Deres kjøtt når ikke Gud, heller ikke deres blod, men deres
+            fromhet når Ham. Han har stilt dem til deres disposisjon, så
+            dere må prise Gud for at han har gitt dere ledelse. Bring det
+            glade budskap til dem som handler vel!»
             <span className="mt-3 block not-italic text-sm uppercase tracking-[0.32em] text-[#E6C547]/80">
               Sūra al-Ḥajj 22:37
             </span>
@@ -217,11 +219,11 @@ export function EidAlAdhaHero() {
         </motion.figure>
       </div>
 
-      {/* Bottom mosque silhouette + transition fade */}
+      {/* Bottom mosque silhouette + soft transition into next section */}
       <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-40 sm:h-48">
         <MosqueSkyline />
       </div>
-      <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-white to-transparent" />
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent via-[#0c2a1a]/60 to-[#F9F5EB]" />
     </section>
   );
 }

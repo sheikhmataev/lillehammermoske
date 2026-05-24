@@ -104,6 +104,38 @@
   .section-divider {
     @apply h-px bg-gray-200;
   }
+
+  .legal-prose {
+    @apply text-[#3a3a32];
+  }
+  .legal-prose h2 {
+    @apply mt-12 mb-3 text-2xl font-semibold text-[#0c2a1a] sm:text-3xl;
+  }
+  .legal-prose h2:first-child {
+    @apply mt-0;
+  }
+  .legal-prose h3 {
+    @apply mt-8 mb-2 text-lg font-semibold text-[#0c2a1a] sm:text-xl;
+  }
+  .legal-prose p {
+    @apply my-4 text-base leading-relaxed text-[#3a3a32];
+  }
+  .legal-prose ul {
+    @apply my-4 list-none space-y-2 pl-0;
+  }
+  .legal-prose ul li {
+    @apply relative pl-6 leading-relaxed text-[#3a3a32];
+  }
+  .legal-prose ul li::before {
+    content: '✦';
+    @apply absolute left-0 top-0 text-sm text-[#D4AF37];
+  }
+  .legal-prose a {
+    @apply font-medium text-[#1B5E20] underline decoration-[#D4AF37]/60 underline-offset-4 hover:text-[#0c2a1a];
+  }
+  .legal-prose strong {
+    @apply font-semibold text-[#0c2a1a];
+  }
 }
 
 @layer utilities {
