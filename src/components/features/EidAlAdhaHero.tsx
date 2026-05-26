@@ -26,7 +26,7 @@ function calcCountdown(now: Date): Countdown {
 }
 
 export function EidAlAdhaHero() {
-  const [now, setNow] = useState<Date>(() => new Date());
+  const [now, setNow] = useState<Date | null>(null);
 
   useEffect(() => {
     setNow(new Date());
@@ -34,7 +34,7 @@ export function EidAlAdhaHero() {
     return () => clearInterval(t);
   }, []);
 
-  const countdown = useMemo(() => calcCountdown(now), [now]);
+  const countdown = useMemo(() => (now ? calcCountdown(now) : null), [now]);
 
   return (
     <section
@@ -134,7 +134,22 @@ export function EidAlAdhaHero() {
           transition={{ duration: 0.8, delay: 0.85 }}
           className="mx-auto mt-12 max-w-2xl"
         >
-          {countdown.finished ? (
+          {!countdown ? (
+            /* SSR / pre-hydration skeleton — matches shape to avoid layout shift */
+            <div className="rounded-2xl border border-[#D4AF37]/25 bg-white/[0.04] p-5 backdrop-blur-md sm:p-6">
+              <p className="text-center text-xs font-medium uppercase tracking-[0.3em] text-[#E6C547]/80">
+                Eid-bønn starter om
+              </p>
+              <div className="mt-4 grid grid-cols-4 gap-2 sm:gap-4">
+                {['Dager', 'Timer', 'Minutter', 'Sekunder'].map((l) => (
+                  <div key={l} className="rounded-xl border border-[#D4AF37]/15 bg-black/20 px-2 py-3 text-center sm:px-3 sm:py-4">
+                    <span className="block font-arabic text-3xl font-bold tabular-nums text-[#F5E9C3] sm:text-4xl">--</span>
+                    <span className="mt-1 block text-[0.625rem] uppercase tracking-[0.2em] text-white/55 sm:text-xs">{l}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : countdown.finished ? (
             <div className="rounded-2xl border border-[#D4AF37]/40 bg-[#D4AF37]/10 p-6 text-center backdrop-blur-md">
               <p className="font-arabic text-2xl text-[#E9D08A]">تقبل الله منا ومنكم</p>
               <p className="mt-2 text-sm text-white/80">
