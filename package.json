@@ -15,7 +15,8 @@
     "db:migrate": "prisma migrate dev",
     "db:studio": "prisma studio",
     "export": "NEXT_PUBLIC_EXPORT=true next build && touch out/.nojekyll",
-    "deploy": "npm run export && gh-pages -d out -t true"
+    "deploy": "npm run export && wrangler pages deploy out --project-name=lillehammermoske",
+    "deploy:gh-pages": "npm run export && gh-pages -d out -t true"
   },
   "dependencies": {
     "@prisma/client": "^5.7.1",

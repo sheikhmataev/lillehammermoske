@@ -12,7 +12,7 @@ Lillehammer Moske is a Next.js 14 website for the Muslim Cultural Center Lilleha
 npm run dev          # Start dev server
 npm run build        # Build static export (output: out/)
 npm run export       # Build for GitHub Pages
-npm run deploy       # Build & push to gh-pages branch
+npm run deploy       # Build & deploy to Cloudflare Pages (wrangler)
 npm run lint         # Run ESLint
 npm run type-check   # TypeScript type check
 npm run test         # Run Jest tests
@@ -59,7 +59,9 @@ Fonts: Inter (sans), Amiri (Arabic fallback). Prettier auto-sorts Tailwind class
 
 ### Deployment
 
-Static export (`next.config.js` sets `output: 'export'` when `GITHUB_PAGES=true`). Images unoptimized for static hosting. Custom domain: `lillehammermoske.no`.
+Static export (`next.config.js` sets `output: 'export'` when `NEXT_PUBLIC_EXPORT=true`, via `npm run export` → `out/`). Images unoptimized for static hosting. Custom domain: `lillehammermoske.no`.
+
+**Hosting: Cloudflare Pages** (project `lillehammermoske`, account `40c0b283cc23d098d61e0c39fdbd6b38`). Pushes to `main` trigger [.github/workflows/cloudflare-pages.yml](.github/workflows/cloudflare-pages.yml), which builds and deploys via `wrangler pages deploy`. The workflow runs in the `github-pages` GitHub Environment so it can read the quiz build-time secrets; it also needs `CLOUDFLARE_API_TOKEN` (Pages:Edit) added to that environment. Manual deploy: `npm run deploy`. (Legacy GitHub Pages deploy still available via `npm run deploy:gh-pages`.)
 
 ### Pre-commit Hooks
 
