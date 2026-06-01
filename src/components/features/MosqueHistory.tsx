@@ -37,8 +37,7 @@ const timeline = [
 
 const stats = [
   { value: '25+', label: 'År i fellesskapet' },
-  { value: '750+', label: 'Medlemmer i Lillehammer' },
-  { value: '700+', label: 'Medlemmer i Innlandet' },
+  { value: '1000+', label: 'Medlemmer i Lillehammer' },
   { value: '100+', label: 'Fredagsbønn-gjester' },
 ];
 
@@ -72,16 +71,16 @@ export function MosqueHistory() {
 
       <div className="mx-auto mt-14 max-w-4xl rounded-3xl border border-[#D4AF37]/20 bg-white/[0.03] p-8 backdrop-blur-sm">
         <h3 className="font-display text-center text-2xl font-semibold text-white">Våre tall</h3>
-        <div className="mt-8 grid grid-cols-2 gap-6 md:grid-cols-4">
+        <div className="mt-8 flex flex-wrap justify-center gap-8 md:gap-16 text-center">
           {stats.map((s) => (
-            <div key={s.label} className="text-center">
+            <div key={s.label} className="min-w-[150px] text-center">
               <div className="font-display text-4xl font-semibold text-[#E6C547]">{s.value}</div>
               <div className="mt-1 text-sm text-white/65">{s.label}</div>
             </div>
           ))}
         </div>
         <p className="mt-8 text-center text-sm italic text-white/55">
-          Fra 150 medlemmer i 1998 til over 750 i dag — den største moskéen i Innlandet.
+          Fra 150 medlemmer i 1998 til over 1000 i dag, en av de største moskéene i Innlandet.
         </p>
       </div>
     </Band>

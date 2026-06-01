@@ -15,10 +15,12 @@ interface PrayerNode {
   arabic: string;
   time: string;
   minutes: number;
+  isBoundary?: boolean;
 }
 
-const ORDER: { key: keyof PrayerTime; name: string; arabic: string }[] = [
+const ORDER: { key: keyof PrayerTime; name: string; arabic: string; isBoundary?: boolean }[] = [
   { key: 'fajr', name: 'Fajr', arabic: 'الفجر' },
+  { key: 'fajrEnd', name: 'Fajr slutt', arabic: 'الشروق', isBoundary: true },
   { key: 'duhr', name: 'Duhr', arabic: 'الظهر' },
   { key: 'asr', name: 'Asr', arabic: 'العصر' },
   { key: 'maghrib', name: 'Maghrib', arabic: 'المغرب' },
@@ -40,6 +42,18 @@ const R = 286;
 function pointAt(fraction: number): { x: number; y: number } {
   const angle = Math.PI - fraction * Math.PI; // 180°→0°
   return { x: CX + R * Math.cos(angle), y: BASE_Y - R * Math.sin(angle) };
+}
+
+function getPrayerAnchor(name: string, ptX: number): 'start' | 'end' | 'middle' {
+  if (name === 'Fajr') return 'end';
+  if (name === 'Fajr slutt') return 'start';
+  if (name === 'Duhr') return 'middle';
+  if (name === 'Asr') return 'start';
+  if (name === 'Maghrib') return 'end';
+  if (name === 'Isha') return 'start';
+  
+  // Fallback
+  return ptX < CX - 40 ? 'end' : ptX > CX + 40 ? 'start' : 'middle';
 }
 
 export function SunArc() {
@@ -67,21 +81,80 @@ export function SunArc() {
 
   const nodes: PrayerNode[] = useMemo(() => {
     if (!today) return [];
-    return ORDER.map((p) => ({
-      name: p.name,
-      arabic: p.arabic,
-      time: today[p.key] as string,
-      minutes: toMinutes(today[p.key] as string),
-    }));
+    let lastMin = -1;
+    return ORDER.map((p) => {
+      let mins = toMinutes(today[p.key] as string);
+      if (mins < lastMin) {
+        // Wrap around midnight for chronological ordering in summer months
+        mins += 1440;
+      }
+      lastMin = mins;
+      return {
+        name: p.name,
+        arabic: p.arabic,
+        time: today[p.key] as string,
+        minutes: mins,
+        isBoundary: p.isBoundary,
+      };
+    });
   }, [today]);
 
   const nextPrayer = today ? getNextPrayerTime(today) : null;
   const currentPrayer = today ? getCurrentPrayerTime(today) : null;
 
-  const fajrMin = nodes[0]?.minutes ?? 0;
-  const ishaMin = nodes[4]?.minutes ?? 1;
-  const span = Math.max(ishaMin - fajrMin, 1);
+  const fajrMin = useMemo(() => nodes.find((n) => n.name === 'Fajr')?.minutes ?? 0, [nodes]);
+  const ishaMin = useMemo(() => nodes.find((n) => n.name === 'Isha')?.minutes ?? 1440, [nodes]);
+  const span = useMemo(() => Math.max(ishaMin - fajrMin, 1), [fajrMin, ishaMin]);
   const fractionFor = (min: number) => Math.min(Math.max((min - fajrMin) / span, 0), 1);
+
+  // Multi-pass vertical offset collision resolver for all label pairs
+  const labelOffsets = useMemo(() => {
+    const n = nodes.length;
+    const offsets = new Array(n).fill(0);
+    if (n === 0) return offsets;
+
+    const cycle = [0, -30, 24];
+
+    // Compute original X coordinates for each node
+    const xCoords = nodes.map((node) => {
+      const f = Math.min(Math.max((node.minutes - fajrMin) / span, 0), 1);
+      return pointAt(f).x;
+    });
+
+    for (let i = 0; i < n; i++) {
+      let cycleIdx = 0;
+      let hasCollision = true;
+      
+      while (hasCollision && cycleIdx < cycle.length) {
+        offsets[i] = cycle[cycleIdx];
+        hasCollision = false;
+        
+        // Multi-pass collision check against ALL other nodes
+        for (let j = 0; j < n; j++) {
+          if (i === j) continue;
+          
+          const dx = Math.abs(xCoords[i] - xCoords[j]);
+          const sameAnchor = getPrayerAnchor(nodes[i].name, xCoords[i]) === getPrayerAnchor(nodes[j].name, xCoords[j]);
+          
+          // Collision if they share the same anchor, horizontal distance is under 70px, and same offset
+          if (sameAnchor && dx < 70 && offsets[i] === offsets[j]) {
+            hasCollision = true;
+            break;
+          }
+        }
+        
+        if (hasCollision) {
+          cycleIdx++;
+        }
+      }
+      
+      if (cycleIdx >= cycle.length) {
+        offsets[i] = cycle[i % cycle.length];
+      }
+    }
+
+    return offsets;
+  }, [nodes, fajrMin, span]);
 
   const nowMin = now.getHours() * 60 + now.getMinutes() + now.getSeconds() / 60;
   const isNight = nowMin < fajrMin || nowMin > ishaMin;
@@ -152,7 +225,7 @@ export function SunArc() {
                 </defs>
 
                 {/* horizon */}
-                <line x1="40" y1={BASE_Y} x2={VB_W - 40} y2={BASE_Y} stroke="#ffffff" strokeOpacity="0.12" strokeWidth="1" />
+                <line x1={pointAt(0).x} y1={BASE_Y} x2={pointAt(1).x} y2={BASE_Y} stroke="#ffffff" strokeOpacity="0.12" strokeWidth="1" />
                 {/* area under arc */}
                 <path d={fillPath} fill="url(#sunFill)" />
                 {/* the path itself */}
@@ -171,22 +244,55 @@ export function SunArc() {
                 )}
 
                 {/* prayer nodes */}
-                {nodes.map((p) => {
+                {nodes.map((p, idx) => {
                   const f = fractionFor(p.minutes);
                   const pt = pointAt(f);
                   const isCurrent = currentPrayer?.name === p.name;
                   const isNext = nextPrayer?.name === p.name;
                   const active = isCurrent || isNext;
-                  const anchor = pt.x < CX - 40 ? 'end' : pt.x > CX + 40 ? 'start' : 'middle';
+                  const isBoundary = p.isBoundary;
+
+                  // Get optimized alternating text anchors to eliminate horizontal/vertical overlap
+                  const anchor = getPrayerAnchor(p.name, pt.x);
                   const dx = anchor === 'end' ? -14 : anchor === 'start' ? 14 : 0;
+                  const offsetY = labelOffsets[idx] ?? 0;
                   return (
                     <g key={p.name}>
-                      <line x1={pt.x} y1={pt.y} x2={pt.x} y2={BASE_Y} stroke="#ffffff" strokeOpacity={active ? 0.18 : 0.07} strokeWidth="1" strokeDasharray="3 4" />
-                      <circle cx={pt.x} cy={pt.y} r={active ? 9 : 6} fill={isCurrent ? '#FBE38A' : isNext ? '#E6C547' : '#0c2a1a'} stroke={active ? '#FBE38A' : '#D4AF37'} strokeWidth="2.5" />
-                      <text x={pt.x + dx} y={pt.y - 18} textAnchor={anchor} className="fill-white font-semibold" style={{ fontSize: '19px' }}>
+                      <line 
+                        x1={pt.x} 
+                        y1={pt.y} 
+                        x2={pt.x} 
+                        y2={BASE_Y} 
+                        stroke="#ffffff" 
+                        strokeOpacity={active ? 0.18 : isBoundary ? 0.04 : 0.07} 
+                        strokeWidth="1" 
+                        strokeDasharray={isBoundary ? "2 2" : "3 4"} 
+                      />
+                      <circle 
+                        cx={pt.x} 
+                        cy={pt.y} 
+                        r={active ? 9 : isBoundary ? 5 : 6} 
+                        fill={isCurrent ? '#FBE38A' : isNext ? '#E6C547' : isBoundary ? '#5c3e07' : '#0c2a1a'} 
+                        stroke={active ? '#FBE38A' : isBoundary ? '#D4AF37' : '#D4AF37'} 
+                        strokeWidth={isBoundary ? "1.5" : "2.5"} 
+                      />
+                      {/* Name always on top (dy=-38), time always below (dy=-20) */}
+                      <text 
+                        x={pt.x + dx} 
+                        y={pt.y - 38 + offsetY} 
+                        textAnchor={anchor} 
+                        className={`font-semibold ${isBoundary ? 'fill-white/60' : 'fill-white'}`} 
+                        style={{ fontSize: isBoundary ? '16px' : '19px' }}
+                      >
                         {p.name}
                       </text>
-                      <text x={pt.x + dx} y={pt.y + (anchor === 'middle' ? -38 : 2)} textAnchor={anchor} className="fill-[#E9D08A]" style={{ fontSize: '17px', fontVariantNumeric: 'tabular-nums' }}>
+                      <text 
+                        x={pt.x + dx} 
+                        y={pt.y - 20 + offsetY} 
+                        textAnchor={anchor} 
+                        className={isBoundary ? 'fill-[#E9D08A]/75' : 'fill-[#E9D08A]'} 
+                        style={{ fontSize: isBoundary ? '15px' : '17px', fontVariantNumeric: 'tabular-nums' }}
+                      >
                         {p.time}
                       </text>
                     </g>
@@ -233,10 +339,11 @@ export function SunArc() {
             </div>
 
             {/* times row */}
-            <div className="mx-auto mt-4 grid max-w-3xl grid-cols-2 gap-3 sm:grid-cols-5">
+            <div className="mx-auto mt-4 grid max-w-4xl grid-cols-2 gap-3 sm:grid-cols-6">
               {nodes.map((p) => {
                 const isCurrent = currentPrayer?.name === p.name;
                 const isNext = nextPrayer?.name === p.name && !currentPrayer;
+                const isBoundary = p.isBoundary;
                 return (
                   <div
                     key={p.name}
@@ -245,7 +352,9 @@ export function SunArc() {
                         ? 'border-[#FBE38A]/50 bg-[#D4AF37]/15'
                         : isNext
                           ? 'border-[#D4AF37]/35 bg-white/[0.05]'
-                          : 'border-white/10 bg-white/[0.02]'
+                          : isBoundary
+                            ? 'border-orange-500/10 bg-orange-500/[0.02]'
+                            : 'border-white/10 bg-white/[0.02]'
                     }`}
                   >
                     <p className="font-arabic text-xl text-[#E9D08A]" dir="rtl">{p.arabic}</p>
