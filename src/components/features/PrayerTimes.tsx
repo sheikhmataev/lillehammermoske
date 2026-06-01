@@ -99,7 +99,7 @@ export function PrayerTimes() {
   const highlightLabel = prayerTimes.find((p) => p.isCurrent) ? 'Pågår nå' : 'Neste bønn';
 
   return (
-    <section className="relative overflow-hidden bg-[#F9F5EB] py-20 sm:py-24">
+    <section className="band band-cream py-20 sm:py-24">
       {/* Subtle Islamic pattern background */}
       <div aria-hidden className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: PARCHMENT_PATTERN_URI, backgroundSize: '160px 160px' }} />
       {/* Soft warm radial */}

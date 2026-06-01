@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Smartphone } from 'lucide-react';
+import { Calendar, Smartphone } from 'lucide-react';
 import { PageHero } from '@/components/ui/PageHero';
 import { Band } from '@/components/ui/Band';
 import { SunArc } from '@/components/features/SunArc';
@@ -25,8 +25,18 @@ export default function PrayerTimesPage() {
         eyebrow="Lillehammer"
         arabic="أوقات الصلاة"
         title="Bønnetider"
-        lead={`Daglige bønnetider, beregnet automatisk og oppdatert hver dag. Jummah · Khutbah ${config.jummah.khutbah} · Jamaat ${config.jummah.jamat}.`}
-        seamTo="#06150d"
+        lead="Daglige bønnetider, beregnet automatisk og oppdatert hver dag."
+        belowLead={
+          <div className="inline-flex items-center gap-3 rounded-2xl border border-[#D4AF37]/30 bg-[#D4AF37]/10 px-5 py-3 text-left backdrop-blur-sm">
+            <Calendar className="h-5 w-5 flex-shrink-0 text-[#E6C547]" />
+            <div>
+              <p className="text-[10px] uppercase tracking-wider text-white/50 sm:text-xs">Fredag · Jummah</p>
+              <p className="text-sm font-semibold text-white">
+                Khutbah {config.jummah.khutbah} · Jamaat {config.jummah.jamat}
+              </p>
+            </div>
+          </div>
+        }
       />
 
       {/* The sun-path daily view (ink, continues from the hero) */}

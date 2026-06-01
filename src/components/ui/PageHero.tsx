@@ -7,9 +7,9 @@ interface PageHeroProps {
   /** Arabic line shown above the title (Amiri) */
   arabic?: string;
   lead?: ReactNode;
+  /** Optional callout rendered between the lead and the gold divider */
+  belowLead?: ReactNode;
   children?: ReactNode;
-  /** color the bottom seam fades into — match the band that follows */
-  seamTo?: string;
   /** show the bottom mosque skyline silhouette */
   skyline?: boolean;
 }
@@ -24,8 +24,8 @@ export function PageHero({
   title,
   arabic,
   lead,
+  belowLead,
   children,
-  seamTo = '#f9f5eb',
   skyline = false,
 }: PageHeroProps) {
   return (
@@ -66,6 +66,8 @@ export function PageHero({
             </p>
           )}
 
+          {belowLead && <div className="mx-auto mt-6 flex justify-center">{belowLead}</div>}
+
           <div className="mt-7 flex items-center justify-center gap-2">
             <span className="h-px w-12 bg-[#D4AF37]/50" />
             <EightPointStar className="h-3 w-3 text-[#D4AF37]" />
@@ -81,13 +83,6 @@ export function PageHero({
           <MosqueSkyline className="h-full w-full" fadeTo="#06150d" />
         </div>
       )}
-
-      {/* Soft seam into the next band */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-24"
-        style={{ background: `linear-gradient(to bottom, transparent, ${seamTo})` }}
-      />
     </section>
   );
 }

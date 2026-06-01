@@ -159,13 +159,26 @@ export function MosqueSkyline({ className = '', fadeTo = '#06150d' }: SkylinePro
   );
 }
 
+type BandSeamTarget = 'cream' | 'ink';
+
 /** Soft gradient seam to blend one band into the next (avoids hard color slams). */
-export function BandSeam({ from = 'transparent', to = '#f9f5eb', className = '' }: { from?: string; to?: string; className?: string }) {
+export function BandSeam({
+  to = 'cream',
+  className = '',
+}: {
+  to?: BandSeamTarget;
+  className?: string;
+}) {
+  const background =
+    to === 'cream'
+      ? 'linear-gradient(to bottom, transparent 0%, var(--ink-deep) 35%, var(--cream) 100%)'
+      : 'linear-gradient(to bottom, transparent 0%, var(--ink-deep) 100%)';
+
   return (
     <div
       aria-hidden
-      className={`pointer-events-none absolute inset-x-0 bottom-0 h-24 ${className}`}
-      style={{ background: `linear-gradient(to bottom, ${from}, ${to})` }}
+      className={`pointer-events-none absolute inset-x-0 bottom-0 h-28 sm:h-32 ${className}`}
+      style={{ background }}
     />
   );
 }

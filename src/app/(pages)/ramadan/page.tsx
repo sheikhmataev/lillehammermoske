@@ -38,7 +38,6 @@ export default function RamadanPage() {
         title={<>Ramadan <span className="text-gold-gradient">{R.year}</span></>}
         lead="Forbered deg på den mest velsignede måneden i året — en tid for faste, bønn, refleksjon og fellesskap."
         skyline
-        seamTo="#06150d"
       >
         <div className="mx-auto max-w-2xl rounded-2xl border border-[#D4AF37]/20 bg-white/[0.04] p-6 backdrop-blur-sm">
           <p className="font-arabic text-xl leading-[2] text-[#E9D08A] sm:text-2xl" dir="rtl">
@@ -52,7 +51,7 @@ export default function RamadanPage() {
       </PageHero>
 
       {/* Isha & Taraweeh */}
-      <Band tone="ink" glow size="md">
+      <Band tone="ink" glow size="md" continue>
         <div className="mx-auto max-w-3xl rounded-3xl border border-[#D4AF37]/25 bg-white/[0.04] p-8 text-center backdrop-blur-sm sm:p-10">
           <div className="inline-flex items-center gap-2 rounded-full border border-[#D4AF37]/30 bg-[#D4AF37]/5 px-4 py-1.5">
             <Moon className="h-4 w-4 text-[#E6C547]" />

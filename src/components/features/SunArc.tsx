@@ -165,7 +165,7 @@ export function SunArc() {
   const fillPath = `${arcPath} L ${pointAt(1).x} ${BASE_Y} L ${pointAt(0).x} ${BASE_Y} Z`;
 
   return (
-    <section className="band band-ink isolate py-16 sm:py-20">
+    <section className="band band-ink-continue isolate py-16 sm:py-20">
       <div className="container-custom relative px-4">
         {/* heading */}
         <div className="mx-auto max-w-3xl text-center">
@@ -176,10 +176,7 @@ export function SunArc() {
             </span>
             <span className="h-px w-8 bg-[#D4AF37]/60" />
           </div>
-          <h2 className="font-arabic mt-4 text-4xl text-[#E9D08A] sm:text-5xl" dir="rtl">
-            مواقيت الصلاة
-          </h2>
-          <div className="mt-4 flex flex-wrap items-center justify-center gap-3 text-sm text-white/70">
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-3 text-sm text-white/70">
             <span className="inline-flex items-center gap-1.5">
               <Calendar className="h-4 w-4 text-[#E6C547]" />
               <span className="capitalize" suppressHydrationWarning>
@@ -367,6 +364,7 @@ export function SunArc() {
 
             <p className="mx-auto mt-6 max-w-xl text-center text-sm text-white/55">
               Jummah · Khutbah {config.jummah.khutbah} · Iqamah {config.jummah.jamat}
+              <span className="block mt-1 text-xs text-white/35">Bønnetider er levert av Islamsk Råd Norge (IRN)</span>
             </p>
           </>
         )}

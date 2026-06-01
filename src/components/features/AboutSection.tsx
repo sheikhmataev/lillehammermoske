@@ -7,7 +7,7 @@ import { config } from '@/lib/config';
 
 const stats = [
   { value: '19+', label: 'År i fellesskapet' },
-  { value: '750+', label: 'Medlemmer' },
+  { value: '1000+', label: 'Medlemmer' },
   { value: '5', label: 'Daglige bønner' },
   { value: '24/7', label: 'Åpent i Ramadan' },
 ];

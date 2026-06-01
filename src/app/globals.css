@@ -159,17 +159,29 @@
     @apply relative isolate overflow-hidden;
   }
   .band-ink {
-    background: radial-gradient(ellipse at top, #1b5e20 0%, #0c2a1a 58%, #06150d 100%);
+    background: radial-gradient(
+      ellipse 120% 80% at 50% -5%,
+      var(--emerald) 0%,
+      var(--ink) 52%,
+      var(--ink-deep) 100%
+    );
+    @apply text-white;
+  }
+  /* Flat continuation — use when the previous section is also ink */
+  .band-ink-continue {
+    background-color: var(--ink-deep);
     @apply text-white;
   }
   .band-ink-flat {
     @apply bg-[#0c2a1a] text-white;
   }
   .band-cream {
-    @apply bg-[#f9f5eb] text-[var(--body)];
+    background-color: var(--cream);
+    @apply text-[var(--body)];
   }
   .band-parchment {
-    @apply bg-[#f4eddc] text-[var(--body)];
+    background-color: var(--parchment);
+    @apply text-[var(--body)];
   }
 
   /* Display serif for editorial headings */

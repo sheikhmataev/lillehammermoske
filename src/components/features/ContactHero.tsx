@@ -7,7 +7,6 @@ export function ContactHero() {
       arabic="تواصل معنا"
       title="Kontakt oss"
       lead="Spørsmål, omvisning eller bare en hilsen? Ta kontakt — vi svarer gjerne."
-      seamTo="#f9f5eb"
     />
   );
 }

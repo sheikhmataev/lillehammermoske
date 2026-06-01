@@ -141,7 +141,7 @@ export function PrayerTimesCalendar() {
   );
 
   return (
-    <section className="section-padding bg-gradient-to-br from-mint-200 to-cream-50">
+    <section className="band band-cream section-padding">
       <div className="container-custom">
         <div className="max-w-6xl mx-auto">
           <div className="mb-12 text-center">

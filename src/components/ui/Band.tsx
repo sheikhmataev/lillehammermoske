@@ -13,6 +13,8 @@ interface BandProps {
   pattern?: boolean;
   /** show soft gold/emerald glow orbs */
   glow?: boolean;
+  /** continue the same ink tone without restarting the radial gradient */
+  continue?: boolean;
   id?: string;
 }
 
@@ -21,6 +23,14 @@ const paddings: Record<NonNullable<BandProps['size']>, string> = {
   md: 'py-16 sm:py-20',
   lg: 'py-20 sm:py-28',
 };
+
+function bandToneClass(tone: Tone, cont?: boolean): string {
+  if (tone === 'ink') {
+    return cont ? 'band band-ink-continue' : 'band band-ink';
+  }
+  if (tone === 'parchment') return 'band band-parchment';
+  return 'band band-cream';
+}
 
 /**
  * A full-width themed section. Two main tones:
@@ -36,10 +46,10 @@ export function Band({
   size = 'lg',
   pattern = true,
   glow = false,
+  continue: cont = false,
   id,
 }: BandProps) {
-  const toneClass =
-    tone === 'ink' ? 'band band-ink' : tone === 'parchment' ? 'band band-parchment' : 'band band-cream';
+  const toneClass = bandToneClass(tone, cont);
   const patternTone = tone === 'ink' ? 'gold' : 'emerald';
   const patternOpacity = tone === 'ink' ? 0.07 : 0.04;
 

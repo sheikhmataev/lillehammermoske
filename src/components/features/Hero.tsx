@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Calendar, Clock, MessageCircle, Moon, ArrowRight, Smartphone } from 'lucide-react';
+import { Calendar, Clock, MessageCircle, Moon, ArrowRight, Smartphone, UserPlus } from 'lucide-react';
 import { config } from '@/lib/config';
 import { PatternOverlay, Glow, EightPointStar, CrescentStar, MosqueSkyline, ArchFrame } from '@/components/ui/ornaments';
 
@@ -103,8 +103,8 @@ export function Hero() {
             </InfoPill>
           </div>
 
-          <p className="mt-4 text-xs capitalize tracking-wide text-white/40 sm:text-sm" suppressHydrationWarning>
-            {gregorianDate}
+          <p className="mt-4 text-xs tracking-wide text-white/40 sm:text-sm" suppressHydrationWarning>
+            <span className="capitalize">{gregorianDate}</span> · Bønnetider fra IRN
           </p>
 
           <div className="mt-7 flex items-center justify-center gap-2">
@@ -122,6 +122,15 @@ export function Hero() {
               <Calendar className="h-5 w-5" />
               Se bønnetider
             </Link>
+            <a
+              href="https://forms.gle/XFiqQsontqLdpiMP9"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/5 px-7 py-3.5 font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/10"
+            >
+              <UserPlus className="h-5 w-5 text-[#E6C547]" />
+              Bli medlem
+            </a>
             <a
               href="https://qr.vipps.no/28/2/05/031/4p3k_Hf7g"
               target="_blank"
@@ -149,11 +158,6 @@ export function Hero() {
       <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-32 sm:h-40">
         <MosqueSkyline className="h-full w-full" fadeTo="#06150d" />
       </div>
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-24"
-        style={{ background: 'linear-gradient(to bottom, transparent, #f9f5eb)' }}
-      />
     </section>
   );
 }
