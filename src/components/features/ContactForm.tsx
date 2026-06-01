@@ -41,20 +41,22 @@ export function ContactForm() {
   };
 
   return (
-    <div className="bg-white rounded-2xl p-8 shadow-lg">
-      <div className="flex items-center space-x-3 mb-6">
-        <Mail className="w-6 h-6 text-emerald-900" />
-        <h3 className="text-2xl font-bold text-emerald-900">Send oss en melding</h3>
+    <div className="rounded-3xl border border-[#1B5E20]/10 bg-white/80 p-8 shadow-[0_24px_60px_-35px_rgba(12,42,26,0.4)] backdrop-blur-sm">
+      <div className="mb-6 flex items-center gap-3">
+        <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-[#0c2a1a] text-[#E6C547]">
+          <Mail className="h-5 w-5" />
+        </span>
+        <h3 className="font-display text-2xl font-semibold text-[#0c2a1a]">Send oss en melding</h3>
       </div>
 
       {isSubmitted ? (
-        <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-6 text-center animate-fade-in">
-          <CheckCircle className="w-12 h-12 text-emerald-600 mx-auto mb-4" />
-          <h4 className="text-xl font-semibold text-emerald-900 mb-2">
+        <div className="animate-fade-in rounded-2xl border border-[#1B5E20]/20 bg-[#D4AF37]/10 p-6 text-center">
+          <CheckCircle className="mx-auto mb-4 h-12 w-12 text-[#1B5E20]" />
+          <h4 className="font-display text-xl font-semibold text-[#0c2a1a]">
             Takk for din henvendelse!
           </h4>
-          <p className="text-gray-600">
-            Vi vil svare deg så snart som mulig. Vanligvis responderer vi innen 1-2 virkedager.
+          <p className="mt-2 text-[#3a3a32]">
+            Vi svarer deg så snart som mulig — vanligvis innen 1–2 virkedager.
           </p>
         </div>
       ) : (

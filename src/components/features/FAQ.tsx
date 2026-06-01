@@ -1,9 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { ChevronDown, ChevronUp, HelpCircle } from 'lucide-react';
-import { Card } from '@/components/ui/Card';
+import { ChevronDown } from 'lucide-react';
 import { config } from '@/lib/config';
+import { SectionHeading } from '@/components/ui/SectionHeading';
 
 interface FAQItem {
   question: string;
@@ -13,58 +13,54 @@ interface FAQItem {
 
 const faqItems: FAQItem[] = [
   {
-    question: 'Når er moskeen åpen?',
-    answer: 'Moskeen er åpen daglig fra 05:00 til 22:00. Bønnetider varierer gjennom året. Under Ramadan er moskeen tilgjengelig 24/7.',
+    question: 'Når er moskéen åpen?',
+    answer: 'Moskéen er åpen daglig fra 05:00 til 22:00. Bønnetider varierer gjennom året. Under Ramadan er moskéen tilgjengelig 24/7.',
     category: 'general',
   },
   {
     question: 'Hvor finner jeg bønnetider?',
-    answer: 'Du kan finne bønnetider på vår nettside under "Bønnetider"-seksjonen. Bønnetidene oppdateres automatisk daglig basert på vår lokasjon i Lillehammer.',
+    answer: 'Du finner bønnetider under «Bønnetider» på nettsiden. Tidene oppdateres automatisk hver dag basert på vår lokasjon i Lillehammer.',
     category: 'prayer',
   },
   {
-    question: 'Kan ikke-muslimer besøke moskeen?',
-    answer: 'Ja, alle er velkommen til å besøke moskeen. Vi anbefaler å kontakte oss på forhånd for organiserte turer, spesielt for grupper eller skoler.',
+    question: 'Kan ikke-muslimer besøke moskéen?',
+    answer: 'Ja, alle er velkomne. Vi anbefaler å kontakte oss på forhånd for organiserte omvisninger, spesielt for grupper eller skoler.',
     category: 'visiting',
   },
   {
-    question: 'Hvordan melder jeg meg på Quranskole?',
-    answer: 'Du kan melde deg på Quranskole via vår nettside under "Quranskole"-seksjonen, eller du kan kontakte oss direkte. Vi har klasser for både barn og voksne.',
+    question: 'Hvordan melder jeg meg på Quranskolen?',
+    answer: 'Du kan melde deg på via «Quranskole» på nettsiden, eller kontakte oss direkte. Vi har klasser for både barn og voksne.',
     category: 'education',
   },
   {
-    question: 'Hvordan kan jeg donere til moskeen?',
-    answer: 'Du kan donere via vår nettside med kort (Stripe), Vipps, MobilePay eller bankoverføring. Alle donasjoner er velkomne og bidrar til å opprettholde moskeen og våre aktiviteter.',
+    question: 'Hvordan kan jeg donere til moskéen?',
+    answer: 'Du kan donere via Vipps eller bankoverføring. Se «Doner»-siden for nummer og kontonummer. Alle bidrag er velkomne.',
     category: 'donation',
   },
   {
-    question: 'Hva er åpningstider for Jummah bønn?',
-    answer: `Jummah khutbah starter kl. ${config.jummah.khutbah} og jamat (bønn) kl. ${config.jummah.jamat} hver fredag. Alle er velkommen til å delta. Vi anbefaler å komme litt i forveien.`,
+    question: 'Når er Jummah-bønnen?',
+    answer: `Jummah khutbah starter kl. ${config.jummah.khutbah} og jamat (bønn) kl. ${config.jummah.jamat} hver fredag. Kom gjerne litt i forveien.`,
     category: 'prayer',
   },
   {
     question: 'Tilbyr dere undervisning for voksne?',
-    answer: 'Ja, vi tilbyr både Quranskole og religiøs undervisning for voksne. Kontakt oss for mer informasjon om klassetider og innhold.',
+    answer: 'Ja, vi tilbyr både Quranskole og religiøs undervisning for voksne. Kontakt oss for klassetider og innhold.',
     category: 'education',
   },
   {
-    question: 'Hvor kan jeg parkere når jeg besøker moskeen?',
-    answer: 'Det er begrenset parkering ved moskeen. Vi anbefaler å bruke offentlig transport når mulig. Nærmeste parkering er [informasjon om parkering].',
+    question: 'Hvor kan jeg parkere?',
+    answer: 'Det finnes parkering i nærheten av moskéen. Vi anbefaler kollektivtransport når det er mulig — bussholdeplassen «Bankgata» ligger 2 minutters gange unna.',
     category: 'visiting',
   },
   {
-    question: 'Hvordan blir donasjoner brukt?',
-    answer: 'Donasjoner brukes til å opprettholde moskeen, støtte utdanning, organisere aktiviteter, og bidra til det muslimske fellesskapet. Vi er transparente med vår økonomi.',
-    category: 'donation',
-  },
-  {
-    question: 'Kan jeg få en kvittering for min donasjon?',
-    answer: 'Ja, du vil automatisk motta en kvittering på e-post etter donasjon via nettsiden. For bankoverføringer, send oss en e-post med detaljene for å motta en kvittering.',
+    question: 'Hvordan brukes donasjoner?',
+    answer: 'Donasjoner går til drift av moskéen, undervisning, arrangementer og fellesskapsarbeid. Vi er åpne om økonomien vår.',
     category: 'donation',
   },
 ];
 
-const categoryLabels = {
+const categoryLabels: Record<string, string> = {
+  all: 'Alle',
   general: 'Generelt',
   prayer: 'Bønn',
   education: 'Utdanning',
@@ -73,146 +69,87 @@ const categoryLabels = {
 };
 
 export function FAQ() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [openKey, setOpenKey] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<'all' | FAQItem['category']>('all');
 
-  const filteredFAQs = selectedCategory === 'all'
-    ? faqItems
-    : faqItems.filter(item => item.category === selectedCategory);
-
-  const toggleItem = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
+  const filtered = selectedCategory === 'all' ? faqItems : faqItems.filter((i) => i.category === selectedCategory);
+  const categories = ['all', 'general', 'prayer', 'education', 'visiting', 'donation'] as const;
 
   return (
-    <section className="section-padding bg-gradient-to-br from-mint-200 to-cream-50">
-      <div className="container-custom">
-        <div className="text-center mb-12">
-          <div className="flex items-center justify-center mb-4">
-            <HelpCircle className="w-12 h-12 text-emerald-900" />
-          </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-emerald-900 mb-6">
-            Ofte Stilte Spørsmål
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Svar på vanlige spørsmål om moskeen, bønnetider, aktiviteter og mer.
-          </p>
+    <section className="band band-ink isolate py-20 sm:py-28" id="faq">
+      <div className="container-custom relative px-4">
+        <SectionHeading
+          tone="ink"
+          eyebrow="Spørsmål & svar"
+          arabic="أسئلة شائعة"
+          title="Ofte stilte spørsmål"
+          lead="Svar på det folk oftest lurer på om moskéen, bønn og aktiviteter."
+        />
+
+        {/* Category chips */}
+        <div className="mx-auto mt-10 flex max-w-3xl flex-wrap justify-center gap-2">
+          {categories.map((key) => {
+            const active = selectedCategory === key;
+            return (
+              <button
+                key={key}
+                onClick={() => {
+                  setSelectedCategory(key);
+                  setOpenKey(null);
+                }}
+                className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
+                  active
+                    ? 'bg-[#D4AF37] text-[#0c2a1a]'
+                    : 'border border-white/15 bg-white/5 text-white/75 hover:bg-white/10'
+                }`}
+              >
+                {categoryLabels[key]}
+              </button>
+            );
+          })}
         </div>
 
-        {/* Category Filter */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
-          {[
-            { key: 'all', label: 'Alle', count: faqItems.length },
-            { key: 'general', label: 'Generelt', count: faqItems.filter(f => f.category === 'general').length },
-            { key: 'prayer', label: 'Bønn', count: faqItems.filter(f => f.category === 'prayer').length },
-            { key: 'education', label: 'Utdanning', count: faqItems.filter(f => f.category === 'education').length },
-            { key: 'visiting', label: 'Besøk', count: faqItems.filter(f => f.category === 'visiting').length },
-            { key: 'donation', label: 'Donasjon', count: faqItems.filter(f => f.category === 'donation').length },
-          ].map((category) => (
-            <button
-              key={category.key}
-              onClick={() => {
-                setSelectedCategory(category.key as any);
-                setOpenIndex(null);
-              }}
-              className={`px-4 py-2 rounded-lg font-medium transition-colors duration-200 text-sm ${
-                selectedCategory === category.key
-                  ? 'bg-emerald-900 text-white'
-                  : 'bg-white text-gray-700 hover:bg-emerald-50 hover:text-emerald-900'
-              }`}
-            >
-              {category.label} ({category.count})
-            </button>
-          ))}
-        </div>
-
-        {/* FAQ Items */}
-        <div className="max-w-4xl mx-auto space-y-4">
-          {filteredFAQs.length > 0 ? (
-            filteredFAQs.map((item, index) => {
-              const isOpen = openIndex === index;
-              return (
-                <Card
-                  key={index}
-                  className="overflow-hidden transition-all duration-300"
+        {/* Items */}
+        <div className="mx-auto mt-8 max-w-3xl space-y-3">
+          {filtered.map((item) => {
+            const key = item.question;
+            const isOpen = openKey === key;
+            return (
+              <div key={key} className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-sm">
+                <button
+                  onClick={() => setOpenKey(isOpen ? null : key)}
+                  className="flex w-full items-center justify-between gap-4 p-5 text-left transition-colors hover:bg-white/[0.04]"
+                  aria-expanded={isOpen}
                 >
-                  <button
-                    onClick={() => toggleItem(index)}
-                    className="w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 transition-colors"
-                    aria-expanded={isOpen}
-                    aria-controls={`faq-answer-${index}`}
-                  >
-                    <div className="flex-1">
-                      <div className="flex items-center space-x-3 mb-2">
-                        <span className="text-xs font-semibold px-3 py-1 bg-emerald-100 text-emerald-900 rounded-full">
-                          {categoryLabels[item.category]}
-                        </span>
-                      </div>
-                      <h3 className="text-lg font-semibold text-emerald-900 pr-4">
-                        {item.question}
-                      </h3>
-                    </div>
-                    <div className="flex-shrink-0">
-                      {isOpen ? (
-                        <ChevronUp className="w-6 h-6 text-emerald-900" />
-                      ) : (
-                        <ChevronDown className="w-6 h-6 text-emerald-900" />
-                      )}
-                    </div>
-                  </button>
-                  <div
-                    id={`faq-answer-${index}`}
-                    className={`transition-all duration-300 overflow-hidden ${
-                      isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-                    }`}
-                  >
-                    <div className="px-6 pb-6 pt-0 border-t border-gray-100">
-                      <p className="text-gray-600 leading-relaxed">
-                        {item.answer}
-                      </p>
-                    </div>
+                  <span className="flex items-center gap-3">
+                    <span className="hidden rounded-full bg-[#D4AF37]/15 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-[#E6C547] sm:inline">
+                      {categoryLabels[item.category]}
+                    </span>
+                    <span className="font-medium text-white">{item.question}</span>
+                  </span>
+                  <ChevronDown className={`h-5 w-5 flex-shrink-0 text-[#E6C547] transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+                </button>
+                <div className={`grid transition-all duration-300 ${isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
+                  <div className="overflow-hidden">
+                    <p className="border-t border-white/10 px-5 py-4 leading-relaxed text-white/70">{item.answer}</p>
                   </div>
-                </Card>
-              );
-            })
-          ) : (
-            <Card>
-              <div className="text-center py-12">
-                <HelpCircle className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-                <h3 className="text-xl font-semibold text-gray-600 mb-2">
-                  Ingen spørsmål i denne kategorien
-                </h3>
-                <p className="text-gray-500">
-                  Det er ingen spørsmål i denne kategorien for øyeblikket.
-                </p>
+                </div>
               </div>
-            </Card>
-          )}
+            );
+          })}
         </div>
 
-        {/* Contact CTA */}
-        <div className="mt-16 text-center">
-          <div className="bg-gradient-to-r from-emerald-900 to-emerald-800 text-white rounded-xl shadow-md p-8 max-w-3xl mx-auto">
-            <h3 className="text-2xl font-bold mb-4 text-white">
-              Har du flere spørsmål?
-            </h3>
-            <p className="text-emerald-200 mb-6">
-              Vi er her for å hjelpe deg. Kontakt oss hvis du har spørsmål som ikke er besvart her.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="/contact"
-                className="bg-gold-500 hover:bg-gold-600 text-white px-8 py-3 rounded-lg font-medium transition-colors inline-block"
-              >
-                Kontakt oss
-              </a>
-              <a
-                href="/contact#form"
-                className="border-2 border-white text-white hover:bg-white hover:text-emerald-900 px-8 py-3 rounded-lg font-medium transition-colors inline-block"
-              >
-                Send en melding
-              </a>
-            </div>
+        {/* CTA */}
+        <div className="mx-auto mt-12 max-w-2xl rounded-3xl border border-[#D4AF37]/25 bg-white/[0.03] p-8 text-center backdrop-blur-sm">
+          <h3 className="font-display text-2xl font-semibold text-white">Har du flere spørsmål?</h3>
+          <p className="mt-2 text-white/70">Vi hjelper deg gjerne med det som ikke er besvart her.</p>
+          <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
+            <a href="/contact#form" className="inline-flex items-center justify-center rounded-xl bg-gradient-to-br from-[#E6C547] to-[#B8941F] px-6 py-3 font-semibold text-[#0c2a1a] transition-transform hover:-translate-y-0.5">
+              Send en melding
+            </a>
+            <a href={config.social.whatsapp} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-xl border border-white/25 px-6 py-3 font-semibold text-white transition-colors hover:bg-white/10">
+              Spør på WhatsApp
+            </a>
           </div>
         </div>
       </div>

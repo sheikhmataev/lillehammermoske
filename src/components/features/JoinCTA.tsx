@@ -1,149 +1,76 @@
-import { Users, Heart, CheckCircle, ArrowRight } from 'lucide-react';
+import { Users, CheckCircle, ArrowRight } from 'lucide-react';
+import { Band } from '@/components/ui/Band';
+import { StarDivider } from '@/components/ui/ornaments';
 
 const GOOGLE_FORM_URL = 'https://forms.gle/XFiqQsontqLdpiMP9';
 
+const benefits = [
+  'Støtt moskeens drift og aktiviteter',
+  'Delta i beslutningsprosesser',
+  'Bygg nettverk med fellesskapet',
+];
+
 export function JoinCTA() {
   return (
-    <section className="section-padding bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-900 text-white">
-      <div className="container-custom px-4">
-        <div className="max-w-4xl mx-auto">
-          {/* Mobile: Stacked layout */}
-          <div className="space-y-12 md:hidden">
-            {/* Header */}
-            <div className="text-center">
-              <div className="inline-flex items-center gap-2 bg-gold-500/20 border border-gold-500/30 rounded-full px-5 py-1.5 mb-6">
-                <Users className="w-4 h-4 text-gold-400" />
-                <span className="text-gold-300 font-medium text-xs uppercase tracking-wider">Bli en del av oss</span>
-              </div>
-
-              <h2 className="text-3xl font-extrabold mb-4 leading-tight">
-                Bli medlem av <br className="sm:hidden" /><span className="text-gold-400">Lillehammer Moske</span>
-              </h2>
-
-              <p className="text-emerald-100 text-lg leading-relaxed mb-6">
-                Meld deg inn og vær med på å styrke fellesskapet vårt. Som medlem støtter du moskeens arbeid og aktiviteter.
-              </p>
-            </div>
-
-            {/* Benefits */}
-            <ul className="space-y-3 mb-8">
-              {[
-                'Støtt moskeens drift og aktiviteter',
-                'Delta i beslutningsprosesser',
-                'Bygg nettverk med fellesskapet',
-              ].map((item) => (
-                <li key={item} className="flex items-center gap-3 text-emerald-100">
-                  <CheckCircle className="w-5 h-5 text-gold-400 flex-shrink-0" />
-                  <span className="text-base">{item}</span>
-                </li>
-              ))}
-            </ul>
-
-            {/* CTA Button */}
-            <div className="text-center mb-8">
-              <a
-                href={GOOGLE_FORM_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-bold text-dark text-base transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
-                style={{
-                  background: 'linear-gradient(135deg, #D4AF37 0%, #B8941F 100%)',
-                  boxShadow: '0 4px 24px rgba(212,175,55,0.3)',
-                }}
-              >
-                Meld deg inn nå
-                <ArrowRight className="w-5 h-5" />
-              </a>
-            </div>
-
-            {/* Decorative card */}
-            <div className="relative">
-              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 text-center">
-                <div className="w-16 h-16 bg-gold-500/20 rounded-2xl flex items-center justify-center mx-auto mb-5">
-                  <Heart className="w-8 h-8 text-gold-400" />
-                </div>
-                <p className="font-arabic text-2xl text-gold-400 mb-4">
-                  وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوَىٰ
-                </p>
-                <p className="text-emerald-100 text-base italic leading-relaxed mb-2">
-                  &laquo;Og hjelp hverandre til godhet og gudsfrykt.&raquo;
-                </p>
-                <p className="text-emerald-300 text-sm font-medium">— Surah Al-Ma&apos;idah (5:2)</p>
-              </div>
-
-              {/* Decorative glow */}
-              <div className="absolute -top-6 -right-6 w-32 h-32 bg-gold-500/10 rounded-full blur-3xl pointer-events-none" />
-              <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
-            </div>
+    <Band tone="ink" glow>
+      <div className="mx-auto grid max-w-5xl items-center gap-12 md:grid-cols-2 md:gap-16">
+        {/* Text */}
+        <div>
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#D4AF37]/30 bg-[#D4AF37]/5 px-4 py-1.5">
+            <Users className="h-4 w-4 text-[#E6C547]" />
+            <span className="text-xs font-semibold uppercase tracking-[0.22em] text-[#E6C547]">
+              Bli en del av oss
+            </span>
           </div>
 
-          {/* Desktop: Side-by-side layout */}
-          <div className="hidden md:grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
-            {/* Left — Text */}
-            <div>
-              <div className="inline-flex items-center gap-2 bg-gold-500/20 border border-gold-500/30 rounded-full px-5 py-1.5 mb-6">
-                <Users className="w-4 h-4 text-gold-400" />
-                <span className="text-gold-300 font-medium text-xs uppercase tracking-wider">Bli en del av oss</span>
-              </div>
+          <h2 className="font-display mt-6 text-3xl font-semibold leading-tight text-white sm:text-4xl">
+            Bli medlem av <span className="text-gold-gradient">Lillehammer Moske</span>
+          </h2>
 
-              <h2 className="text-3xl md:text-4xl font-extrabold mb-4 leading-tight">
-                Bli medlem av <span className="text-gold-400">Lillehammer Moske</span>
-              </h2>
+          <p className="mt-5 text-lg leading-relaxed text-white/75">
+            Meld deg inn og vær med på å styrke fellesskapet. Som medlem støtter du moskéens
+            arbeid og er med på å forme veien videre.
+          </p>
 
-              <p className="text-emerald-100 text-lg leading-relaxed mb-6">
-                Meld deg inn og vær med på å styrke fellesskapet vårt. Som medlem støtter du moskeens arbeid og aktiviteter.
-              </p>
+          <ul className="mt-7 space-y-3">
+            {benefits.map((item) => (
+              <li key={item} className="flex items-center gap-3 text-white/85">
+                <CheckCircle className="h-5 w-5 flex-shrink-0 text-[#E6C547]" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
 
-              <ul className="space-y-3 mb-8">
-                {[
-                  'Støtt moskeens drift og aktiviteter',
-                  'Delta i beslutningsprosesser',
-                  'Bygg nettverk med fellesskapet',
-                ].map((item) => (
-                  <li key={item} className="flex items-center gap-3 text-emerald-100">
-                    <CheckCircle className="w-5 h-5 text-gold-400 flex-shrink-0" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
+          <a
+            href={GOOGLE_FORM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-8 inline-flex items-center gap-2 rounded-xl bg-gradient-to-br from-[#E6C547] to-[#B8941F] px-7 py-3.5 font-semibold text-[#0c2a1a] shadow-[0_8px_30px_-8px_rgba(212,175,55,0.6)] transition-transform hover:-translate-y-0.5"
+          >
+            Meld deg inn nå
+            <ArrowRight className="h-5 w-5" />
+          </a>
+        </div>
 
-              <a
-                href={GOOGLE_FORM_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-bold text-dark text-base transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
-                style={{
-                  background: 'linear-gradient(135deg, #D4AF37 0%, #B8941F 100%)',
-                  boxShadow: '0 4px 24px rgba(212,175,55,0.3)',
-                }}
-              >
-                Meld deg inn nå
-                <ArrowRight className="w-5 h-5" />
-              </a>
+        {/* Quote card */}
+        <div className="relative">
+          <div className="relative overflow-hidden rounded-3xl border border-[#D4AF37]/20 bg-white/[0.03] p-8 text-center backdrop-blur-sm sm:p-10">
+            <span className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/70 to-transparent" />
+            <p className="font-arabic text-3xl leading-[2] text-[#E9D08A]" dir="rtl">
+              وَتَعَاوَنُوا عَلَى ٱلْبِرِّ وَٱلتَّقْوَىٰ
+            </p>
+            <div className="my-6">
+              <StarDivider tone="gold" />
             </div>
-
-            {/* Right — Decorative card */}
-            <div className="relative">
-              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 text-center">
-                <div className="w-16 h-16 bg-gold-500/20 rounded-2xl flex items-center justify-center mx-auto mb-5">
-                  <Heart className="w-8 h-8 text-gold-400" />
-                </div>
-                <p className="font-arabic text-2xl text-gold-400 mb-4">
-                  وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوَىٰ
-                </p>
-                <p className="text-emerald-100 text-base italic leading-relaxed mb-2">
-                  &laquo;Og hjelp hverandre til godhet og gudsfrykt.&raquo;
-                </p>
-                <p className="text-emerald-300 text-sm font-medium">— Surah Al-Ma&apos;idah (5:2)</p>
-              </div>
-
-              {/* Decorative glow */}
-              <div className="absolute -top-6 -right-6 w-32 h-32 bg-gold-500/10 rounded-full blur-3xl pointer-events-none" />
-              <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
-            </div>
+            <p className="text-lg italic leading-relaxed text-white/85">
+              «Og hjelp hverandre til godhet og gudsfrykt.»
+            </p>
+            <p className="mt-3 text-sm font-medium uppercase tracking-[0.28em] text-[#E6C547]/80">
+              Sūra al-Māʾida 5:2
+            </p>
           </div>
         </div>
       </div>
-    </section>
+    </Band>
   );
 }

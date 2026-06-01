@@ -13,9 +13,9 @@ export default function HomePage() {
     <>
       {showEidHero ? <EidAlAdhaHero /> : <Hero />}
       <PrayerTimes />
-      <JoinCTA />
       <Services />
       <AboutSection />
+      <JoinCTA />
       <CommunityGallery />
     </>
   );

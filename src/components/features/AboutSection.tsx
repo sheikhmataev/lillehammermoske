@@ -1,156 +1,147 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Users, Heart, BookOpen, Clock, MapPin } from 'lucide-react';
-import { Card } from '@/components/ui/Card';
+import { MapPin, ArrowRight } from 'lucide-react';
+import { Band } from '@/components/ui/Band';
+import { EightPointStar } from '@/components/ui/ornaments';
 import { config } from '@/lib/config';
+
+const stats = [
+  { value: '19+', label: 'År i fellesskapet' },
+  { value: '750+', label: 'Medlemmer' },
+  { value: '5', label: 'Daglige bønner' },
+  { value: '24/7', label: 'Åpent i Ramadan' },
+];
 
 export function AboutSection() {
   return (
-    <section className="section-padding bg-white">
-      <div className="container-custom">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
-          {/* Content */}
-          <div className="space-y-8">
-            <div>
-              <h2 className="text-5xl md:text-6xl font-extrabold text-emerald-900 mb-6">
-                Om Lillehammer Moske
-              </h2>
-              <p className="text-xl text-gray-600 leading-relaxed mb-6">
-                The Muslim Cultural Center Lillehammer er et kulturelt senter som har vært 
-                en del av det muslimske fellesskapet i Lillehammer siden 2005. Vi startet smått, 
-                men har vokst til å bli en viktig del av det muslimske fellesskapet her. 
-                Vi jobber hver dag for å styrke fellesskapet og fremme forståelse mellom kulturer.
-              </p>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Vårt senter tilbyr bønnetider, religiøs utdanning, fellesskapsaktiviteter 
-                og støtte for muslimske familier i Lillehammer og omegn. 
-                Hvis du er ny i området, kom gjerne innom og si hei – vi hjelper deg gjerne! 😊
-              </p>
-            </div>
+    <Band tone="cream">
+      <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        {/* Text */}
+        <div>
+          <div className="flex items-center gap-3">
+            <span className="text-xs font-semibold uppercase tracking-[0.32em] text-[#9A7A15]">
+              Om oss
+            </span>
+            <span className="h-px w-10 bg-[#D4AF37]/70" />
+          </div>
+          <p className="mt-4 font-arabic text-3xl text-[#1B5E20]" dir="rtl">
+            من نحن
+          </p>
+          <h2 className="font-display mt-2 text-3xl font-semibold tracking-tight text-[#0c2a1a] sm:text-4xl md:text-5xl">
+            Et fellesskap siden 2005
+          </h2>
+          <p className="mt-5 text-base leading-relaxed text-[#3a3a32] sm:text-lg">
+            The Muslim Cultural Center Lillehammer har vært en del av det muslimske
+            fellesskapet i Lillehammer siden 2005. Vi startet smått, men har vokst til å bli
+            den største moskéen i Innlandet.
+          </p>
+          <p className="mt-4 text-base leading-relaxed text-[#3a3a32]">
+            Senteret tilbyr bønn, religiøs utdanning og fellesskap for muslimske familier i
+            Lillehammer og omegn. Er du ny i området? Kom innom og si hei — vi hjelper deg
+            gjerne.
+          </p>
 
-            {/* Stats - Enhanced */}
-            <div className="grid grid-cols-2 gap-6">
-              <Card variant="subtle" className="text-center">
-                <div className="text-4xl font-extrabold text-emerald-900 mb-2">19+</div>
-                <div className="text-gray-600 text-sm font-medium">År i fellesskapet</div>
-              </Card>
-              <Card variant="subtle" className="text-center">
-                <div className="text-4xl font-extrabold text-emerald-900 mb-2">1000+</div>
-                <div className="text-gray-600 text-sm font-medium">Medlemmer</div>
-              </Card>
-              <Card variant="subtle" className="text-center">
-                <div className="text-4xl font-extrabold text-emerald-900 mb-2">5</div>
-                <div className="text-gray-600 text-sm font-medium">Daglige bønner</div>
-              </Card>
-              <Card variant="subtle" className="text-center">
-                <div className="text-4xl font-extrabold text-emerald-900 mb-2">24/7</div>
-                <div className="text-gray-600 text-sm font-medium">Tilgjengelighet</div>
-              </Card>
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="/about" className="btn-primary">
-                Lær mer om oss
-              </Link>
-              <Link href="/contact" className="btn-outline">
-                Kontakt oss
-              </Link>
-            </div>
+          {/* Stats */}
+          <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
+            {stats.map((s) => (
+              <div
+                key={s.label}
+                className="rounded-2xl border border-[#1B5E20]/10 bg-white/70 p-4 text-center backdrop-blur-sm"
+              >
+                <div className="font-display text-3xl font-semibold text-[#0c2a1a]">{s.value}</div>
+                <div className="mt-1 text-xs font-medium text-[#3a3a32]/70">{s.label}</div>
+              </div>
+            ))}
           </div>
 
-          {/* Mosque Interior Images */}
-          <div className="space-y-6">
-            <div className="grid grid-cols-1 gap-6">
-              <div className="relative rounded-2xl overflow-hidden shadow-xl">
-                <Image 
-                  src="/assets/images/mosque/inside_image.png" 
-                  alt="Lillehammer Moske - Interiør"
-                  width={800}
-                  height={600}
-                  className="w-full h-auto object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                <div className="absolute bottom-6 left-6 right-6">
-                  <div className="bg-white/95 backdrop-blur-sm rounded-lg p-5 shadow-lg">
-                    <h3 className="text-emerald-900 font-bold text-xl mb-2">
-                      Vakkert Bønnerom
-                    </h3>
-                    <p className="text-gray-600">
-                      Romslige og fredfulle omgivelser for bønn og meditasjon
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div className="grid grid-cols-1 gap-6">
-              <div className="relative rounded-2xl overflow-hidden shadow-xl">
-                <Image 
-                  src="/assets/images/mosque/inside2.png" 
-                  alt="Lillehammer Moske - Interiør 2"
-                  width={800}
-                  height={600}
-                  className="w-full h-auto object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                <div className="absolute bottom-6 left-6 right-6">
-                  <div className="bg-white/95 backdrop-blur-sm rounded-lg p-5 shadow-lg">
-                    <h3 className="text-emerald-900 font-bold text-xl mb-2">
-                      Fellesskapsområder
-                    </h3>
-                    <p className="text-gray-600">
-                      Møteplasser for sosiale og kulturelle aktiviteter
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <Link
+              href="/about"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#0c2a1a] px-6 py-3 font-semibold text-white transition-colors hover:bg-[#13391f]"
+            >
+              Lær mer om oss
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-[#0c2a1a]/20 px-6 py-3 font-semibold text-[#0c2a1a] transition-colors hover:border-[#0c2a1a] hover:bg-[#0c2a1a] hover:text-white"
+            >
+              Kontakt oss
+            </Link>
           </div>
         </div>
 
-        {/* Location Info - Enhanced Card */}
-        <div className="mt-16">
-          <div className="bg-emerald-900 text-white rounded-xl shadow-md p-10 border-0">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-              <div>
-                <h3 className="text-3xl font-bold mb-6 text-white">Besøk oss</h3>
-                <div className="space-y-5">
-                  <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                      <MapPin className="w-6 h-6 text-gold-400" />
-                    </div>
-                    <div>
-                      <p className="text-lg font-semibold text-white mb-1">Bankgata 12</p>
-                      <p className="text-white/80">2609 Lillehammer, Norge</p>
-                    </div>
-                  </div>
-                  <p className="text-white/90 leading-relaxed ml-16">
-                    Vårt senter ligger sentralt i Lillehammer og er lett tilgjengelig 
-                    med bil og kollektivtransport.
-                  </p>
+        {/* Images */}
+        <div className="space-y-5">
+          {[
+            { src: '/assets/images/mosque/inside_image.png', title: 'Vakkert bønnerom', sub: 'Fredfulle omgivelser for bønn og ettertanke' },
+            { src: '/assets/images/mosque/inside2.png', title: 'Fellesskapsområder', sub: 'Møteplasser for sosiale og kulturelle aktiviteter' },
+          ].map((img) => (
+            <div
+              key={img.src}
+              className="group relative overflow-hidden rounded-3xl border border-[#1B5E20]/10 shadow-[0_24px_60px_-30px_rgba(12,42,26,0.5)]"
+            >
+              <Image
+                src={img.src}
+                alt={img.title}
+                width={800}
+                height={560}
+                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#06150d]/85 via-[#06150d]/10 to-transparent" />
+              <div className="absolute bottom-5 left-5 right-5">
+                <div className="flex items-center gap-2 text-[#E6C547]">
+                  <EightPointStar className="h-3.5 w-3.5" />
+                  <h3 className="font-display text-xl font-semibold text-white">{img.title}</h3>
+                </div>
+                <p className="mt-1 text-sm text-white/75">{img.sub}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Visit card */}
+      <div className="mx-auto mt-14 max-w-6xl">
+        <div className="relative overflow-hidden rounded-3xl border border-[#D4AF37]/25 bg-gradient-to-br from-[#0c2a1a] via-[#13391f] to-[#0c2a1a] p-8 text-white shadow-[0_30px_70px_-35px_rgba(12,42,26,0.6)] sm:p-10">
+          <div className="grid items-center gap-8 md:grid-cols-2">
+            <div>
+              <h3 className="font-display text-2xl font-semibold text-white sm:text-3xl">Besøk oss</h3>
+              <div className="mt-5 flex items-start gap-4">
+                <span className="inline-flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-white/10 text-[#E6C547]">
+                  <MapPin className="h-6 w-6" />
+                </span>
+                <div>
+                  <p className="text-lg font-semibold text-white">Bankgata 12</p>
+                  <p className="text-white/75">2609 Lillehammer, Norge</p>
                 </div>
               </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                <h4 className="text-xl font-bold mb-5 text-white">Åpningstider</h4>
-                <div className="space-y-3">
-                  <div className="flex justify-between py-2.5 border-b border-white/10">
-                    <span className="text-white/90">Mandag - Søndag</span>
-                    <span className="font-bold text-white">05:00 - 22:00</span>
-                  </div>
-                  <div className="flex justify-between py-2.5 border-b border-white/10">
-                    <span className="text-white/90">Jummah (Fredag)</span>
-                    <span className="font-bold text-gold-400">Khutbah {config.jummah.khutbah} | Jamat {config.jummah.jamat}</span>
-                  </div>
-                  <div className="flex justify-between py-2.5">
-                    <span className="text-white/90">Ramadan</span>
-                    <span className="font-bold text-white">24/7</span>
-                  </div>
+              <p className="mt-4 text-white/70">
+                Vi ligger sentralt i Lillehammer, lett tilgjengelig med bil og kollektivtransport.
+              </p>
+            </div>
+            <div className="rounded-2xl border border-white/15 bg-white/5 p-6 backdrop-blur-sm">
+              <h4 className="font-display text-lg font-semibold text-white">Åpningstider</h4>
+              <dl className="mt-4 space-y-3 text-sm">
+                <div className="flex justify-between border-b border-white/10 pb-2.5">
+                  <dt className="text-white/75">Mandag – søndag</dt>
+                  <dd className="font-semibold text-white">05:00 – 22:00</dd>
                 </div>
-              </div>
+                <div className="flex justify-between border-b border-white/10 pb-2.5">
+                  <dt className="text-white/75">Jummah (fredag)</dt>
+                  <dd className="font-semibold text-[#E6C547]">
+                    Khutbah {config.jummah.khutbah} · Jamat {config.jummah.jamat}
+                  </dd>
+                </div>
+                <div className="flex justify-between">
+                  <dt className="text-white/75">Ramadan</dt>
+                  <dd className="font-semibold text-white">24/7</dd>
+                </div>
+              </dl>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </Band>
   );
 }

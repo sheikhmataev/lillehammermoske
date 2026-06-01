@@ -102,7 +102,7 @@ export function PrayerTimesCalendar() {
 
   if (loading) {
     return (
-      <section className="section-padding bg-gradient-to-br from-mint-200 to-cream-50">
+      <section className="band band-cream py-20 sm:py-28">
         <div className="container-custom">
           <div className="max-w-6xl mx-auto text-center">
             <div className="animate-pulse">
@@ -119,7 +119,7 @@ export function PrayerTimesCalendar() {
 
   if (error) {
     return (
-      <section className="section-padding bg-gradient-to-br from-mint-200 to-cream-50">
+      <section className="band band-cream py-20 sm:py-28">
         <div className="container-custom">
           <div className="max-w-6xl mx-auto text-center">
             <div className="bg-red-50 border border-red-200 rounded-xl p-8">
@@ -144,20 +144,27 @@ export function PrayerTimesCalendar() {
     <section className="section-padding bg-gradient-to-br from-mint-200 to-cream-50">
       <div className="container-custom">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold text-emerald-900 mb-6">
-              Bønnetid Kalender
+          <div className="mb-12 text-center">
+            <div className="flex items-center justify-center gap-3">
+              <span className="h-px w-8 bg-[#D4AF37]/70" />
+              <span className="text-xs font-semibold uppercase tracking-[0.32em] text-[#9A7A15]">
+                Hele måneden
+              </span>
+              <span className="h-px w-8 bg-[#D4AF37]/70" />
+            </div>
+            <h2 className="font-display mt-4 text-3xl font-semibold text-[#0c2a1a] sm:text-4xl md:text-5xl">
+              Bønnetid-kalender
             </h2>
-            <p className="text-xl text-gray-600 mb-4">
-              Se bønnetider for hele måneden
+            <p className="mx-auto mt-3 max-w-xl text-base text-[#3a3a32]">
+              Se bønnetidene for hele måneden — og last dem ned for offline bruk.
             </p>
             {hasData && (
-              <div className="flex items-center justify-center space-x-4">
+              <div className="mt-6 flex items-center justify-center">
                 <button
                   onClick={exportCalendar}
-                  className="bg-emerald-900 text-white px-6 py-2 rounded-lg font-semibold hover:bg-emerald-800 transition-colors flex items-center space-x-2 shadow-md"
+                  className="inline-flex items-center gap-2 rounded-xl bg-[#0c2a1a] px-6 py-2.5 font-semibold text-white shadow-sm transition-colors hover:bg-[#13391f]"
                 >
-                  <Download className="w-4 h-4" />
+                  <Download className="h-4 w-4 text-[#E6C547]" />
                   <span>Last ned CSV</span>
                 </button>
               </div>
@@ -167,20 +174,20 @@ export function PrayerTimesCalendar() {
           {/* Always show calendar header with navigation */}
           <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
             {/* Calendar Header */}
-            <div className="bg-gradient-to-r from-emerald-900 to-emerald-800 text-white p-4 sm:p-6">
+            <div className="bg-gradient-to-r from-[#0c2a1a] to-[#13391f] text-white p-4 sm:p-6">
               <div className="flex items-center justify-between">
                 <button
                   onClick={goToPreviousMonth}
-                  className="p-2 hover:bg-emerald-700 rounded-lg transition-colors"
+                  className="p-2 hover:bg-white/10 rounded-lg transition-colors"
                 >
                   <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
                 </button>
-                
+
                 <div className="text-center px-2">
-                  <h3 className="text-lg sm:text-2xl font-bold mb-1 text-white">
+                  <h3 className="font-display text-lg sm:text-2xl font-semibold mb-1 text-white">
                     {monthName} {year}
                   </h3>
-                  <p className="text-emerald-200 text-xs sm:text-sm">
+                  <p className="text-[#E6C547]/80 text-xs sm:text-sm">
                     {hasData 
                       ? 'Offisielle bønnetider for Lillehammer' 
                       : 'Data ikke tilgjengelig'}
@@ -225,10 +232,10 @@ export function PrayerTimesCalendar() {
                         <div
                           key={day}
                           className={`h-32 p-2 border rounded-lg transition-all duration-200 hover:shadow-md ${
-                            isCurrentDay 
-                              ? 'bg-emerald-100 border-emerald-400 shadow-md' 
-                              : prayerTimes 
-                              ? 'bg-white border-gray-200 hover:bg-gray-50' 
+                            isCurrentDay
+                              ? 'bg-[#D4AF37]/15 border-[#D4AF37]/50 shadow-md'
+                              : prayerTimes
+                              ? 'bg-white border-gray-200 hover:bg-gray-50'
                               : 'bg-gray-50 border-gray-200'
                           }`}
                         >
@@ -290,8 +297,8 @@ export function PrayerTimesCalendar() {
                         <div
                           key={day}
                           className={`p-3 border rounded-lg transition-all duration-200 ${
-                            isCurrentDay 
-                              ? 'bg-emerald-100 border-emerald-400 shadow-md' 
+                            isCurrentDay
+                              ? 'bg-[#D4AF37]/15 border-[#D4AF37]/50 shadow-md'
                               : 'bg-white border-gray-200 hover:bg-gray-50'
                           }`}
                         >
@@ -343,7 +350,7 @@ export function PrayerTimesCalendar() {
                   <div className="flex flex-col sm:flex-row items-center justify-between space-y-2 sm:space-y-0">
                     <div className="flex items-center space-x-6 text-sm text-gray-600">
                       <div className="flex items-center space-x-2">
-                        <div className="w-3 h-3 bg-emerald-100 border border-emerald-400 rounded"></div>
+                        <div className="w-3 h-3 bg-[#D4AF37]/20 border border-[#D4AF37]/60 rounded"></div>
                         <span>I dag</span>
                       </div>
                       <div className="flex items-center space-x-2">
@@ -372,19 +379,19 @@ export function PrayerTimesCalendar() {
 
           {/* Additional Info */}
           <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-100">
-              <h4 className="text-lg font-semibold text-blue-900 mb-3">Om Kalenderen</h4>
-              <p className="text-blue-700 text-sm leading-relaxed">
-                Kalenderen viser nøyaktige bønnetider for Lillehammer. Tidene følger 
-                Islamsk Råd Norge (IRN) sin standardisering av bønnetider og er tilpasset 
-                lokale geografiske forhold. IRN jobber for felles standarder for bønnetider i Norge.
+            <div className="rounded-2xl border border-[#1B5E20]/10 bg-white/70 p-6 backdrop-blur-sm">
+              <h4 className="font-display text-lg font-semibold text-[#0c2a1a] mb-3">Om kalenderen</h4>
+              <p className="text-sm leading-relaxed text-[#3a3a32]">
+                Kalenderen viser nøyaktige bønnetider for Lillehammer. Tidene følger
+                Islamsk Råd Norge (IRN) sin standardisering og er tilpasset lokale
+                geografiske forhold.
               </p>
             </div>
-            <div className="bg-gradient-to-r from-emerald-50 to-green-50 rounded-xl p-6 border border-emerald-100">
-              <h4 className="text-lg font-semibold text-emerald-900 mb-3">Datakilder</h4>
-              <p className="text-emerald-700 text-sm leading-relaxed">
-                Bønnetidene blir oppdatert månedlig basert på offisielle beregninger. 
-                Du kan laste ned CSV-filer for offline bruk eller import til kalendre.
+            <div className="rounded-2xl border border-[#1B5E20]/10 bg-white/70 p-6 backdrop-blur-sm">
+              <h4 className="font-display text-lg font-semibold text-[#0c2a1a] mb-3">Datakilder</h4>
+              <p className="text-sm leading-relaxed text-[#3a3a32]">
+                Bønnetidene oppdateres månedlig basert på offisielle beregninger. Du kan
+                laste ned CSV-filer for offline bruk eller import til kalenderen din.
               </p>
             </div>
           </div>

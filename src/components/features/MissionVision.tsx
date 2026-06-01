@@ -1,104 +1,69 @@
 import { Heart, Users, BookOpen, Globe } from 'lucide-react';
+import { Band } from '@/components/ui/Band';
+import { SectionHeading } from '@/components/ui/SectionHeading';
+
+const values = [
+  { icon: Users, title: 'Fellesskap', text: 'Vi bygger sterke bånd mellom medlemmer og skaper et støttende miljø.' },
+  { icon: BookOpen, title: 'Utdanning', text: 'Vi tilbyr religiøs utdanning og opplæring for alle aldre.' },
+  { icon: Heart, title: 'Medmenneskelighet', text: 'Vi praktiserer islamske verdier om omsorg og medmenneskelighet.' },
+];
 
 export function MissionVision() {
   return (
-    <section className="section-padding bg-white">
-      <div className="container-custom">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-emerald-900 mb-6">
-              Vår Misjon & Visjon
-            </h2>
-            <p className="text-xl text-gray-600">
-              Vi jobber for å styrke det muslimske fellesskapet og fremme forståelse mellom kulturer.
-            </p>
+    <Band tone="cream">
+      <SectionHeading
+        tone="cream"
+        eyebrow="Hvorfor vi finnes"
+        arabic="رسالتنا ورؤيتنا"
+        title="Vår misjon & visjon"
+        lead="Vi jobber for å styrke det muslimske fellesskapet og fremme forståelse mellom kulturer."
+      />
+
+      <div className="mx-auto mt-14 grid max-w-5xl gap-6 md:grid-cols-2">
+        {[
+          {
+            icon: Heart,
+            title: 'Vår misjon',
+            paragraphs: [
+              'Å skape et sterkt og inkluderende muslimsk fellesskap i Lillehammer som støtter hverandre gjennom religiøs praksis, utdanning og fellesskap — et hjem langt fra hjemmet.',
+              'Vi ønsker å være en bro mellom kulturer og bidra til harmonisk sameksistens. Alle er velkommen — muslim eller ikke.',
+            ],
+          },
+          {
+            icon: Globe,
+            title: 'Vår visjon',
+            paragraphs: [
+              'Å være et moderne, åpent og inkluderende kulturelt senter som tjener fellesskapet i Lillehammer og omegn — ikke bare en moské, men et sted hvor fellesskapet vokser.',
+              'Vi vil være en ressurs for både muslimer og ikke-muslimer som ønsker å lære om islam og muslimsk kultur.',
+            ],
+          },
+        ].map(({ icon: Icon, title, paragraphs }) => (
+          <div key={title} className="rounded-3xl border border-[#1B5E20]/10 bg-white/70 p-8 backdrop-blur-sm">
+            <span className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-[#0c2a1a] text-[#E6C547]">
+              <Icon className="h-7 w-7" />
+            </span>
+            <h3 className="font-display mt-6 text-2xl font-semibold text-[#0c2a1a]">{title}</h3>
+            {paragraphs.map((p, i) => (
+              <p key={i} className="mt-3 leading-relaxed text-[#3a3a32]">{p}</p>
+            ))}
           </div>
+        ))}
+      </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            {/* Mission */}
-            <div className="card">
-              <div className="w-16 h-16 bg-emerald-900 rounded-xl flex items-center justify-center mb-6">
-                <Heart className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-2xl font-semibold text-emerald-900 mb-4">
-                Vår Misjon
-              </h3>
-              <p className="text-gray-600 leading-relaxed mb-4">
-                Å skape et sterkt og inkluderende muslimsk fellesskap i Lillehammer som 
-                støtter hverandre gjennom religiøs praksis, utdanning og fellesskapsaktiviteter. 
-                Vi jobber hver dag for å være et hjem langt fra hjemmet.
-              </p>
-              <p className="text-gray-600 leading-relaxed">
-                Vi ønsker å være en bro mellom kulturer og bidra til en harmonisk 
-                sameksistens i det norske samfunnet. Alle er velkommen – muslim eller ikke!
-              </p>
+      <div className="mx-auto mt-12 max-w-5xl">
+        <h3 className="font-display text-center text-2xl font-semibold text-[#0c2a1a]">Våre verdier</h3>
+        <div className="mt-8 grid gap-6 sm:grid-cols-3">
+          {values.map(({ icon: Icon, title, text }) => (
+            <div key={title} className="text-center">
+              <span className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-full bg-[#D4AF37]/12 text-[#9A7A15] ring-1 ring-inset ring-[#D4AF37]/25">
+                <Icon className="h-8 w-8" />
+              </span>
+              <h4 className="font-display mt-4 text-xl font-semibold text-[#0c2a1a]">{title}</h4>
+              <p className="mt-2 text-sm leading-relaxed text-[#3a3a32]">{text}</p>
             </div>
-
-            {/* Vision */}
-            <div className="card">
-              <div className="w-16 h-16 bg-gold-500 rounded-xl flex items-center justify-center mb-6">
-                <Globe className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-2xl font-semibold text-emerald-900 mb-4">
-                Vår Visjon
-              </h3>
-              <p className="text-gray-600 leading-relaxed mb-4">
-                Å være et moderne, åpent og inkluderende kulturelt senter som tjener 
-                det muslimske fellesskapet i Lillehammer og omegn – ikke bare en moske, 
-                men et sted hvor fellesskapet vokser og blomstrer.
-              </p>
-              <p className="text-gray-600 leading-relaxed">
-                Vi ønsker å være en ressurs for både muslimer og ikke-muslimer som 
-                ønsker å lære om islam og muslimsk kultur. Har du spørsmål? Bare kom innom!
-              </p>
-            </div>
-          </div>
-
-          {/* Values */}
-          <div className="mt-16">
-            <h3 className="text-3xl font-bold text-emerald-900 text-center mb-12">
-              Våre Verdier
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="text-center">
-                <div className="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Users className="w-10 h-10 text-emerald-900" />
-                </div>
-                <h4 className="text-xl font-semibold text-emerald-900 mb-3">
-                  Felleskap
-                </h4>
-                <p className="text-gray-600">
-                  Vi bygger sterke bånd mellom medlemmer og skaper et støttende miljø.
-                </p>
-              </div>
-
-              <div className="text-center">
-                <div className="w-20 h-20 bg-gold-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <BookOpen className="w-10 h-10 text-gold-500" />
-                </div>
-                <h4 className="text-xl font-semibold text-emerald-900 mb-3">
-                  Utdanning
-                </h4>
-                <p className="text-gray-600">
-                  Vi tilbyr religiøs utdanning og opplæring for alle aldre.
-                </p>
-              </div>
-
-              <div className="text-center">
-                <div className="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Heart className="w-10 h-10 text-emerald-900" />
-                </div>
-                <h4 className="text-xl font-semibold text-emerald-900 mb-3">
-                  Medmenneskelighet
-                </h4>
-                <p className="text-gray-600">
-                  Vi praktiserer islamiske verdier om omsorg og medmenneskelighet.
-                </p>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
-    </section>
+    </Band>
   );
 }

@@ -4,6 +4,7 @@ import { ContactForm } from '@/components/features/ContactForm';
 import { ContactInfo } from '@/components/features/ContactInfo';
 import { MapLocation } from '@/components/features/MapLocation';
 import { FAQ } from '@/components/features/FAQ';
+import { Band } from '@/components/ui/Band';
 
 export const metadata: Metadata = {
   title: 'Kontakt Lillehammer Moske – Adresse, Kart og Skjema',
@@ -18,25 +19,18 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-white">
-      {/* Hero Section */}
+    <>
       <ContactHero />
 
-      {/* Contact Info & Form */}
-      <div className="section-padding bg-gray-50">
-        <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <ContactInfo />
-            <ContactForm />
-          </div>
+      <Band tone="cream" pattern>
+        <div id="form" className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-2">
+          <ContactInfo />
+          <ContactForm />
         </div>
-      </div>
+      </Band>
 
-      {/* Map Location */}
       <MapLocation />
-
-      {/* FAQ */}
       <FAQ />
-    </div>
+    </>
   );
 }

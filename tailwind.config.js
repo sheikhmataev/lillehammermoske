@@ -40,14 +40,25 @@ module.exports = {
       fontFamily: {
         'sans': ['Inter', 'system-ui', 'sans-serif'],
         'arabic': ['Amiri', 'serif'],
+        'display': ['Fraunces', 'Georgia', 'serif'],
       },
       animation: {
         'fade-in': 'fadeIn 0.4s ease-out',
+        'float-slow': 'floatSlow 9s ease-in-out infinite',
+        'shimmer': 'shimmer 6s linear infinite',
       },
       keyframes: {
         fadeIn: {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
+        },
+        floatSlow: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-10px)' },
+        },
+        shimmer: {
+          '0%': { backgroundPosition: '-200% 0' },
+          '100%': { backgroundPosition: '200% 0' },
         },
       },
     },

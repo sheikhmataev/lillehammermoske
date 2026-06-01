@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-import { Calendar, Clock, MessageCircle, Moon, ArrowRight, Smartphone, Star } from 'lucide-react';
+import { Calendar, Clock, MessageCircle, Moon, ArrowRight, Smartphone } from 'lucide-react';
 import { config } from '@/lib/config';
+import { PatternOverlay, Glow, EightPointStar, CrescentStar, MosqueSkyline, ArchFrame } from '@/components/ui/ornaments';
 
 const norwayTimeFormatter = new Intl.DateTimeFormat('nb-NO', {
   hour: '2-digit',
@@ -14,28 +14,9 @@ const norwayTimeFormatter = new Intl.DateTimeFormat('nb-NO', {
   timeZone: 'Europe/Oslo',
 });
 
-const hijriDateFormatter = new Intl.DateTimeFormat('ar-SA-u-ca-islamic-umalqura', {
-  day: 'numeric',
-  month: 'long',
-  year: 'numeric',
-  timeZone: 'Europe/Oslo',
-});
-
-const hijriDayFormatter = new Intl.DateTimeFormat('ar-SA-u-ca-islamic-umalqura', {
-  day: 'numeric',
-  timeZone: 'Europe/Oslo',
-});
-
-const hijriMonthFormatter = new Intl.DateTimeFormat('ar-SA-u-ca-islamic-umalqura', {
-  month: 'long',
-  timeZone: 'Europe/Oslo',
-});
-
-const hijriYearFormatter = new Intl.DateTimeFormat('ar-SA-u-ca-islamic-umalqura', {
-  year: 'numeric',
-  timeZone: 'Europe/Oslo',
-});
-
+const hijriDayFormatter = new Intl.DateTimeFormat('ar-SA-u-ca-islamic-umalqura', { day: 'numeric', timeZone: 'Europe/Oslo' });
+const hijriMonthFormatter = new Intl.DateTimeFormat('ar-SA-u-ca-islamic-umalqura', { month: 'long', timeZone: 'Europe/Oslo' });
+const hijriYearFormatter = new Intl.DateTimeFormat('ar-SA-u-ca-islamic-umalqura', { year: 'numeric', timeZone: 'Europe/Oslo' });
 const gregorianDateFormatter = new Intl.DateTimeFormat('nb-NO', {
   weekday: 'long',
   day: 'numeric',
@@ -65,121 +46,140 @@ export function Hero() {
   const gregorianDate = gregorianDateFormatter.format(currentTime);
 
   return (
-    <section className="relative min-h-[92vh] flex items-center overflow-hidden">
-      {/* Full-bleed background image */}
-      <div className="absolute inset-0">
-        <Image
-          src="/assets/images/mosque/inside_image.png"
-          alt="Lillehammer Moske - Interiør"
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-emerald-900/95 via-emerald-900/80 to-emerald-900/60" />
-        {/* Subtle decorative glow */}
-        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-gold-500/5 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-1/3 left-1/3 w-72 h-72 bg-emerald-400/5 rounded-full blur-3xl pointer-events-none" />
+    <section className="band band-ink isolate min-h-[90vh] flex items-center">
+      <PatternOverlay tone="gold" opacity={0.08} />
+      <Glow className="-top-40 -right-32 h-[34rem] w-[34rem]" color="rgba(212,175,55,0.16)" />
+      <Glow className="bottom-0 -left-40 h-[30rem] w-[30rem]" color="rgba(27,94,32,0.28)" />
+
+      {/* Drifting crescent */}
+      <div className="absolute right-6 top-16 hidden h-32 w-32 text-[#D4AF37]/45 animate-float-slow sm:block md:right-20 md:h-44 md:w-44">
+        <CrescentStar className="h-full w-full" />
       </div>
 
-      <div className="relative container-custom py-20 sm:py-24 md:py-32 lg:py-40 px-4">
-        <div className="max-w-3xl">
-          {/* Badge */}
-          <div className="mb-6 sm:mb-8">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2 backdrop-blur-sm">
-              <Star className="w-4 h-4 text-gold-400" />
-              <span className="text-sm font-medium text-white/90">Siden 2005 &middot; Lillehammer</span>
-            </div>
+      <div className="container-custom relative w-full px-4 py-24 sm:py-28 md:py-32">
+        <div className="mx-auto max-w-4xl text-center">
+          {/* Eyebrow */}
+          <div className="mb-6 flex items-center justify-center gap-3">
+            <span className="h-px w-10 bg-[#D4AF37]/60" />
+            <span className="text-xs font-semibold uppercase tracking-[0.34em] text-[#E6C547]">
+              The Muslim Cultural Center · Siden 2005
+            </span>
+            <span className="h-px w-10 bg-[#D4AF37]/60" />
           </div>
 
-          {/* Title */}
-          <h1 className="mb-4 text-4xl font-extrabold leading-[1.08] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
-            <span className="block">Velkommen til</span>
-            <span className="mt-1 block text-gold-400">Lillehammer Moske</span>
-          </h1>
-
-          <p className="text-lg sm:text-xl md:text-2xl text-white/85 leading-relaxed mb-2 sm:mb-3 max-w-2xl">
-            The Muslim Cultural Center
+          {/* Arabic + arch-framed title */}
+          <p className="mb-3 font-arabic text-2xl text-[#E9D08A] sm:text-3xl" dir="rtl">
+            بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
           </p>
 
-          <p className="text-base sm:text-lg text-white/60 leading-relaxed max-w-xl mb-8 sm:mb-10">
-            Et fellesskap for muslimer i Lillehammer og omegn. Vi er her for deg, hver dag, hele året.
-          </p>
-
-          {/* Islamic Calendar & Time Cards */}
-          <div className="flex flex-wrap gap-3 mb-8 sm:mb-10">
-            {/* Hijri Date */}
-            <div className="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-xl px-4 sm:px-5 py-3 border border-white/15">
-              <Moon className="w-5 h-5 text-gold-400 flex-shrink-0" />
-              <div>
-                <p className="text-[10px] sm:text-xs text-white/50 uppercase tracking-wider">Islamsk dato</p>
-                <p className="text-sm sm:text-base font-semibold text-white font-arabic" dir="rtl" suppressHydrationWarning>
-                  {hijriDay} {hijriMonth} {hijriYear}
-                </p>
-              </div>
-            </div>
-
-            {/* Current Time */}
-            <div className="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-xl px-4 sm:px-5 py-3 border border-white/15">
-              <Clock className="w-5 h-5 text-gold-400 flex-shrink-0" />
-              <div>
-                <p className="text-[10px] sm:text-xs text-white/50 uppercase tracking-wider">Klokken nå</p>
-                <p className="text-lg sm:text-xl font-bold font-mono text-white" suppressHydrationWarning>
-                  {norwayTimeFormatter.format(currentTime)}
-                </p>
-              </div>
-            </div>
-
-            {/* Jummah */}
-            <div className="flex items-center gap-3 bg-gold-500/10 backdrop-blur-sm rounded-xl px-4 sm:px-5 py-3 border border-gold-500/20">
-              <Calendar className="w-5 h-5 text-gold-400 flex-shrink-0" />
-              <div>
-                <p className="text-[10px] sm:text-xs text-gold-300/70 uppercase tracking-wider">Jummah fredag</p>
-                <p className="text-sm sm:text-base font-semibold text-gold-300">
-                  Khutbah {config.jummah.khutbah} &middot; Iqamah {config.jummah.jamat}
-                </p>
-              </div>
-            </div>
+          <div className="relative mx-auto flex max-w-3xl items-center justify-center">
+            <ArchFrame className="absolute inset-0 h-full w-full text-[#D4AF37]/25" />
+            <h1 className="font-display relative text-5xl font-semibold leading-[1.04] tracking-tight text-white text-balance sm:text-6xl md:text-7xl">
+              Lillehammer
+              <span className="mt-1 block text-gold-gradient">Moske</span>
+            </h1>
           </div>
 
-          {/* Gregorian date */}
-          <p className="text-xs sm:text-sm text-white/40 mb-6 sm:mb-8 capitalize" suppressHydrationWarning>
+          <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-white/75 sm:text-lg">
+            Et hjem for bønn, kunnskap og fellesskap i Lillehammer og omegn — hver dag, hele året.
+          </p>
+
+          {/* Live info pills */}
+          <div className="mt-9 flex flex-wrap items-stretch justify-center gap-3">
+            <InfoPill icon={<Moon className="h-5 w-5" />} label="Islamsk dato">
+              <span className="font-arabic text-base" dir="rtl" suppressHydrationWarning>
+                {hijriDay} {hijriMonth} {hijriYear}
+              </span>
+            </InfoPill>
+            <InfoPill icon={<Clock className="h-5 w-5" />} label="Klokken nå">
+              <span className="font-mono text-lg font-bold" suppressHydrationWarning>
+                {norwayTimeFormatter.format(currentTime)}
+              </span>
+            </InfoPill>
+            <InfoPill icon={<Calendar className="h-5 w-5" />} label="Jummah fredag" highlight>
+              <span className="text-sm font-semibold">
+                Khutbah {config.jummah.khutbah} · Iqamah {config.jummah.jamat}
+              </span>
+            </InfoPill>
+          </div>
+
+          <p className="mt-4 text-xs capitalize tracking-wide text-white/40 sm:text-sm" suppressHydrationWarning>
             {gregorianDate}
           </p>
 
-          {/* CTA Buttons */}
-          <div className="grid grid-cols-1 sm:flex sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-8">
+          <div className="mt-7 flex items-center justify-center gap-2">
+            <span className="h-px w-12 bg-[#D4AF37]/50" />
+            <EightPointStar className="h-3 w-3 text-[#D4AF37]" />
+            <span className="h-px w-12 bg-[#D4AF37]/50" />
+          </div>
+
+          {/* CTAs */}
+          <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap">
             <Link
               href="/prayer-times"
-              className="btn-secondary inline-flex items-center justify-center space-x-2"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-br from-[#E6C547] to-[#B8941F] px-7 py-3.5 font-semibold text-[#0c2a1a] shadow-[0_8px_30px_-8px_rgba(212,175,55,0.6)] transition-transform hover:-translate-y-0.5"
             >
-              <Calendar className="w-5 h-5" />
-              <span>Se Bønnetider</span>
+              <Calendar className="h-5 w-5" />
+              Se bønnetider
             </Link>
             <a
               href="https://qr.vipps.no/28/2/05/031/4p3k_Hf7g"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 bg-[#FF5B24] hover:bg-[#E54A1F] text-white px-5 sm:px-6 py-3 sm:py-3.5 rounded-xl font-semibold transition-colors shadow-lg text-sm sm:text-base"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/5 px-7 py-3.5 font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/10"
             >
-              <Smartphone className="w-5 h-5" />
-              <span>Støtt moskéen</span>
+              <Smartphone className="h-5 w-5 text-[#E6C547]" />
+              Støtt moskéen
             </a>
             <a
               href={config.social.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 sm:gap-3 bg-[#25D366] hover:bg-[#20BD5A] text-white px-5 sm:px-6 py-3 sm:py-3.5 rounded-xl font-semibold transition-colors shadow-lg text-sm sm:text-base"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/5 px-7 py-3.5 font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/10"
             >
-              <MessageCircle className="w-5 h-5" />
-              <span>WhatsApp-gruppe</span>
-              <ArrowRight className="w-4 h-4" />
+              <MessageCircle className="h-5 w-5 text-[#25D366]" />
+              WhatsApp-gruppe
+              <ArrowRight className="h-4 w-4" />
             </a>
           </div>
         </div>
       </div>
 
-      {/* Bottom fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent" />
+      {/* Skyline + seam into the cream PrayerTimes band */}
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-32 sm:h-40">
+        <MosqueSkyline className="h-full w-full" fadeTo="#06150d" />
+      </div>
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-24"
+        style={{ background: 'linear-gradient(to bottom, transparent, #f9f5eb)' }}
+      />
     </section>
+  );
+}
+
+function InfoPill({
+  icon,
+  label,
+  children,
+  highlight = false,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  children: React.ReactNode;
+  highlight?: boolean;
+}) {
+  return (
+    <div
+      className={`flex items-center gap-3 rounded-2xl border px-4 py-3 backdrop-blur-sm ${
+        highlight ? 'border-[#D4AF37]/30 bg-[#D4AF37]/10' : 'border-white/15 bg-white/5'
+      }`}
+    >
+      <span className="flex-shrink-0 text-[#E6C547]">{icon}</span>
+      <div className="text-left">
+        <p className="text-[10px] uppercase tracking-wider text-white/50 sm:text-xs">{label}</p>
+        <div className="text-white">{children}</div>
+      </div>
+    </div>
   );
 }

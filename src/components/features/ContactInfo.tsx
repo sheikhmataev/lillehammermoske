@@ -1,179 +1,113 @@
 import Link from 'next/link';
-import { MapPin, Phone, Mail, Clock, MessageCircle, Building2, Users } from 'lucide-react';
-import { Card } from '@/components/ui/Card';
-import { Button } from '@/components/ui/Button';
+import { MapPin, Mail, Clock, MessageCircle, Building2 } from 'lucide-react';
 import { config } from '@/lib/config';
+
+const card = 'rounded-2xl border border-[#1B5E20]/10 bg-white/70 p-6 backdrop-blur-sm';
 
 export function ContactInfo() {
   return (
     <div className="space-y-6">
       <div>
-        <h3 className="text-2xl font-bold text-emerald-900 mb-6 flex items-center space-x-3">
-          <Building2 className="w-7 h-7" />
-          <span>Kontaktinformasjon</span>
-        </h3>
-        <p className="text-gray-600 mb-6 leading-relaxed">
-          Vi er her for å hjelpe deg. Kontakt oss via telefon, e-post, eller besøk oss ved moskeen.
+        <div className="flex items-center gap-3">
+          <span className="text-xs font-semibold uppercase tracking-[0.32em] text-[#9A7A15]">
+            Kontaktinformasjon
+          </span>
+          <span className="h-px w-10 bg-[#D4AF37]/70" />
+        </div>
+        <h2 className="font-display mt-3 text-3xl font-semibold text-[#0c2a1a] sm:text-4xl">
+          Snakk med oss
+        </h2>
+        <p className="mt-4 leading-relaxed text-[#3a3a32]">
+          Vi er her for å hjelpe deg — via e-post, WhatsApp, eller et besøk ved moskéen.
         </p>
       </div>
 
-      {/* Contact Details Card */}
-      <Card variant="elevated">
-        <div className="space-y-6">
-          {/* Address */}
-          <div className="flex items-start space-x-4 pb-6 border-b border-gray-100">
-            <div className="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center flex-shrink-0">
-              <MapPin className="w-6 h-6 text-emerald-900" />
-            </div>
+      <div className={card}>
+        <div className="space-y-5">
+          <div className="flex items-start gap-4">
+            <span className="inline-flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-[#0c2a1a]/5 text-[#9A7A15]">
+              <MapPin className="h-5 w-5" />
+            </span>
             <div>
-              <h4 className="font-bold text-emerald-900 mb-2">Adresse</h4>
-              <p className="text-gray-700 leading-relaxed mb-2">
-                Bankgata 12<br />
-                2609 Lillehammer<br />
-                Norge
-              </p>
+              <h4 className="font-semibold text-[#0c2a1a]">Adresse</h4>
+              <p className="text-[#3a3a32]">Bankgata 12, 2609 Lillehammer</p>
               <Link
                 href="https://maps.google.com/?q=Bankgata+12,+2609+Lillehammer"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-emerald-900 hover:text-emerald-800 text-sm font-semibold inline-flex items-center space-x-1 transition-colors"
+                className="mt-1 inline-flex items-center gap-1 text-sm font-semibold text-[#9A7A15] hover:text-[#0c2a1a]"
               >
-                <span>Se på kart</span>
-                <span>→</span>
+                Se på kart →
               </Link>
             </div>
           </div>
 
-          {/* Phone */}
-          <div className="flex items-start space-x-4 pb-6 border-b border-gray-100">
-            <div className="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center flex-shrink-0">
-              <Phone className="w-6 h-6 text-emerald-900" />
-            </div>
+          <div className="flex items-start gap-4 border-t border-[#1B5E20]/10 pt-5">
+            <span className="inline-flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-[#0c2a1a]/5 text-[#9A7A15]">
+              <Mail className="h-5 w-5" />
+            </span>
             <div>
-              <h4 className="font-bold text-emerald-900 mb-2">Telefon</h4>
-              <a
-                href="tel:+4790083159"
-                className="text-gray-700 hover:text-emerald-900 transition-colors font-medium block mb-2"
-              >
-                Se telefonnummer
-              </a>
-              <p className="text-sm text-gray-500">
-                Mandag - Søndag: 09:00 - 18:00
-              </p>
-            </div>
-          </div>
-
-          {/* Email */}
-          <div className="flex items-start space-x-4 pb-6 border-b border-gray-100">
-            <div className="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center flex-shrink-0">
-              <Mail className="w-6 h-6 text-emerald-900" />
-            </div>
-            <div>
-              <h4 className="font-bold text-emerald-900 mb-2">E-post</h4>
-              <a
-                href="mailto:info@lillehammermoske.no"
-                className="text-gray-700 hover:text-emerald-900 transition-colors font-medium block mb-2 break-all"
-              >
+              <h4 className="font-semibold text-[#0c2a1a]">E-post</h4>
+              <a href="mailto:info@lillehammermoske.no" className="break-all text-[#3a3a32] hover:text-[#0c2a1a]">
                 info@lillehammermoske.no
               </a>
-              <p className="text-sm text-gray-500">
-                Vi svarer innen 1-2 virkedager
-              </p>
+              <p className="text-sm text-[#3a3a32]/60">Vi svarer innen 1–2 virkedager.</p>
             </div>
           </div>
 
-          {/* WhatsApp */}
-          <div className="flex items-start space-x-4">
-            <div className="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center flex-shrink-0">
-              <MessageCircle className="w-6 h-6 text-emerald-900" />
-            </div>
+          <div className="flex items-start gap-4 border-t border-[#1B5E20]/10 pt-5">
+            <span className="inline-flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-[#0c2a1a]/5 text-[#9A7A15]">
+              <MessageCircle className="h-5 w-5" />
+            </span>
             <div>
-              <h4 className="font-bold text-emerald-900 mb-2">WhatsApp</h4>
-              <a
-                href="https://wa.me/4790083159"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-700 hover:text-emerald-900 transition-colors font-medium block mb-2"
-              >
-                Send melding på WhatsApp
+              <h4 className="font-semibold text-[#0c2a1a]">WhatsApp</h4>
+              <a href={config.social.whatsapp} target="_blank" rel="noopener noreferrer" className="text-[#3a3a32] hover:text-[#0c2a1a]">
+                Bli med i WhatsApp-gruppen
               </a>
-              <p className="text-sm text-gray-500">
-                Rask respons på meldinger
-              </p>
+              <p className="text-sm text-[#3a3a32]/60">Rask respons og oppdateringer.</p>
             </div>
           </div>
         </div>
-      </Card>
+      </div>
 
-      {/* Opening Hours Card */}
-      <Card variant="elevated">
-        <div className="flex items-start space-x-4">
-          <div className="w-12 h-12 bg-gold-50 rounded-xl flex items-center justify-center flex-shrink-0">
-            <Clock className="w-6 h-6 text-gold-900" />
+      <div className={card}>
+        <h4 className="flex items-center gap-2 font-display text-lg font-semibold text-[#0c2a1a]">
+          <Clock className="h-5 w-5 text-[#9A7A15]" /> Åpningstider
+        </h4>
+        <dl className="mt-4 space-y-2.5 text-sm">
+          <div className="flex justify-between border-b border-[#1B5E20]/10 pb-2.5">
+            <dt className="text-[#3a3a32]">Mandag – søndag</dt>
+            <dd className="font-semibold text-[#0c2a1a]">05:00 – 22:00</dd>
           </div>
-          <div className="flex-1">
-            <h4 className="font-bold text-emerald-900 mb-5">Åpningstider</h4>
-            <div className="space-y-3">
-              <div className="flex justify-between items-center py-2.5 border-b border-gray-100">
-                <span className="text-gray-700 font-medium">Mandag - Søndag</span>
-                <span className="font-bold text-emerald-900">05:00 - 22:00</span>
-              </div>
-              <div className="flex justify-between items-center py-2.5 border-b border-gray-100">
-                <span className="text-gray-700 font-medium">Jummah (Fredag)</span>
-                <span className="font-bold text-gold-600">Khutbah {config.jummah.khutbah} | Jamat {config.jummah.jamat}</span>
-              </div>
-              <div className="flex justify-between items-center py-2.5 border-b border-gray-100">
-                <span className="text-gray-700 font-medium">Ramadan</span>
-                <span className="font-bold text-emerald-900">24/7</span>
-              </div>
-              <div className="flex justify-between items-center py-2.5">
-                <span className="text-gray-700 font-medium">Kontor</span>
-                <span className="font-bold text-emerald-900">09:00 - 18:00</span>
-              </div>
-            </div>
+          <div className="flex justify-between border-b border-[#1B5E20]/10 pb-2.5">
+            <dt className="text-[#3a3a32]">Jummah (fredag)</dt>
+            <dd className="font-semibold text-[#9A7A15]">Khutbah {config.jummah.khutbah} · Jamat {config.jummah.jamat}</dd>
           </div>
-        </div>
-      </Card>
+          <div className="flex justify-between">
+            <dt className="text-[#3a3a32]">Ramadan</dt>
+            <dd className="font-semibold text-[#0c2a1a]">24/7</dd>
+          </div>
+        </dl>
+      </div>
 
-      {/* Organization Info Card */}
-      <Card variant="subtle" className="bg-emerald-50 border-emerald-200">
-        <div className="flex items-start space-x-4">
-          <div className="w-12 h-12 bg-emerald-900 rounded-xl flex items-center justify-center flex-shrink-0 shadow-sm">
-            <Building2 className="w-6 h-6 text-white" />
+      <div className="rounded-2xl border border-[#D4AF37]/25 bg-gradient-to-br from-[#0c2a1a] to-[#13391f] p-6 text-white">
+        <h4 className="flex items-center gap-2 font-display text-lg font-semibold text-white">
+          <Building2 className="h-5 w-5 text-[#E6C547]" /> Organisasjonen
+        </h4>
+        <dl className="mt-4 space-y-2.5 text-sm">
+          <div className="flex justify-between border-b border-white/10 pb-2.5">
+            <dt className="text-white/75">Organisasjonsnummer</dt>
+            <dd className="font-semibold text-white">988 588 660</dd>
           </div>
-          <div>
-            <h4 className="font-bold text-emerald-900 mb-4">Organisasjonsinformasjon</h4>
-            <div className="space-y-3 text-sm">
-              <div className="flex justify-between items-center py-2 border-b border-emerald-200/50">
-                <span className="text-gray-700 font-semibold">Organisasjonsnummer</span>
-                <span className="text-emerald-900 font-bold">988 588 660</span>
-              </div>
-              <div className="flex justify-between items-center py-2 border-b border-emerald-200/50">
-                <span className="text-gray-700 font-semibold">Stiftet</span>
-                <span className="text-emerald-900 font-bold">2005</span>
-              </div>
-              <div className="flex justify-between items-center py-2">
-                <span className="text-gray-700 font-semibold">Organisasjonsform</span>
-                <span className="text-emerald-900 font-bold">Forening</span>
-              </div>
-            </div>
+          <div className="flex justify-between border-b border-white/10 pb-2.5">
+            <dt className="text-white/75">Stiftet</dt>
+            <dd className="font-semibold text-white">2005</dd>
           </div>
-        </div>
-      </Card>
-
-      {/* Quick Actions */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
-        <Link href="/prayer-times">
-          <Button variant="outline" className="w-full justify-center">
-            <Clock className="w-5 h-5 mr-2" />
-            Se bønnetider
-          </Button>
-        </Link>
-        <Link href="/donate">
-          <Button variant="secondary" className="w-full justify-center">
-            Doner nå
-          </Button>
-        </Link>
+          <div className="flex justify-between">
+            <dt className="text-white/75">Organisasjonsform</dt>
+            <dd className="font-semibold text-white">Forening</dd>
+          </div>
+        </dl>
       </div>
     </div>
   );

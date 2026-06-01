@@ -2,7 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&display=swap');
+
+:root {
+  /* Brand palette — single source of truth for the new design system */
+  --ink: #0c2a1a;        /* deep emerald-black */
+  --ink-deep: #06150d;
+  --emerald: #1b5e20;
+  --emerald-700: #13391f;
+  --gold: #d4af37;
+  --gold-bright: #e6c547;
+  --gold-soft: #e9d08a;
+  --gold-pale: #f5e9c3;
+  --cream: #f9f5eb;
+  --parchment: #f4eddc;
+  --body: #3a3a32;
+}
 
 @layer base {
   html {
@@ -138,8 +153,57 @@
   }
 }
 
+@layer components {
+  /* ---- Design-system bands ---- */
+  .band {
+    @apply relative isolate overflow-hidden;
+  }
+  .band-ink {
+    background: radial-gradient(ellipse at top, #1b5e20 0%, #0c2a1a 58%, #06150d 100%);
+    @apply text-white;
+  }
+  .band-ink-flat {
+    @apply bg-[#0c2a1a] text-white;
+  }
+  .band-cream {
+    @apply bg-[#f9f5eb] text-[var(--body)];
+  }
+  .band-parchment {
+    @apply bg-[#f4eddc] text-[var(--body)];
+  }
+
+  /* Display serif for editorial headings */
+  .font-display {
+    font-family: 'Fraunces', Georgia, 'Times New Roman', serif;
+    font-optical-sizing: auto;
+  }
+
+  /* Hairline gold rule with a centered star, used as a section divider */
+  .gold-rule {
+    @apply flex items-center gap-3;
+  }
+  .gold-rule::before,
+  .gold-rule::after {
+    content: '';
+    @apply h-px flex-1 bg-gradient-to-r from-transparent to-[var(--gold)]/60;
+  }
+  .gold-rule::after {
+    @apply bg-gradient-to-l;
+  }
+}
+
 @layer utilities {
   .text-shadow {
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+  /* Gold gradient text for accent words */
+  .text-gold-gradient {
+    background: linear-gradient(135deg, #f5e9c3 0%, #e6c547 45%, #d4af37 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
 }
