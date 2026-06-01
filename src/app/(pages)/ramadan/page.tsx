@@ -5,7 +5,11 @@ import { RamadanCalendar } from '@/components/features/RamadanCalendar';
 import { RamadanGuidelines } from '@/components/features/RamadanGuidelines';
 import { RamadanEvents } from '@/components/features/RamadanEvents';
 import { RAMADAN_CONFIG } from '@/lib/ramadanConfig';
-import { Moon, Star, Heart, BookOpen, Coins, Calendar } from 'lucide-react';
+import { Moon, Heart, BookOpen, Coins, Calendar } from 'lucide-react';
+import { PageHero } from '@/components/ui/PageHero';
+import { Band } from '@/components/ui/Band';
+import { SectionHeading } from '@/components/ui/SectionHeading';
+import { StarDivider } from '@/components/ui/ornaments';
 
 const R = RAMADAN_CONFIG;
 
@@ -19,360 +23,214 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://lillehammermoske.no/ramadan/' },
 };
 
+const pillars = [
+  { icon: Moon, title: 'Faste (Sawm)', text: 'Avstå fra mat og drikke fra daggry til solnedgang. En av islams fem søyler.' },
+  { icon: BookOpen, title: 'Bønn & Quran', text: 'Økt tilbedelse, nattbønn (Taraweeh) og lesing av Quranen gjennom hele måneden.' },
+  { icon: Heart, title: 'Veldedighet', text: 'Gi Zakat og Sadaqah. Profeten ﷺ var mest sjenerøs under Ramadan.' },
+];
+
 export default function RamadanPage() {
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-900 text-white overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-10 left-10 w-40 h-40 rounded-full bg-gold-500 blur-3xl" />
-          <div className="absolute bottom-10 right-10 w-60 h-60 rounded-full bg-gold-500 blur-3xl" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-emerald-500 blur-3xl" />
+    <>
+      <PageHero
+        eyebrow={`Den hellige måneden · ${R.year}`}
+        arabic="رَمَضَان"
+        title={<>Ramadan <span className="text-gold-gradient">{R.year}</span></>}
+        lead="Forbered deg på den mest velsignede måneden i året — en tid for faste, bønn, refleksjon og fellesskap."
+        skyline
+        seamTo="#06150d"
+      >
+        <div className="mx-auto max-w-2xl rounded-2xl border border-[#D4AF37]/20 bg-white/[0.04] p-6 backdrop-blur-sm">
+          <p className="font-arabic text-xl leading-[2] text-[#E9D08A] sm:text-2xl" dir="rtl">
+            شَهْرُ رَمَضَانَ الَّذِي أُنزِلَ فِيهِ الْقُرْآنُ هُدًى لِّلنَّاسِ
+          </p>
+          <p className="mt-4 text-sm italic leading-relaxed text-white/75">
+            «Ramadan-måneden er den da Quranen ble sendt ned, som rettledning for menneskeheten.»
+          </p>
+          <p className="mt-2 text-xs uppercase tracking-[0.28em] text-[#E6C547]/80">Sūra al-Baqara 2:185</p>
         </div>
+      </PageHero>
 
-        <div className="relative container-custom section-padding">
-          <div className="max-w-4xl mx-auto text-center">
-            <p className="font-arabic text-3xl md:text-4xl text-gold-400 mb-6">
-              بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ
-            </p>
-
-            <div className="inline-flex items-center gap-3 bg-gold-500/20 border border-gold-500/30 rounded-full px-6 py-2 mb-8">
-              <Moon className="w-5 h-5 text-gold-400" />
-              <span className="text-gold-300 font-medium text-sm uppercase tracking-wider">Den Hellige Måneden</span>
-              <Star className="w-4 h-4 text-gold-400" />
-            </div>
-
-            <h1 className="text-5xl md:text-7xl font-extrabold mb-6 text-white leading-tight">
-              Ramadan <span className="text-gold-400">{R.year}</span>
-            </h1>
-
-            <p className="text-xl md:text-2xl text-emerald-100 leading-relaxed mb-8 max-w-3xl mx-auto">
-              Forbered deg på den mest velsignede måneden i året. En tid for faste, bønn, 
-              refleksjon og fellesskap.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl px-6 py-3">
-                <Calendar className="w-5 h-5 text-gold-400" />
-                <span className="text-white font-semibold">{R.startDate} &ndash; {R.endDate}</span>
-              </div>
-            </div>
-
-            <div className="max-w-3xl mx-auto bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
-              <p className="font-arabic text-2xl md:text-3xl text-gold-300 mb-4 leading-relaxed">
-                شَهْرُ رَمَضَانَ الَّذِي أُنزِلَ فِيهِ الْقُرْآنُ هُدًى لِّلنَّاسِ
-              </p>
-              <p className="text-emerald-100 text-lg italic leading-relaxed">
-                &laquo;Ramadan-måneden er den da Koranen ble sendt ned, som er rettledning for menneskeheten, 
-                den inneholder klare tegn som leder til den rette veien, og som skiller mellom sannheten og falskheten.&raquo;
-              </p>
-              <p className="text-emerald-300 mt-3 text-sm font-medium">— Surah Al-Baqarah (2:185)</p>
-            </div>
+      {/* Isha & Taraweeh */}
+      <Band tone="ink" glow size="md">
+        <div className="mx-auto max-w-3xl rounded-3xl border border-[#D4AF37]/25 bg-white/[0.04] p-8 text-center backdrop-blur-sm sm:p-10">
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#D4AF37]/30 bg-[#D4AF37]/5 px-4 py-1.5">
+            <Moon className="h-4 w-4 text-[#E6C547]" />
+            <span className="text-xs font-semibold uppercase tracking-[0.22em] text-[#E6C547]">Isha og Taraweeh</span>
           </div>
-        </div>
-      </section>
-
-      {/* Isha & Taraweeh Info Banner */}
-      <section className="py-12 md:py-16 bg-gradient-to-r from-emerald-800 to-emerald-900">
-        <div className="container-custom px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 sm:p-8 text-center">
-              <div className="inline-flex items-center gap-2 bg-gold-500/20 border border-gold-500/30 rounded-full px-5 py-1.5 mb-6">
-                <Moon className="w-4 h-4 text-gold-400" />
-                <span className="text-gold-300 font-medium text-xs uppercase tracking-wider">Isha og Taraweeh</span>
+          <h2 className="font-display mt-5 text-3xl font-semibold text-white sm:text-4xl">Isha-bønn kl. {R.ishaTime}</h2>
+          <p className="mx-auto mt-3 max-w-xl text-white/75">
+            Isha-bønn starter kl. {R.ishaTime} fra og med {R.ishaStartDate}, etterfulgt av Taraweeh.
+          </p>
+          <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            {R.taraweehLeaders.map((leader) => (
+              <div key={leader} className="rounded-xl border border-white/10 bg-white/5 px-5 py-3">
+                <p className="font-medium text-white">{leader}</p>
               </div>
-
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white mb-4">
-                Isha-bønn kl. {R.ishaTime}
-              </h2>
-              <p className="text-emerald-100 text-base sm:text-lg leading-relaxed mb-6 max-w-2xl mx-auto">
-                Isha-bønn starter kl. {R.ishaTime} fra og med {R.ishaStartDate}, etterfulgt av Taraweeh.
-              </p>
-
-              <div className="bg-white/5 border border-white/10 rounded-xl p-5 sm:p-6 mb-6 max-w-2xl mx-auto">
-                <p className="text-emerald-200 text-sm font-medium mb-3 uppercase tracking-wider">Taraweeh ledes av</p>
-                <div className="flex flex-col sm:flex-row gap-3 sm:gap-6 justify-center">
-                  {R.taraweehLeaders.map((leader) => (
-                    <div key={leader} className="bg-white/10 rounded-lg px-5 py-3">
-                      <p className="text-white font-bold text-base">{leader}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="bg-gold-500/10 border border-gold-500/20 rounded-lg px-4 py-3 inline-block">
-                <p className="text-gold-300 text-sm">
-                  <strong className="text-gold-400">Merk:</strong> Tidene kan bli endret underveis. 
-                  Følg oss i vår WhatsApp-gruppe for oppdatert informasjon.
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
+          <p className="mx-auto mt-6 max-w-lg rounded-lg border border-[#D4AF37]/20 bg-[#D4AF37]/10 px-4 py-3 text-sm text-[#E6C547]">
+            Tidene kan endres underveis. Følg vår WhatsApp-gruppe for oppdatert informasjon.
+          </p>
         </div>
-      </section>
+      </Band>
 
-      {/* Ramadan Countdown */}
       <RamadanCountdown />
 
-      {/* What is Ramadan Section */}
-      <section className="py-16 md:py-28 bg-white">
-        <div className="container-custom px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12 md:mb-16">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-emerald-900 mb-6">
-                Hva er Ramadan?
-              </h2>
-              <div className="w-20 md:w-24 h-1 bg-gold-500 mx-auto rounded-full" />
+      {/* What is Ramadan */}
+      <Band tone="cream">
+        <SectionHeading
+          tone="cream"
+          eyebrow="Om måneden"
+          title="Hva er Ramadan?"
+          lead="Ramadan er den islamske fastemåneden — måneårets niende måned. Friske voksne muslimer faster fra daggry til solnedgang, og øker bønn, Quran-lesing og veldedighet."
+        />
+        <div className="mx-auto mt-12 grid max-w-4xl gap-6 sm:grid-cols-3">
+          {pillars.map(({ icon: Icon, title, text }) => (
+            <div key={title} className="rounded-2xl border border-[#1B5E20]/10 bg-white/70 p-6 text-center backdrop-blur-sm">
+              <span className="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-[#0c2a1a] text-[#E6C547]">
+                <Icon className="h-7 w-7" />
+              </span>
+              <h3 className="font-display mt-4 text-lg font-semibold text-[#0c2a1a]">{title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-[#3a3a32]">{text}</p>
             </div>
-            
-            <div className="prose prose-lg max-w-none">
-              <p className="text-gray-700 text-lg leading-relaxed mb-6">
-                Ramadan er den islamske fastemåneden, måneårets niende måned. Friske voksne muslimer faster 
-                fra daggry til solnedgang. Dette innebærer å avstå fra å drikke, spise, umoralske handlinger 
-                og sinne. Andre tilbedelseshandlinger som bønn, lesing av Koranen og veldedighet oppmuntres 
-                spesielt i løpet av den hellige måneden.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mt-8 md:mt-12">
-              <div className="bg-emerald-50 rounded-xl md:rounded-2xl p-6 md:p-8 text-center border border-emerald-100">
-                <div className="w-12 h-12 md:w-14 md:h-14 bg-emerald-900 rounded-lg md:rounded-xl flex items-center justify-center mx-auto mb-4 md:mb-5">
-                  <Moon className="w-6 h-6 md:w-7 md:h-7 text-gold-400" />
-                </div>
-                <h3 className="text-lg md:text-xl font-bold text-emerald-900 mb-2 md:mb-3">Faste (Sawm)</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Avstå fra mat og drikke fra daggry til solnedgang. En av islams fem søyler.
-                </p>
-              </div>
-              <div className="bg-emerald-50 rounded-xl md:rounded-2xl p-6 md:p-8 text-center border border-emerald-100">
-                <div className="w-12 h-12 md:w-14 md:h-14 bg-emerald-900 rounded-lg md:rounded-xl flex items-center justify-center mx-auto mb-4 md:mb-5">
-                  <BookOpen className="w-6 h-6 md:w-7 md:h-7 text-gold-400" />
-                </div>
-                <h3 className="text-lg md:text-xl font-bold text-emerald-900 mb-2 md:mb-3">Bønn & Koran</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Økt tilbedelse, nattbønn (Taraweeh) og lesing av Koranen gjennom hele måneden.
-                </p>
-              </div>
-              <div className="bg-emerald-50 rounded-xl md:rounded-2xl p-6 md:p-8 text-center border border-emerald-100">
-                <div className="w-12 h-12 md:w-14 md:h-14 bg-emerald-900 rounded-lg md:rounded-xl flex items-center justify-center mx-auto mb-4 md:mb-5">
-                  <Heart className="w-6 h-6 md:w-7 md:h-7 text-gold-400" />
-                </div>
-                <h3 className="text-lg md:text-xl font-bold text-emerald-900 mb-2 md:mb-3">Veldedighet</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Gi Zakat og Sadaqah. Profeten (fvmh) var mest sjenerøs under Ramadan.
-                </p>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
-      </section>
+      </Band>
 
-      {/* When is Ramadan Section */}
-      <section className="py-20 md:py-28 bg-cream-50">
-        <div className="container-custom">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-extrabold text-emerald-900 mb-6">
-                Når er Ramadan {R.year}?
-              </h2>
-              <div className="w-24 h-1 bg-gold-500 mx-auto rounded-full" />
-            </div>
-
-            <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
-              <div className="bg-emerald-900 p-8 text-center">
-                <p className="text-emerald-200 text-lg mb-2">1. Ramadan</p>
-                <p className="text-4xl md:text-5xl font-extrabold text-white mb-2">
-                  {R.startDayOfWeek} {R.startDate}
-                </p>
-                <p className="text-emerald-200">og avsluttes <span className="text-gold-400 font-bold">{R.endDate}</span></p>
-              </div>
-              <div className="p-8">
-                <div className="bg-gold-500/10 border border-gold-500/20 rounded-xl p-6 mb-6">
-                  <p className="text-gray-700 text-sm leading-relaxed">
-                    <strong className="text-emerald-900">Merk:</strong> De nøyaktige datoene for Ramadan er avhengige av 
-                    måneobservasjoner og starter når nymånen viser seg. Fordi den islamske kalenderen er basert på 
-                    månesyklusen, flytter den hellige måneden Ramadan seg med omtrent ti dager hvert år.
-                  </p>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="border border-gray-200 rounded-xl p-6">
-                    <h4 className="font-bold text-emerald-900 mb-2 text-lg">Eid al-Fitr {R.year}</h4>
-                    <p className="text-gray-600 text-sm leading-relaxed">
-                      Eid al-Fitr markerer offisielt slutten på Ramadan. Den nøyaktige timingen er basert på 
-                      måneobservasjoner. Eid al-Fitr begynner ved starten av den islamske måneden Shawwal.
-                    </p>
-                  </div>
-                  <div className="border border-gray-200 rounded-xl p-6">
-                    <h4 className="font-bold text-emerald-900 mb-2 text-lg">Laylatul Qadr</h4>
-                    <p className="text-gray-600 text-sm leading-relaxed">
-                      Skjebnenatten er mer verdt enn tusen måneder. Søk den i de siste ti nettene av Ramadan, 
-                      spesielt de oddetallsnettene ({R.laylatulQadrNights}).
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+      {/* When is Ramadan */}
+      <Band tone="parchment">
+        <SectionHeading tone="cream" eyebrow="Datoer" title={`Når er Ramadan ${R.year}?`} />
+        <div className="mx-auto mt-12 max-w-3xl overflow-hidden rounded-3xl border border-[#1B5E20]/10 bg-white/70 shadow-[0_24px_60px_-35px_rgba(12,42,26,0.4)] backdrop-blur-sm">
+          <div className="bg-gradient-to-br from-[#0c2a1a] to-[#13391f] p-8 text-center text-white">
+            <p className="text-sm text-white/70">1. Ramadan</p>
+            <p className="font-display mt-1 text-3xl font-semibold text-white sm:text-4xl">{R.startDayOfWeek} {R.startDate}</p>
+            <p className="mt-2 text-white/70">avsluttes <span className="font-semibold text-[#E6C547]">{R.endDate}</span></p>
           </div>
-        </div>
-      </section>
-
-      {/* Laylatul Qadr Quote */}
-      <section className="py-16 bg-emerald-900 text-white">
-        <div className="container-custom">
-          <div className="max-w-3xl mx-auto text-center">
-            <p className="font-arabic text-2xl md:text-3xl text-gold-400 mb-6 leading-relaxed">
-              إِنَّا أَنزَلْنَاهُ فِي لَيْلَةِ الْقَدْرِ ۝ وَمَا أَدْرَاكَ مَا لَيْلَةُ الْقَدْرِ ۝ لَيْلَةُ الْقَدْرِ خَيْرٌ مِّنْ أَلْفِ شَهْرٍ
+          <div className="p-8">
+            <p className="rounded-xl border border-[#D4AF37]/20 bg-[#D4AF37]/8 p-5 text-sm leading-relaxed text-[#3a3a32]">
+              De nøyaktige datoene avhenger av måneobservasjoner. Fordi den islamske kalenderen følger
+              månesyklusen, flytter Ramadan seg ca. ti dager hvert år.
             </p>
-            <p className="text-emerald-100 text-lg italic leading-relaxed mb-3">
-              &laquo;Vi har sendt den ned i Skjebnenatten. Hvordan kan du vel vite hva Skjebnenatten er? 
-              Skjebnenatten er mer verdt enn tusen måneder!&raquo;
-            </p>
-            <p className="text-emerald-300 text-sm font-medium">— Surah Al-Qadr (97:1-3)</p>
+            <div className="mt-6 grid gap-5 sm:grid-cols-2">
+              <div className="rounded-xl border border-[#1B5E20]/10 p-5">
+                <h4 className="font-display font-semibold text-[#0c2a1a]">Eid al-Fitr {R.year}</h4>
+                <p className="mt-2 text-sm leading-relaxed text-[#3a3a32]">Markerer slutten på Ramadan, ved starten av måneden Shawwal. Nøyaktig tidspunkt avhenger av måneobservasjon.</p>
+              </div>
+              <div className="rounded-xl border border-[#1B5E20]/10 p-5">
+                <h4 className="font-display font-semibold text-[#0c2a1a]">Laylatul Qadr</h4>
+                <p className="mt-2 text-sm leading-relaxed text-[#3a3a32]">Skjebnenatten — mer verdt enn tusen måneder. Søk den i de siste ti nettene, særlig oddetallsnettene ({R.laylatulQadrNights}).</p>
+              </div>
+            </div>
           </div>
         </div>
-      </section>
+      </Band>
 
-      {/* Ramadan Calendar */}
+      {/* Laylatul Qadr quote */}
+      <Band tone="ink" glow size="md">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="font-arabic text-2xl leading-[2.2] text-[#E9D08A] sm:text-3xl" dir="rtl">
+            إِنَّا أَنزَلْنَاهُ فِي لَيْلَةِ الْقَدْرِ ۝ وَمَا أَدْرَاكَ مَا لَيْلَةُ الْقَدْرِ ۝ لَيْلَةُ الْقَدْرِ خَيْرٌ مِّنْ أَلْفِ شَهْرٍ
+          </p>
+          <div className="my-6"><StarDivider tone="gold" /></div>
+          <p className="text-lg italic leading-relaxed text-white/80">
+            «Vi har sendt den ned i Skjebnenatten. Hvordan kan du vite hva Skjebnenatten er?
+            Skjebnenatten er mer verdt enn tusen måneder!»
+          </p>
+          <p className="mt-3 text-sm uppercase tracking-[0.28em] text-[#E6C547]/80">Sūra al-Qadr 97:1–3</p>
+        </div>
+      </Band>
+
       <RamadanCalendar />
 
-      {/* Ramadan Tabell Image */}
-      <section className="py-12 md:py-20 bg-white">
-        <div className="container-custom">
-          <div className="max-w-2xl mx-auto text-center px-4">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-emerald-900 mb-6 sm:mb-8">
-              Ramadan Kalender {R.year}
-            </h2>
-            <div className="rounded-xl sm:rounded-2xl overflow-hidden shadow-lg border border-gray-200">
-              <Image
-                src={R.kalenderBilde}
-                alt={R.kalenderBildeAlt}
-                width={700}
-                height={990}
-                className="w-full h-auto"
-                priority
-              />
-            </div>
-            <p className="text-sm text-gray-600 mt-4">
-              Trykk på bildet for å se det større
-            </p>
-          </div>
+      {/* Calendar poster */}
+      <Band tone="cream" size="md">
+        <SectionHeading tone="cream" eyebrow="Last ned" title={`Ramadan-kalender ${R.year}`} />
+        <div className="mx-auto mt-10 max-w-xl overflow-hidden rounded-3xl border border-[#1B5E20]/10 shadow-[0_24px_60px_-35px_rgba(12,42,26,0.4)]">
+          <Image src={R.kalenderBilde} alt={R.kalenderBildeAlt} width={700} height={990} className="h-auto w-full" priority />
         </div>
-      </section>
+      </Band>
 
-      {/* Ramadan Guidelines */}
       <RamadanGuidelines />
 
-      {/* Hadith Quote */}
-      <section className="py-16 bg-emerald-900 text-white">
-        <div className="container-custom">
-          <div className="max-w-3xl mx-auto text-center">
-            <p className="text-emerald-100 text-xl italic leading-relaxed mb-4">
-              &laquo;Den som gir mat til en som faster vil ha belønningen lik han som fastet, 
-              uten at belønningen til han som fastet minker.&raquo;
+      {/* Hadith */}
+      <Band tone="ink" size="md">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="text-xl italic leading-relaxed text-white/85">
+            «Den som gir mat til en som faster, vil ha samme belønning som den fastende — uten at
+            den fastendes belønning minker.»
+          </p>
+          <p className="mt-4 text-sm uppercase tracking-[0.28em] text-[#E6C547]/80">Al-Tirmidhi</p>
+        </div>
+      </Band>
+
+      {/* Zakat & Sadaqah */}
+      <Band tone="cream">
+        <SectionHeading
+          tone="cream"
+          eyebrow="Veldedighet"
+          title="Zakat & Sadaqah"
+          lead="Profeten ﷺ var den mest sjenerøse av mennesker, og mest sjenerøs under Ramadan."
+        />
+        <div className="mx-auto mt-12 grid max-w-4xl gap-6 md:grid-cols-2">
+          <div className="rounded-3xl border border-[#D4AF37]/25 bg-gradient-to-br from-[#0c2a1a] to-[#13391f] p-8 text-white">
+            <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-[#E6C547]">
+              <Coins className="h-6 w-6" />
+            </span>
+            <h3 className="font-display mt-5 text-2xl font-semibold text-white">Zakat</h3>
+            <p className="mt-3 leading-relaxed text-white/80">
+              Obligatorisk veldedighet for de som oppfyller formueskriteriene — 2,5 % av oppspart
+              formue. Zakat har makt til å bekjempe fattigdom.
             </p>
-            <p className="text-emerald-300 text-sm font-medium">— Al-Tirmidhi</p>
+          </div>
+          <div className="rounded-3xl border border-[#D4AF37]/40 bg-gradient-to-br from-[#E6C547] to-[#B8941F] p-8 text-[#0c2a1a]">
+            <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white/30">
+              <Heart className="h-6 w-6" />
+            </span>
+            <h3 className="font-display mt-5 text-2xl font-semibold">Sadaqah</h3>
+            <p className="mt-3 leading-relaxed text-[#0c2a1a]/85">
+              Frivillig veldedighet som kan gis når som helst, i hvilken som helst mengde. Profeten ﷺ
+              økte sin sadaqah særlig under Ramadan.
+            </p>
           </div>
         </div>
-      </section>
-
-      {/* Zakat & Sadaqah Section */}
-      <section className="py-20 md:py-28 bg-white">
-        <div className="container-custom">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-extrabold text-emerald-900 mb-6">
-                Zakat & Sadaqah
-              </h2>
-              <div className="w-24 h-1 bg-gold-500 mx-auto rounded-full mb-6" />
-              <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-                Profeten (fvmh) var den mest sjenerøse av mennesker, og han var mest sjenerøs under Ramadan.
-              </p>
+        <div className="mx-auto mt-6 grid max-w-4xl gap-5 sm:grid-cols-3">
+          {[
+            { title: 'Fitrana', text: 'Obligatorisk almisse betalt før Eid-bønnen. Renser fasten og gir mat til trengende.' },
+            { title: 'Fidya', text: 'Kompensasjon for de som ikke kan faste av gyldig grunn og ikke kan ta igjen dagene.' },
+            { title: 'Kaffarah', text: 'Kompensasjon for å bryte fasten uten gyldig grunn — faste 60 dager eller mate 60 fattige.' },
+          ].map((c) => (
+            <div key={c.title} className="rounded-2xl border border-[#1B5E20]/10 bg-white/70 p-6 text-center backdrop-blur-sm">
+              <h4 className="font-display font-semibold text-[#0c2a1a]">{c.title}</h4>
+              <p className="mt-2 text-sm leading-relaxed text-[#3a3a32]">{c.text}</p>
             </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-              <div className="bg-gradient-to-br from-emerald-900 to-emerald-800 rounded-2xl p-8 text-white">
-                <div className="w-12 h-12 bg-gold-500/20 rounded-xl flex items-center justify-center mb-5">
-                  <Coins className="w-6 h-6 text-gold-400" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-white">Zakat</h3>
-                <p className="text-emerald-100 leading-relaxed mb-4">
-                  Zakat er en obligatorisk veldedighetsform for muslimer som oppfyller visse formueskriterier. 
-                  Man gir 2,5% av sin oppsparte formue. Zakat kan ha makten til å utrydde global fattigdom.
-                </p>
-                <p className="text-emerald-200 text-sm italic">
-                  &laquo;Hvis alle rundt om i verden ga 2,5% av formuen sin som Zakat, kunne vi utryddet fattigdom 
-                  sammen, SubhanAllah!&raquo;
-                </p>
-              </div>
-
-              <div className="bg-gradient-to-br from-gold-500 to-gold-600 rounded-2xl p-8 text-white">
-                <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mb-5">
-                  <Heart className="w-6 h-6 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-white">Sadaqah</h3>
-                <p className="text-white/90 leading-relaxed mb-4">
-                  Frivillig veldedighet som kan gis når som helst og i hvilken som helst mengde. Profeten (fvmh) 
-                  ville gi veldedighet gjennom året, men økte sin sadaqah under Ramadan.
-                </p>
-                <p className="text-white/80 text-sm italic">
-                  Ibn Abbas sa: &laquo;Profeten (fvmh) var den mest sjenerøse av mennesker, og han var mest 
-                  sjenerøs under Ramadan.&raquo;
-                </p>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-              <div className="bg-cream-50 rounded-xl p-6 border border-gray-200 text-center">
-                <h4 className="font-bold text-emerald-900 mb-2">Fitrana (Zakat ul-Fitr)</h4>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Obligatorisk almisse som betales før Eid-bønnen. Renser fasten og gir mat til de trengende.
-                </p>
-              </div>
-              <div className="bg-cream-50 rounded-xl p-6 border border-gray-200 text-center">
-                <h4 className="font-bold text-emerald-900 mb-2">Fidya</h4>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Kompensasjon for de som ikke kan faste på grunn av gyldig grunn og ikke kan ta igjen dagene.
-                </p>
-              </div>
-              <div className="bg-cream-50 rounded-xl p-6 border border-gray-200 text-center">
-                <h4 className="font-bold text-emerald-900 mb-2">Kaffarah</h4>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Kompensasjon for de som bryter fasten uten gyldig grunn. Man må faste 60 sammenhengende dager eller mate 60 fattige.
-                </p>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
-      </section>
+      </Band>
 
-      {/* Ramadan Events */}
       <RamadanEvents />
 
       {/* Final CTA */}
-      <section className="py-20 bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-900 text-white">
-        <div className="container-custom">
-          <div className="max-w-3xl mx-auto text-center">
-            <p className="font-arabic text-2xl text-gold-400 mb-6">
-              رَمَضَانَ كَرِيم
+      <Band tone="ink" glow>
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="font-arabic text-4xl text-[#E9D08A]" dir="rtl">رَمَضَان كَرِيم</p>
+          <div className="my-6"><StarDivider tone="gold" /></div>
+          <h2 className="font-display text-3xl font-semibold text-white sm:text-4xl">Ramadan Kareem</h2>
+          <p className="mt-4 text-lg leading-relaxed text-white/75">
+            Må Allah akseptere vår faste, våre bønner og gode gjerninger i denne velsignede måneden.
+          </p>
+          <div className="mx-auto mt-8 max-w-2xl rounded-2xl border border-[#D4AF37]/20 bg-white/[0.04] p-6 backdrop-blur-sm">
+            <p className="text-lg italic leading-relaxed text-white/80">
+              «Alle handlingene til Adams barn er for dem, bortsett fra fasten. Den er for Meg, og
+              Jeg alene vil belønne for den.»
             </p>
-            <h2 className="text-4xl md:text-5xl font-extrabold mb-6 text-white">
-              Ramadan Kareem
-            </h2>
-            <p className="text-emerald-100 text-lg leading-relaxed mb-8">
-              Må Allah akseptere vår faste, våre bønner og gode gjerninger i denne velsignede måneden. 
-              Vi ønsker hele fellesskapet en velsignet Ramadan.
+            <p className="mt-3 flex items-center justify-center gap-2 text-sm">
+              <Calendar className="h-4 w-4 text-[#E6C547]" />
+              <span className="uppercase tracking-[0.24em] text-[#E6C547]/80">Hadith Qudsi · Bukhari</span>
             </p>
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
-              <p className="text-emerald-100 text-lg italic leading-relaxed">
-                &laquo;Alle handlingene til Adams barn er for dem, bortsett fra fasten. 
-                Den er for Meg, og Jeg alene vil belønne for den.&raquo;
-              </p>
-              <p className="text-emerald-300 mt-3 text-sm font-medium">— Hadith Qudsi (Bukhari)</p>
-            </div>
           </div>
         </div>
-      </section>
-    </div>
+      </Band>
+    </>
   );
 }
-

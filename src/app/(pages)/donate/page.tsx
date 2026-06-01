@@ -2,7 +2,10 @@
 
 import { useState } from 'react';
 import { DonateHero } from '@/components/features/DonateHero';
-import { Smartphone, Building2, Heart, Copy, Check } from 'lucide-react';
+import { Band } from '@/components/ui/Band';
+import { SectionHeading } from '@/components/ui/SectionHeading';
+import { StarDivider } from '@/components/ui/ornaments';
+import { Smartphone, Building2, Copy, Check } from 'lucide-react';
 
 export default function DonatePage() {
   const [copiedVipps, setCopiedVipps] = useState(false);
@@ -24,124 +27,96 @@ export default function DonatePage() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Hero Section */}
+    <>
       <DonateHero />
 
-      {/* Donation Methods */}
-      <section className="py-16 md:py-20 bg-white">
-        <div className="container-custom">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-extrabold text-emerald-900 mb-4">
-                Støtt Lillehammer Moske
-              </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Din donasjon bidrar til å opprettholde moskeen, støtte utdanning, og styrke det muslimske fellesskapet i Lillehammer.
-              </p>
+      {/* Donation methods */}
+      <Band tone="cream">
+        <SectionHeading
+          tone="cream"
+          eyebrow="Slik bidrar du"
+          arabic="الصدقة"
+          title="Støtt Lillehammer Moske"
+          lead="Din donasjon holder moskéen i drift, støtter undervisningen og styrker fellesskapet."
+        />
+
+        <div className="mx-auto mt-14 grid max-w-4xl gap-6 md:grid-cols-2">
+          {/* Vipps */}
+          <div className="rounded-3xl border border-[#1B5E20]/10 bg-white/70 p-8 backdrop-blur-sm">
+            <div className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-[#FF5B24] shadow-sm">
+              <Smartphone className="h-7 w-7 text-white" />
             </div>
+            <h3 className="font-display text-2xl font-semibold text-[#0c2a1a]">Vipps</h3>
+            <p className="mt-2 leading-relaxed text-[#3a3a32]">
+              Send donasjon enkelt via Vipps — søk etter nummeret eller bruk knappen.
+            </p>
+            <div className="mt-6 rounded-2xl border border-[#1B5E20]/10 bg-[#f4eddc]/60 p-5">
+              <p className="text-xs font-semibold uppercase tracking-wide text-[#9A7A15]">Vipps-nummer</p>
+              <button
+                onClick={() => copyToClipboard('503175', 'vipps')}
+                className="group relative -m-2 mt-1 w-full rounded-lg p-2 text-left transition-colors hover:bg-white/70"
+              >
+                <p className="font-display text-3xl font-semibold text-[#0c2a1a]">503175</p>
+                <span className="absolute right-2 top-3">
+                  {copiedVipps ? <Check className="h-5 w-5 text-[#1B5E20]" /> : <Copy className="h-5 w-5 text-[#9A7A15]" />}
+                </span>
+              </button>
+              <a
+                href="https://qr.vipps.no/28/2/05/031/4p3k_Hf7g"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 block w-full rounded-xl bg-[#FF5B24] py-3 text-center font-semibold text-white transition-colors hover:bg-[#E54A1F]"
+              >
+                Doner med Vipps
+              </a>
+            </div>
+          </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {/* Vipps */}
-              <div className="bg-white rounded-2xl border-2 border-gray-200 p-8 hover:border-emerald-300 hover:shadow-lg transition-all">
-                <div className="w-14 h-14 bg-[#FF5B24] rounded-xl flex items-center justify-center mb-6 shadow-sm">
-                  <Smartphone className="w-7 h-7 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold text-emerald-900 mb-3">Vipps</h3>
-                <p className="text-gray-600 mb-6 leading-relaxed">
-                  Send donasjon enkelt via Vipps. Søk etter nummeret eller bruk Vipps-appen direkte.
-                </p>
-                <div className="bg-gray-50 rounded-xl p-5 border border-gray-200">
-                  <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-1">Vipps-nummer</p>
-                  <button
-                    onClick={() => copyToClipboard('503175', 'vipps')}
-                    className="group relative w-full text-left hover:bg-white rounded-lg transition-colors -m-2 p-2"
-                  >
-                    <p className="text-3xl font-extrabold text-emerald-900 pr-10">503175</p>
-                    <div className="absolute top-2 right-2 flex items-center">
-                      {copiedVipps ? (
-                        <Check className="w-5 h-5 text-green-600" />
-                      ) : (
-                        <Copy className="w-5 h-5 text-gray-400 group-hover:text-emerald-600 transition-colors" />
-                      )}
-                    </div>
-                    <p className="text-xs text-gray-500 mt-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                      Klikk for å kopiere
-                    </p>
-                  </button>
-                  
-                  <div className="mt-4 pt-4 border-t border-gray-200">
-                    <a
-                      href="https://qr.vipps.no/28/2/05/031/4p3k_Hf7g"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block w-full bg-[#FF5B24] hover:bg-[#E54A1F] text-white font-semibold py-3 px-4 rounded-lg transition-colors text-center"
-                    >
-                      Doner direkte med Vipps
-                    </a>
-                    <p className="text-xs text-gray-500 text-center mt-2">
-                      Åpnes i Vipps-appen
-                    </p>
-                  </div>
-                </div>
+          {/* Bank */}
+          <div className="rounded-3xl border border-[#1B5E20]/10 bg-white/70 p-8 backdrop-blur-sm">
+            <div className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-[#0c2a1a] shadow-sm">
+              <Building2 className="h-7 w-7 text-[#E6C547]" />
+            </div>
+            <h3 className="font-display text-2xl font-semibold text-[#0c2a1a]">Bankoverføring</h3>
+            <p className="mt-2 leading-relaxed text-[#3a3a32]">Overfør direkte til vår bankkonto.</p>
+            <div className="mt-6 space-y-4 rounded-2xl border border-[#1B5E20]/10 bg-[#f4eddc]/60 p-5">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wide text-[#9A7A15]">Kontonummer</p>
+                <button
+                  onClick={() => copyToClipboard('05394493661', 'bank')}
+                  className="group relative -m-2 mt-1 w-full rounded-lg p-2 text-left transition-colors hover:bg-white/70"
+                >
+                  <p className="font-display text-2xl font-semibold text-[#0c2a1a]">0539 44 93661</p>
+                  <span className="absolute right-2 top-3">
+                    {copiedBank ? <Check className="h-5 w-5 text-[#1B5E20]" /> : <Copy className="h-5 w-5 text-[#9A7A15]" />}
+                  </span>
+                </button>
               </div>
-
-              {/* Bank Account */}
-              <div className="bg-white rounded-2xl border-2 border-gray-200 p-8 hover:border-emerald-300 hover:shadow-lg transition-all">
-                <div className="w-14 h-14 bg-emerald-900 rounded-xl flex items-center justify-center mb-6 shadow-sm">
-                  <Building2 className="w-7 h-7 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold text-emerald-900 mb-3">Bankoverføring</h3>
-                <p className="text-gray-600 mb-6 leading-relaxed">
-                  Overfør direkte til vår bankkonto.
-                </p>
-                <div className="bg-gray-50 rounded-xl p-5 border border-gray-200 space-y-4">
-                  <div>
-                    <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-1">Kontonummer</p>
-                    <button
-                      onClick={() => copyToClipboard('05394493661', 'bank')}
-                      className="group relative w-full text-left hover:bg-white rounded-lg transition-colors -m-2 p-2"
-                    >
-                      <p className="text-xl font-bold text-emerald-900 pr-10">05394493661</p>
-                      <div className="absolute top-2 right-2 flex items-center">
-                        {copiedBank ? (
-                          <Check className="w-5 h-5 text-green-600" />
-                        ) : (
-                          <Copy className="w-5 h-5 text-gray-400 group-hover:text-emerald-600 transition-colors" />
-                        )}
-                      </div>
-                      <p className="text-xs text-gray-500 mt-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                        Klikk for å kopiere
-                      </p>
-                    </button>
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-1">Org.nr</p>
-                    <p className="text-lg font-bold text-emerald-900">988 588 660</p>
-                  </div>
-                </div>
+              <div className="border-t border-[#1B5E20]/10 pt-3">
+                <p className="text-xs font-semibold uppercase tracking-wide text-[#9A7A15]">Org.nr</p>
+                <p className="font-display text-xl font-semibold text-[#0c2a1a]">988 588 660</p>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </Band>
 
-      {/* CTA */}
-      <section className="py-16 md:py-20 bg-gray-50">
-        <div className="container-custom">
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="bg-emerald-900 text-white rounded-2xl p-10 shadow-lg">
-              <Heart className="w-12 h-12 text-gold-400 mx-auto mb-4" />
-              <h3 className="text-2xl md:text-3xl font-extrabold text-white mb-4">
-                Jazak Allahu Khairan
-              </h3>
-              <p className="text-white/90 text-lg leading-relaxed">
-                Måtte Allah belønne deg for din generøsitet. Hver donasjon, uansett størrelse, gjør en forskjell for vårt fellesskap.
-              </p>
-            </div>
+      {/* Jazak Allah */}
+      <Band tone="ink" glow>
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="font-arabic text-4xl leading-[1.8] text-[#E9D08A]" dir="rtl">
+            جَزَاكُمُ اللَّهُ خَيْرًا
+          </p>
+          <div className="my-6">
+            <StarDivider tone="gold" />
           </div>
+          <h2 className="font-display text-2xl font-semibold text-white sm:text-3xl">Jazak Allahu Khairan</h2>
+          <p className="mt-4 text-lg leading-relaxed text-white/75">
+            Måtte Allah belønne deg for din generøsitet. Hver donasjon — uansett størrelse — gjør
+            en forskjell for fellesskapet vårt.
+          </p>
         </div>
-      </section>
-    </div>
+      </Band>
+    </>
   );
 }

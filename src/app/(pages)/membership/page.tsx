@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { PageHero } from '@/components/ui/PageHero';
 import { MembershipRegistration } from '@/components/features/MembershipRegistration';
 
 export const metadata: Metadata = {
@@ -14,8 +15,14 @@ export const metadata: Metadata = {
 
 export default function MembershipPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <>
+      <PageHero
+        eyebrow="Bli en del av oss"
+        arabic="العضوية"
+        title="Medlemskap"
+        lead="Som medlem støtter du moskéens arbeid og er med på å forme veien videre."
+      />
       <MembershipRegistration />
-    </div>
+    </>
   );
 }

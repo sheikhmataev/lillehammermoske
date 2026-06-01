@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
+import { BookOpen, Users, GraduationCap } from 'lucide-react';
 import { QuranSchoolHero } from '@/components/features/QuranSchoolHero';
 import { RegistrationForms } from '@/components/features/RegistrationForms';
+import { Band } from '@/components/ui/Band';
+import { SectionHeading } from '@/components/ui/SectionHeading';
 
 export const metadata: Metadata = {
   title: 'Quranskole Lillehammer – Påmelding og Informasjon',
@@ -13,33 +16,39 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://lillehammermoske.no/quran-school/' },
 };
 
+const features = [
+  { icon: BookOpen, title: 'Qaida til Quran', text: 'Fra grunnleggende Noorani Qaida til flytende Quran-lesing med Tajweed.' },
+  { icon: Users, title: 'Egne klasser', text: 'Separate klasser for gutter og jenter, tilpasset hvert barns nivå.' },
+  { icon: GraduationCap, title: 'Fra 6 år', text: 'Undervisning for barn fra 6 år og oppover — og egne tilbud for voksne.' },
+];
+
 export default function QuranSchoolPage() {
   return (
-    <div className="min-h-screen bg-white">
-      {/* Hero Section */}
+    <>
       <QuranSchoolHero />
 
-      {/* About our school */}
-      <section className="py-16 md:py-20 bg-white">
-        <div className="container-custom">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-emerald-900 mb-6">
-              Om Quranskolen
-            </h2>
-            <p className="text-lg text-gray-600 leading-relaxed mb-4">
-              Vi tilbyr Quran-undervisning for barn fra 6 år og oppover. Klassene dekker alt fra
-              Qaida til Quran-lesing med Tajweed — alt i én klasse tilpasset hvert barns nivå.
-            </p>
-            <p className="text-lg text-gray-600 leading-relaxed">
-              Vi har separate klasser for gutter og jenter. Meld på ditt barn ved å velge
-              riktig skjema nedenfor.
-            </p>
-          </div>
+      <Band tone="parchment">
+        <SectionHeading
+          tone="cream"
+          eyebrow="Undervisning"
+          arabic="مدرسة القرآن"
+          title="Om Quranskolen"
+          lead="Vi tilbyr Quran-undervisning for barn fra 6 år og oppover — fra Qaida til lesing med Tajweed, alt tilpasset hvert barns nivå."
+        />
+        <div className="mx-auto mt-12 grid max-w-4xl gap-6 sm:grid-cols-3">
+          {features.map(({ icon: Icon, title, text }) => (
+            <div key={title} className="rounded-2xl border border-[#1B5E20]/10 bg-white/70 p-6 text-center backdrop-blur-sm">
+              <span className="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-[#0c2a1a] text-[#E6C547]">
+                <Icon className="h-7 w-7" />
+              </span>
+              <h3 className="font-display mt-4 text-lg font-semibold text-[#0c2a1a]">{title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-[#3a3a32]">{text}</p>
+            </div>
+          ))}
         </div>
-      </section>
+      </Band>
 
-      {/* Registration Forms */}
       <RegistrationForms />
-    </div>
+    </>
   );
 }

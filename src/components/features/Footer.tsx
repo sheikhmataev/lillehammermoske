@@ -1,180 +1,107 @@
 import Link from 'next/link';
-import { MapPin, Phone, Mail, Clock, Moon, Facebook, Instagram, Youtube, MessageCircle, Building2 } from 'lucide-react';
+import Image from 'next/image';
+import { MapPin, Mail, Clock, MessageCircle, Building2 } from 'lucide-react';
+import { config } from '@/lib/config';
+import { PatternOverlay, StarDivider } from '@/components/ui/ornaments';
+
+const quickLinks = [
+  { name: 'Hjem', href: '/' },
+  { name: 'Om oss', href: '/about' },
+  { name: 'Bønnetider', href: '/prayer-times' },
+  { name: 'Ramadan', href: '/ramadan' },
+  { name: 'Quranskole', href: '/quran-school' },
+  { name: 'Medlemskap', href: '/membership' },
+  { name: 'Styret', href: '/board' },
+];
 
 export function Footer() {
   return (
-    <footer className="bg-emerald-900 text-white">
-      <div className="container-custom">
-        <div className="py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-          {/* Logo and Description */}
-          <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-gold-500 rounded-full flex items-center justify-center">
-                <Moon className="w-6 h-6 text-white" />
-              </div>
+    <footer className="band band-ink isolate">
+      <PatternOverlay tone="gold" opacity={0.05} />
+      <span aria-hidden className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/50 to-transparent" />
+
+      <div className="container-custom relative px-4">
+        <div className="grid grid-cols-1 gap-10 py-14 md:grid-cols-2 lg:grid-cols-5">
+          {/* Brand */}
+          <div className="space-y-4 lg:col-span-2">
+            <div className="flex items-center gap-3">
+              <span className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-xl bg-white/95 p-1">
+                <Image src="/assets/logos/logo.png" alt="Lillehammer Moske" width={40} height={40} className="h-full w-full object-contain" />
+              </span>
               <div>
-                <h3 className="text-lg font-bold text-white">Lillehammer Moske</h3>
-                <p className="text-sm text-gray-300">The Muslim Cultural Center</p>
+                <h3 className="font-display text-lg font-semibold text-white">Lillehammer Moske</h3>
+                <p className="text-[11px] uppercase tracking-[0.18em] text-[#E6C547]/80">The Muslim Cultural Center</p>
               </div>
             </div>
-            <p className="text-gray-300 text-sm leading-relaxed">
-              Et fellesskap for muslimer i Lillehammer og omegn siden 2005. Vi jobber for å styrke det muslimske fellesskapet og fremme forståelse mellom kulturer.
+            <p className="max-w-sm text-sm leading-relaxed text-white/65">
+              Et fellesskap for muslimer i Lillehammer og omegn siden 2005. Vi jobber for å
+              styrke fellesskapet og fremme forståelse mellom kulturer.
             </p>
-            <div className="flex items-center space-x-2 text-sm text-gray-300">
-              <Building2 className="w-4 h-4 text-gold-500" />
+            <div className="flex items-center gap-2 text-sm text-white/55">
+              <Building2 className="h-4 w-4 text-[#E6C547]" />
               <span>Org.nr: 988 588 660</span>
             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Quick links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-gold-500">Hurtiglenker</h4>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/" className="text-gray-300 hover:text-white transition-colors text-sm">
-                  Hjem
-                </Link>
-              </li>
-              <li>
-                <Link href="/about" className="text-gray-300 hover:text-white transition-colors text-sm">
-                  Om Oss
-                </Link>
-              </li>
-              <li>
-                <Link href="/prayer-times" className="text-gray-300 hover:text-white transition-colors text-sm">
-                  Bønnetider
-                </Link>
-              </li>
-              <li>
-                <Link href="/ramadan" className="text-gray-300 hover:text-white transition-colors text-sm">
-                  Ramadan
-                </Link>
-              </li>
-              <li>
-                <Link href="/quran-school" className="text-gray-300 hover:text-white transition-colors text-sm">
-                  Quranskole
-                </Link>
-              </li>
-              <li>
-                <Link href="/membership" className="text-gray-300 hover:text-white transition-colors text-sm">
-                  Medlemskap
-                </Link>
-              </li>
-              <li>
-                <Link href="/board" className="text-gray-300 hover:text-white transition-colors text-sm">
-                  Styret
-                </Link>
-              </li>
+            <h4 className="font-display text-base font-semibold text-[#E6C547]">Hurtiglenker</h4>
+            <ul className="mt-4 space-y-2.5">
+              {quickLinks.map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href} className="text-sm text-white/65 transition-colors hover:text-white">
+                    {l.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Contact Info */}
+          {/* Contact */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-gold-500">Kontakt</h4>
-            <div className="space-y-3">
-              <div className="flex items-start space-x-3">
-                <MapPin className="w-5 h-5 text-gold-500 mt-0.5 flex-shrink-0" />
-                <div>
-                  <p className="text-gray-300 text-sm">
-                    Bankgata 12<br />
-                    2609 Lillehammer<br />
-                    Norge
-                  </p>
-                </div>
+            <h4 className="font-display text-base font-semibold text-[#E6C547]">Kontakt</h4>
+            <div className="mt-4 space-y-3 text-sm">
+              <div className="flex items-start gap-3">
+                <MapPin className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#E6C547]" />
+                <p className="text-white/65">Bankgata 12<br />2609 Lillehammer</p>
               </div>
-              <div className="flex items-center space-x-3">
-                <Phone className="w-5 h-5 text-gold-500 flex-shrink-0" />
-                <a href="tel:+4790083159" className="text-gray-300 hover:text-white transition-colors text-sm">
-                  Se telefonnummer
-                </a>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Mail className="w-5 h-5 text-gold-500 flex-shrink-0" />
-                <a href="mailto:info@lillehammermoske.no" className="text-gray-300 hover:text-white transition-colors text-sm">
-                  info@lillehammermoske.no
-                </a>
-              </div>
-              <div className="flex items-center space-x-3">
-                <MessageCircle className="w-5 h-5 text-gold-500 flex-shrink-0" />
-                <a href="https://wa.me/4790083159" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors text-sm">
-                  WhatsApp
-                </a>
-              </div>
+              <a href="mailto:info@lillehammermoske.no" className="flex items-center gap-3 text-white/65 transition-colors hover:text-white">
+                <Mail className="h-5 w-5 flex-shrink-0 text-[#E6C547]" />
+                info@lillehammermoske.no
+              </a>
+              <a href={config.social.whatsapp} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-white/65 transition-colors hover:text-white">
+                <MessageCircle className="h-5 w-5 flex-shrink-0 text-[#25D366]" />
+                WhatsApp-gruppe
+              </a>
             </div>
           </div>
 
-          {/* Opening Hours & Social */}
+          {/* Hours */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-gold-500">Åpningstider</h4>
-            <div className="space-y-2 mb-6">
-              <div className="flex items-center space-x-2">
-                <Clock className="w-5 h-5 text-gold-500 flex-shrink-0" />
-                <div>
-                  <p className="text-gray-300 text-sm">Daglig: 05:00 - 22:00</p>
-                  <p className="text-gray-400 text-xs">Bønnetider varierer</p>
-                </div>
-              </div>
-            </div>
-            <div>
-              <h4 className="text-lg font-semibold mb-4 text-gold-500">Følg oss</h4>
-              <div className="flex space-x-4">
-                <a
-                  href="#"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 bg-emerald-800 hover:bg-gold-500 rounded-full flex items-center justify-center transition-colors"
-                  aria-label="Facebook"
-                >
-                  <Facebook className="w-5 h-5" />
-                </a>
-                <a
-                  href="#"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 bg-emerald-800 hover:bg-gold-500 rounded-full flex items-center justify-center transition-colors"
-                  aria-label="Instagram"
-                >
-                  <Instagram className="w-5 h-5" />
-                </a>
-                <a
-                  href="#"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 bg-emerald-800 hover:bg-gold-500 rounded-full flex items-center justify-center transition-colors"
-                  aria-label="YouTube"
-                >
-                  <Youtube className="w-5 h-5" />
-                </a>
+            <h4 className="font-display text-base font-semibold text-[#E6C547]">Åpningstider</h4>
+            <div className="mt-4 flex items-start gap-3 text-sm">
+              <Clock className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#E6C547]" />
+              <div className="text-white/65">
+                <p>Daglig: 05:00 – 22:00</p>
+                <p className="text-xs text-white/45">Bønnetider varierer</p>
+                <p className="mt-2">Jummah: Khutbah {config.jummah.khutbah}</p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="border-t border-emerald-800 py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-gray-300 text-sm">
-              © {new Date().getFullYear()} The Muslim Cultural Center Lillehammer. Alle rettigheter forbeholdt.
-            </p>
-            <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-6">
-              <Link href="/privacy" className="text-gray-300 hover:text-white text-sm transition-colors">
-                Personvern
-              </Link>
-              <Link href="/terms" className="text-gray-300 hover:text-white text-sm transition-colors">
-                Vilkår
-              </Link>
-              <Link href="/donate" className="text-gray-300 hover:text-white text-sm transition-colors">
-                Donasjoner
-              </Link>
-              <a 
-                href="https://forms.gle/TyJDF2t7fZAhrEiB6" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-gray-300 hover:text-white text-sm transition-colors"
-              >
-                Utmelding
-              </a>
-            </div>
+        <StarDivider tone="gold" className="max-w-md" />
+
+        {/* Bottom bar */}
+        <div className="flex flex-col items-center justify-between gap-4 py-7 md:flex-row">
+          <p className="text-sm text-white/55">
+            © {new Date().getFullYear()} The Muslim Cultural Center Lillehammer.
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+            <Link href="/privacy" className="text-sm text-white/55 transition-colors hover:text-white">Personvern</Link>
+            <Link href="/terms" className="text-sm text-white/55 transition-colors hover:text-white">Vilkår</Link>
+            <Link href="/donate" className="text-sm text-white/55 transition-colors hover:text-white">Donasjoner</Link>
+            <a href="https://forms.gle/TyJDF2t7fZAhrEiB6" target="_blank" rel="noopener noreferrer" className="text-sm text-white/55 transition-colors hover:text-white">Utmelding</a>
           </div>
         </div>
       </div>

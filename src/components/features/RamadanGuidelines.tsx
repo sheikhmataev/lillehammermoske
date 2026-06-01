@@ -2,7 +2,7 @@ import { Moon, BookOpen, Heart, AlertCircle, CheckCircle } from 'lucide-react';
 
 export function RamadanGuidelines() {
   return (
-    <section className="py-20 md:py-28 bg-white">
+    <section className="py-20 md:py-28 bg-[#f4eddc]">
       <div className="container-custom">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">

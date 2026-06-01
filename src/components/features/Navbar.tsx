@@ -59,8 +59,8 @@ export function Navbar() {
               />
             </div>
             <div className="hidden sm:block">
-              <h1 className="text-lg font-bold text-emerald-900 tracking-tight">Lillehammer Moske</h1>
-              <p className="text-xs text-gray-500">The Muslim Cultural Center</p>
+              <h1 className="font-display text-lg font-semibold tracking-tight text-[#0c2a1a]">Lillehammer Moske</h1>
+              <p className="text-[11px] uppercase tracking-[0.18em] text-[#9A7A15]">The Muslim Cultural Center</p>
             </div>
           </Link>
 
@@ -74,7 +74,7 @@ export function Navbar() {
                   href={item.href}
                   className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${
                     isActive
-                      ? 'bg-emerald-900 text-white'
+                      ? 'bg-[#0c2a1a] text-white'
                       : 'text-gray-700 hover:text-emerald-900 hover:bg-emerald-50'
                   }`}
                   aria-current={isActive ? 'page' : undefined}
@@ -129,7 +129,7 @@ export function Navbar() {
                     href={item.href}
                     className={`block px-4 py-2 rounded-lg font-medium ${
                       isActive
-                        ? 'bg-emerald-900 text-white'
+                        ? 'bg-[#0c2a1a] text-white'
                         : 'text-gray-700 hover:text-emerald-900 hover:bg-emerald-50'
                     }`}
                     onClick={() => setMobileMenuOpen(false)}
