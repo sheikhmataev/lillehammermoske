@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import Script from 'next/script';
 import './globals.css';
 import { Navbar } from '@/components/features/Navbar';
 import { Footer } from '@/components/features/Footer';
@@ -133,6 +134,7 @@ export default function RootLayout({
           <main className="flex-1">{children}</main>
           <Footer />
         </div>
+        <Script src="/embed/mash-credit.js" strategy="lazyOnload" />
       </body>
     </html>
   );

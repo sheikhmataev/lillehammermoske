@@ -1,5 +1,13 @@
 import Link from 'next/link';
 import Image from 'next/image';
+
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      'mash-credit': React.HTMLAttributes<HTMLElement> & { lang?: string; variant?: string; services?: string; location?: string; org?: string; accent?: string; label?: string; href?: string; theme?: string };
+    }
+  }
+}
 import { MapPin, Mail, Clock, MessageCircle, Building2 } from 'lucide-react';
 import { config } from '@/lib/config';
 import { PatternOverlay, StarDivider } from '@/components/ui/ornaments';
@@ -103,6 +111,9 @@ export function Footer() {
             <Link href="/donate" className="text-sm text-white/55 transition-colors hover:text-white">Donasjoner</Link>
             <a href="https://forms.gle/TyJDF2t7fZAhrEiB6" target="_blank" rel="noopener noreferrer" className="text-sm text-white/55 transition-colors hover:text-white">Utmelding</a>
           </div>
+        </div>
+        <div className="pb-4">
+          <mash-credit lang="nb" services="Digitalisation · AI · Automation" />
         </div>
       </div>
     </footer>
