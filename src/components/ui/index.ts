@@ -7,6 +7,7 @@ export { Modal } from './Modal';
 export { Band } from './Band';
 export { SectionHeading } from './SectionHeading';
 export { PageHero } from './PageHero';
+export { MaleSilhouette, HijabSilhouette } from './Silhouettes';
 export {
   PatternOverlay,
   Glow,
@@ -17,5 +18,3 @@ export {
   MosqueSkyline,
   BandSeam,
 } from './ornaments';
-
-
