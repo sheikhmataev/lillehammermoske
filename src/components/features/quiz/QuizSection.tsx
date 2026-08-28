@@ -23,7 +23,8 @@ export function QuizSection({
   onAdvance,
   isSubmitting = false,
 }: QuizSectionProps) {
-  const [answers, setAnswers] = useState<Record<number, string>>(initialAnswers);
+  const [answers, setAnswers] =
+    useState<Record<number, string>>(initialAnswers);
   const [error, setError] = useState<string | null>(null);
   const topRef = useRef<HTMLDivElement>(null);
 
@@ -41,7 +42,9 @@ export function QuizSection({
   const handleNext = () => {
     const missing = section.questions.find((q) => !answers[q.number]);
     if (missing) {
-      setError(`Spørsmål ${missing.number} er ikke besvart.`);
+      setError(
+        `Spørsmål ${missing.displayNumber ?? missing.number} er ikke besvart.`
+      );
       const el = document.getElementById(`question-${missing.number}`);
       el?.scrollIntoView({ behavior: 'smooth', block: 'center' });
       return;
@@ -49,7 +52,9 @@ export function QuizSection({
     onAdvance(answers);
   };
 
-  const answeredCount = section.questions.filter((q) => answers[q.number]).length;
+  const answeredCount = section.questions.filter(
+    (q) => answers[q.number]
+  ).length;
   const progressPct = Math.round(((sectionIndex + 1) / totalSections) * 100);
 
   return (
@@ -84,14 +89,16 @@ export function QuizSection({
           >
             <div className="flex items-start gap-3">
               <span className="mt-0.5 inline-flex h-7 min-w-[1.75rem] items-center justify-center rounded-full bg-emerald-900 px-2 text-sm font-bold text-white">
-                {q.number}
+                {q.displayNumber ?? q.number}
               </span>
               <h3 className="text-base font-semibold leading-snug text-gray-900 sm:text-lg">
                 {q.text}
               </h3>
             </div>
             <fieldset className="mt-4">
-              <legend className="sr-only">Svaralternativer for spørsmål {q.number}</legend>
+              <legend className="sr-only">
+                Svaralternativer for spørsmål {q.displayNumber ?? q.number}
+              </legend>
               <div className="space-y-2">
                 {q.options.map((opt) => {
                   const selected = answers[q.number] === opt.letter;
@@ -113,7 +120,9 @@ export function QuizSection({
                         className="mt-1 h-4 w-4 accent-emerald-700"
                       />
                       <span className="flex-1">
-                        <span className="font-bold text-emerald-900">{opt.letter})</span>{' '}
+                        <span className="font-bold text-emerald-900">
+                          {opt.letter})
+                        </span>{' '}
                         <span className="text-gray-800">{opt.text}</span>
                       </span>
                     </label>
@@ -126,7 +135,10 @@ export function QuizSection({
       </ol>
 
       {error && (
-        <p className="mt-6 rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700" role="alert">
+        <p
+          className="mt-6 rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700"
+          role="alert"
+        >
           {error}
         </p>
       )}

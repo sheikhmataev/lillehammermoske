@@ -2,17 +2,26 @@
 
 import Link from 'next/link';
 import { Check, X } from 'lucide-react';
-import type { AnswerEntry, Quiz } from '@/lib/quizzes/types';
+import type { AnswerEntry, Quiz, QuizSection } from '@/lib/quizzes/types';
 
 interface QuizReviewProps {
   quiz: Quiz;
+  /** Sections in the order the pupil answered them. */
+  sections: QuizSection[];
   name: string;
   score: number;
   answers: AnswerEntry[];
   submitError?: string | null;
 }
 
-export function QuizReview({ quiz, name, score, answers, submitError }: QuizReviewProps) {
+export function QuizReview({
+  quiz,
+  sections,
+  name,
+  score,
+  answers,
+  submitError,
+}: QuizReviewProps) {
   const total = quiz.totalQuestions;
   const pct = Math.round((score / total) * 100);
 
@@ -58,17 +67,22 @@ export function QuizReview({ quiz, name, score, answers, submitError }: QuizRevi
         </div>
 
         {submitError && (
-          <p className="mt-6 rounded-lg bg-amber-50 px-4 py-3 text-sm text-amber-800" role="alert">
-            Svarene dine ble vist, men kunne ikke lagres ({submitError}). Vis denne siden til
-            læreren din.
+          <p
+            className="mt-6 rounded-lg bg-amber-50 px-4 py-3 text-sm text-amber-800"
+            role="alert"
+          >
+            Svarene dine ble vist, men kunne ikke lagres ({submitError}). Vis
+            denne siden til læreren din.
           </p>
         )}
       </div>
 
-      <h2 className="mt-10 text-xl font-bold text-emerald-900">Gjennomgang av svarene dine</h2>
+      <h2 className="mt-10 text-xl font-bold text-emerald-900">
+        Gjennomgang av svarene dine
+      </h2>
 
       <div className="mt-4 space-y-8">
-        {quiz.sections.map((section) => (
+        {sections.map((section) => (
           <section key={section.title}>
             <h3 className="text-base font-semibold uppercase tracking-wide text-gold-600">
               {section.title}
@@ -93,14 +107,27 @@ export function QuizReview({ quiz, name, score, answers, submitError }: QuizRevi
                         }`}
                         aria-hidden="true"
                       >
-                        {entry.isCorrect ? <Check className="h-4 w-4" /> : <X className="h-4 w-4" />}
+                        {entry.isCorrect ? (
+                          <Check className="h-4 w-4" />
+                        ) : (
+                          <X className="h-4 w-4" />
+                        )}
                       </span>
                       <div className="flex-1">
                         <p className="text-sm font-medium text-gray-900">
-                          <span className="font-bold">{q.number}.</span> {q.text}
+                          <span className="font-bold">
+                            {q.displayNumber ?? q.number}.
+                          </span>{' '}
+                          {q.text}
                         </p>
                         <div className="mt-2 space-y-1 text-sm">
-                          <p className={entry.isCorrect ? 'text-emerald-900' : 'text-red-700'}>
+                          <p
+                            className={
+                              entry.isCorrect
+                                ? 'text-emerald-900'
+                                : 'text-red-700'
+                            }
+                          >
                             <span className="font-semibold">Ditt svar:</span>{' '}
                             {entry.selectedLetter
                               ? `${entry.selectedLetter}) ${entry.selectedText}`
@@ -108,7 +135,9 @@ export function QuizReview({ quiz, name, score, answers, submitError }: QuizRevi
                           </p>
                           {!entry.isCorrect && (
                             <p className="text-emerald-900">
-                              <span className="font-semibold">Riktig svar:</span>{' '}
+                              <span className="font-semibold">
+                                Riktig svar:
+                              </span>{' '}
                               {entry.correctLetter}) {entry.correctText}
                             </p>
                           )}

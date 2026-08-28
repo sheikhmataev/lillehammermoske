@@ -176,9 +176,3 @@ intro: For barn 8–12 år. Velg ett svar per spørsmål. Du får se hvor mange 
 - B) Danmark
 - C) Norge *
 - D) Finland
-
-29. Hva heter Kong Haralds kone?
-- A) Sonja Haraldsen / Dronning Sonja *
-- B) Märtha Louise
-- C) Ingrid Alexandra
-- D) Maud

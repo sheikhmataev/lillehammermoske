@@ -8,6 +8,8 @@ export interface QuizQuestion {
   number: number;
   text: string;
   options: QuizOption[];
+  /** Position shown to the pupil once the questions have been shuffled. */
+  displayNumber?: number;
 }
 
 export interface QuizSection {
