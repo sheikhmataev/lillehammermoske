@@ -1,5 +1,5 @@
 ---
-title: Quiz – Profeten Muhammad ﷺ og Kong Harald V
+title: Quiz – Profeten Muhammad ﷺ og kongehuset i Norge
 slug: profeten-muhammad-og-kong-harald
 visible: true
 intro: For barn 8–12 år. Velg ett svar per spørsmål. Du får se hvor mange du har riktig på slutten.
@@ -121,57 +121,57 @@ intro: For barn 8–12 år. Velg ett svar per spørsmål. Du får se hvor mange 
 - C) Hafsa
 - D) Zaynab
 
-## Kong Harald V
+## Kongehuset i Norge
 
-20. Hva heter Norges konge?
-- A) Kong Olav
-- B) Kong Harald V *
-- C) Kong Haakon
+20. Hva heter Norges konge nå?
+- A) Kong Olav V
+- B) Kong Harald V
+- C) Kong Haakon VIII *
 - D) Kong Magnus
 
-21. Hvor ble Kong Harald født?
+21. Hvor ble kong Harald V født?
 - A) Bergen
 - B) Trondheim
 - C) Oslo *
 - D) Lillehammer
 
-22. Hvem er Kong Harald gift med?
+22. Hvem var kong Harald V gift med?
 - A) Dronning Sonja *
-- B) Kronprinsesse Mette-Marit
+- B) Dronning Mette-Marit
 - C) Prinsesse Märtha Louise
 - D) Dronning Maud
 
-23. Hva heter Kong Haralds sønn som er kronprins?
+23. Hvem er kronprinsesse og tronarving i Norge nå?
 - A) Prins Sverre Magnus
-- B) Kronprins Haakon *
-- C) Prins Olav
-- D) Prins Harald
+- B) Kronprinsesse Ingrid Alexandra *
+- C) Prinsesse Märtha Louise
+- D) Dronning Sonja
 
-24. Når ble Harald konge av Norge?
+24. Når ble kong Harald V konge av Norge?
 - A) 1972
 - B) 1985
 - C) 1991 *
 - D) 2000
 
-25. Hvem var Kong Haralds far?
+25. Hvem var kong Harald V sin far?
 - A) Kong Olav V *
 - B) Kong Haakon VII
 - C) Kong Christian
 - D) Kong Magnus
 
-26. Hvilken sport har Kong Harald vært veldig interessert i?
+26. Hvilken sport var kong Harald V veldig interessert i?
 - A) Seiling *
 - B) Ishockey
 - C) Basketball
 - D) Karate
 
-27. Hva slags rolle har Kong Harald som konge?
+27. Hva slags rolle har kongen i Norge?
 - A) Han er Norges statsminister
 - B) Han er Norges statsoverhode *
 - C) Han er ordfører i Oslo
 - D) Han er leder for Stortinget
 
-28. Hvilket land er Kong Harald konge av?
+28. Hvilket land er kong Haakon VIII konge av?
 - A) Sverige
 - B) Danmark
 - C) Norge *
