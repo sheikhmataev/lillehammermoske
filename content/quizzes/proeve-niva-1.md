@@ -1,7 +1,7 @@
 ---
 title: Quiz – Nivå 1
 slug: proeve-niva-1
-visible: true
+visible: false
 intro: Velg ett svar per spørsmål. Du får se hvor mange du har riktig på slutten.
 ---
 
